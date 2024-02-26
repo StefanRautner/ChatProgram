@@ -1,10 +1,16 @@
 # ChatProgram
 
-- Server in Java (Spring-Boot) (auch andere Möglich)
+- Server in Python
 1. Client in C# (WPF)
 2. Client in HTML, CSS & JS (React?) == responsive WebApp (ohne service-worker.js)
 
-- Speichern in SQLite
+- Speichern in Firebase
+- Gruppen
+- private Chats
+- Daten verschlüsseln
+- Benutzer muss Konto haben (Registerieren & Login)
+- Zeitstempel?
+- Gelesen anzeige?
 
 - Daten mit JSON senden
 
