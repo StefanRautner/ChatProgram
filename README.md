@@ -4,7 +4,7 @@
 1. Client in C# (WPF)
 2. Client in HTML, CSS & JS (React?) == responsive WebApp (ohne service-worker.js)
 
-- Speichern in Firebase
+- Speichern in Mongodb
 - Gruppen
 - private Chats
 - Daten verschlüsseln
