@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿//Autor: Stefan rautner
+using System.Windows;
 
 namespace Second_Client_WPF
 {
