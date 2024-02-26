@@ -1,18 +1,18 @@
 # ChatProgram
 
-- Server in Python
+- Server in Spring-Boot (Kommunikation zwischen Clients und Datenbank)
 1. Client in C# (WPF)
 2. Client in HTML, CSS & JS (React?) == responsive WebApp (ohne service-worker.js)
 
 - Speichern in Mongodb
-- Gruppen
-- private Chats
-- Daten verschlüsseln
-- Benutzer muss Konto haben (Registerieren & Login)
-- Zeitstempel?
-- Gelesen anzeige?
 
-- Daten mit JSON senden
+- Anforderungen:
+  - Gruppen
+  - private Chats
+  - Daten verschlüsseln
+  - Benutzer muss Konto haben (Registerieren & Login)
+  - Zeitstempel?
+  - Gelesen anzeige?
 
 - Spring-Boot soll CRUD (Create, Read, Update, Delete) enthalten
   - Create = Nachrichten schreiben (und in Datenbank speichern)
