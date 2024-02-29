@@ -7,12 +7,13 @@
 - Speichern in Mongodb
 
 - Anforderungen:
-  - Gruppen
+  - Gruppen beitreten & verlassen (muss von einem Mitglied der Gruppen eingeladen werden)
   - private Chats
-  - Daten verschlüsseln
+  - Daten verschlüsseln (verschlüsselt übermitteln)
   - Benutzer muss Konto haben (Registerieren & Login)
   - Zeitstempel?
   - Gelesen anzeige?
+  - Bilder, Video- & Audiodateien?
 
 - Spring-Boot soll CRUD (Create, Read, Update, Delete) enthalten
   - Create = Nachrichten schreiben (und in Datenbank speichern)
