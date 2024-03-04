@@ -14,49 +14,46 @@ const urlToMongoDBDatabase = 'http://localhost:8080/api';
 async function getData(userID) {
     const response = await fetch(`${urlToMongoDBDatabase}/getData`, {
         methode: 'GET',
-        headers: {
+        body: {
             'userID': userID
         }
     });
-    return await response.json();
+    return await response.json();       //Hier erhaltene Daten verarbeiten, sodass Sie angezeigt werden
 }
 
 //Nachricht oder Gruppe hinzufügen
 async function sendData(userID, chatID, data) {
     const response = await fetch(`${urlToMongoDBDatabase}/newMessage`, {
         method: 'POST',
-        headers: {
+        body: {
             'userID': userID,
-            'chatID': chatID
-        },
-        body: JSON.stringify(data)
+            'chatID': chatID,
+            'message': data
+        }
     });
-    return await response.json();
 }
 
 //Nachricht aktualisieren/updaten
 async function updateMessage(userID, chatID, updateID, data) {
     const response = await fetch(`${urlToMongoDBDatabase}/updateMessage`, {
         method: 'PUT',
-        headers: {
+        body: {
             'userID': userID,
             'chatID': chatID,
-            'updateID': updateID
-        },
-        body: JSON.stringify(data)
+            'updateID': updateID,
+            'message': data
+        }
     });
-    return await response.json();
 }
 
 //Nachricht/Chat löschen
 async function deleteData(userID, type, chatID, messageID) {
     const response = await fetch(`${urlToMongoDBDatabase}/deleteData`, {
         method: 'DELETE',
-        headers: {
+        body: {
             'userID': userID,
             'chatID': chatID,
             'messageID': messageID
         }
     });
-    return await response.json();
 }
