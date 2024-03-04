@@ -1,40 +1,62 @@
-// Define the base URL of your Spring Boot server
-const baseUrl = 'http://localhost:8080/api';
+//Autor: Stefan Rautner
 
-// Function to perform GET request to retrieve data
-async function getData(endpoint) {
-    const response = await fetch(`${baseUrl}/${endpoint}`);
+//userID = ID des aktiven Users
+//type = Nachricht oder Chat (privater Chat oder Gruppe)
+//chatID = ID des Chats (privater Chat oder Gruppe)
+//messageID = ID der zu löschenden Nachricht, bzw. Chats (privater Chat oder Gruppe)
+//data = Nachricht
+
+
+// URL zur MongoDB Datenbank definieren
+const urlToMongoDBDatabase = 'http://localhost:8080/api';
+
+//Nachrichten erhalten
+async function getData(userID) {
+    const response = await fetch(`${urlToMongoDBDatabase}/getData`, {
+        methode: 'GET',
+        headers: {
+            'userID': userID
+        }
+    });
     return await response.json();
 }
 
-// Function to perform POST request to create data
-async function createData(endpoint, data) {
-    const response = await fetch(`${baseUrl}/${endpoint}`, {
+//Nachricht oder Gruppe hinzufügen
+async function sendData(userID, chatID, data) {
+    const response = await fetch(`${urlToMongoDBDatabase}/newMessage`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'userID': userID,
+            'chatID': chatID
         },
         body: JSON.stringify(data)
     });
     return await response.json();
 }
 
-// Function to perform PUT request to update data
-async function updateData(endpoint, id, data) {
-    const response = await fetch(`${baseUrl}/${endpoint}/${id}`, {
+//Nachricht aktualisieren/updaten
+async function updateMessage(userID, chatID, updateID, data) {
+    const response = await fetch(`${urlToMongoDBDatabase}/updateMessage`, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'userID': userID,
+            'chatID': chatID,
+            'updateID': updateID
         },
         body: JSON.stringify(data)
     });
     return await response.json();
 }
 
-// Function to perform DELETE request to delete data
-async function deleteData(endpoint, id) {
-    const response = await fetch(`${baseUrl}/${endpoint}/${id}`, {
-        method: 'DELETE'
+//Nachricht/Chat löschen
+async function deleteData(userID, type, chatID, messageID) {
+    const response = await fetch(`${urlToMongoDBDatabase}/deleteData`, {
+        method: 'DELETE',
+        headers: {
+            'userID': userID,
+            'chatID': chatID,
+            'messageID': messageID
+        }
     });
     return await response.json();
 }

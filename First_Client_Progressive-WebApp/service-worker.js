@@ -6,9 +6,12 @@ let cacheVersion = 'my-cache';
 //Definition Versions-Dokumente
 const versionDocuments = [
     'icon.png',
-    'index.html',
-    'style.css',
+    'home.html',
+    'style-home.css',
     'script.js',
+    'login.html',
+    'style-login.css',
+    'script-login.js',
     'manifest.json',
     'service-worker.js'
 ]
