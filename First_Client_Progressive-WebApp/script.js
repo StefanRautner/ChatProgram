@@ -1,62 +1,40 @@
-/* Autor: Stefan Rautner */
+// Define the base URL of your Spring Boot server
+const baseUrl = 'http://localhost:8080/api';
 
-function sendMessage() {
-    const userInput = document.getElementById('user-input').value;
-    const chatBox = document.getElementById('chat-box');
-
-    if (userInput.trim() !== '') {
-        const userMessage = document.createElement('div');
-        userMessage.classList.add('chat', 'user');
-        userMessage.innerHTML = '<div class="message">' + userInput + '</div>';
-        chatBox.appendChild(userMessage);
-
-        // Clear input field
-        document.getElementById('user-input').value = '';
-
-        // Send data to Spring Boot server
-        sendDataToServer(userInput);
-    }
+// Function to perform GET request to retrieve data
+async function getData(endpoint) {
+    const response = await fetch(`${baseUrl}/${endpoint}`);
+    return await response.json();
 }
 
-function sendDataToServer(userInput) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/sendMessageToServer'); // Assuming the server endpoint is '/sendMessageToServer'
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            // Do nothing on successful sending
-        }
-    };
-    const data = JSON.stringify({ userInput: userInput });
-    xhr.send(data);
+// Function to perform POST request to create data
+async function createData(endpoint, data) {
+    const response = await fetch(`${baseUrl}/${endpoint}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    return await response.json();
 }
 
-// Load previous chats on page load
-window.onload = function() {
-    loadChatsFromServer();
+// Function to perform PUT request to update data
+async function updateData(endpoint, id, data) {
+    const response = await fetch(`${baseUrl}/${endpoint}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    return await response.json();
 }
 
-function loadChatsFromServer() {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/loadChatsFromServer'); // Assuming the server endpoint is '/loadChatsFromServer'
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            const chats = JSON.parse(xhr.responseText);
-            chats.forEach(chat => {
-                displayUserMessage(chat.message);
-            });
-        }
-    };
-    xhr.send();
-}
-
-function displayUserMessage(message) {
-    const chatBox = document.getElementById('chat-box');
-    const userMessage = document.createElement('div');
-    userMessage.classList.add('chat', 'user');
-    userMessage.innerHTML = '<div class="message">' + message + '</div>';
-    chatBox.appendChild(userMessage);
-
-    // Scroll to bottom
-    chatBox.scrollTop = chatBox.scrollHeight;
+// Function to perform DELETE request to delete data
+async function deleteData(endpoint, id) {
+    const response = await fetch(`${baseUrl}/${endpoint}/${id}`, {
+        method: 'DELETE'
+    });
+    return await response.json();
 }
