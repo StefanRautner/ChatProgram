@@ -34,13 +34,13 @@ async function sendData(userID, chatID, data) {
 }
 
 //Nachricht aktualisieren/updaten
-async function updateMessage(userID, chatID, updateID, data) {
+async function updateMessage(userID, chatID, messageID, data) {
     const response = await fetch(`${urlToMongoDBDatabase}/updateMessage`, {
         method: 'PUT',
         body: {
             'userID': userID,
             'chatID': chatID,
-            'updateID': updateID,
+            'messageID': messageID,
             'message': data
         }
     });

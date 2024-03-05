@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "pfnrPJ5Y+Td64LzEUQR2bKkC0XDv8LT6QX+T+UjhiGJc1r2CsBc6rfAQGLf/24vE5uN0D8xfWVyaKY2BvPV54w==",
+  "dgSpecHash": "4+bUpaIGNOj5x9grlZa0IkiX3+6aQlJObgObUBzuFSo57v6g4imLjQFsq5R/yM1fwnfh1Vl8aIX5CD0mIzDcKA==",
   "success": true,
   "projectFilePath": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\Second_Client_WPF.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\stefa\\.nuget\\packages\\restsharp\\110.2.0\\restsharp.110.2.0.nupkg.sha512",
+    "C:\\Users\\stefa\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
+    "C:\\Users\\stefa\\.nuget\\packages\\system.text.json\\7.0.2\\system.text.json.7.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
