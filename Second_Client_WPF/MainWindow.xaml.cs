@@ -9,13 +9,32 @@ namespace Second_Client_WPF
         //Variablen definieren
         public int chatID = 0;
         private int messageID = 0;
+        private int userID = 0;
 
         public MainWindow()
         {
             InitializeComponent();
 
             //Methode zum Laden der Nachrichten & Chats Überprüfen
-           ShowChats.ItemsSource = VerbindungZuServer.Instance.NachrichtenErhalten(USERID);
+           ShowChats.ItemsSource = VerbindungZuServer.Instance.NachrichtenErhalten(userID);
+        }
+
+        //Einloggen
+        private void Login(object sender, RoutedEventArgs e)
+        {
+            userID = VerbindungZuServer.Instance.Login(Name, password);
+        }
+
+        //Registrieren
+        private void Register(object sender, RoutedEventArgs e)
+        {
+            VerbindungZuServer.Instance.Register(Name, password);
+        }
+
+        //Passwort vergessen
+        private void ForgotPassword(object sender, RoutedEventArgs e)
+        {
+            VerbindungZuServer.Instance.UpdateUser(Name, password);
         }
 
         //ChatID updaten & anderen Chat anzeigen, wenn Chat gewechselt wird

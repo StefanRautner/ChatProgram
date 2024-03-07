@@ -103,5 +103,20 @@ namespace Second_Client_WPF
             request.AddJsonBody(body);
             client.Execute(request);
         }
+
+        public int Login(string name, string passwort)
+        {
+
+        }
+
+        public void Register(string name, string passwort)
+        {
+
+        }
+
+        public void UpdateUser(string name, string passwort)
+        {
+
+        }
     }
 }
