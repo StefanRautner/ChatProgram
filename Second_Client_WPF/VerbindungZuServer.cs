@@ -39,16 +39,39 @@ namespace Second_Client_WPF
             client.Execute(request);
         }
 
-        public string NachrichtenErhalten(int IDuser)
+        //Names aller Chats/Gruppen erhalten
+        public List<string>? ChatsNamenErhalten(int IDuser)
         {
             this.IDuser = IDuser;
-            RestRequest request = new RestRequest("/getData", Method.Get);
+            RestRequest request = new RestRequest("/getChats", Method.Get);
             var body = new
             {
                 userID = IDuser
             };
             request.AddJsonBody(body);
-            return client.Execute(request);
+            string? response= client.Execute(request).Content;
+            if(response != null)
+            {
+                return response.Split('\n').ToList();
+            }
+            return null;
+        }
+
+        //Nachrichten der ausgewählten CJtas/der ausgewählten Gruppe anzeigen
+        public List<string>? NachrichtenErhalten(int chatID)
+        {
+            RestRequest request = new RestRequest("/getMessages", Method.Get);
+            var body = new
+            {
+                chatID = chatID
+            };
+            request.AddJsonBody(body);
+            string? response = client.Execute(request).Content;
+            if (response != null)
+            {
+                return response.Split('\n').ToList();
+            }
+            return null;
         }
 
         //Nachrichten aktualisieren/updaten

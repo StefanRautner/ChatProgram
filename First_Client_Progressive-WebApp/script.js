@@ -10,12 +10,23 @@
 // URL zur MongoDB Datenbank definieren
 const urlToMongoDBDatabase = 'http://localhost:8080/api';
 
-//Nachrichten erhalten
-async function getData(userID) {
-    const response = await fetch(`${urlToMongoDBDatabase}/getData`, {
+//Chatnamen erhalten
+async function getChatNames(userID) {
+    const response = await fetch(`${urlToMongoDBDatabase}/getChats`, {
         methode: 'GET',
         body: {
             'userID': userID
+        }
+    });
+    return await response.json();       //Hier erhaltene Daten verarbeiten, sodass Sie angezeigt werden
+}
+
+//Nachrichten erhalten
+async function getData(chatID) {
+    const response = await fetch(`${urlToMongoDBDatabase}/getMessages`, {
+        methode: 'GET',
+        body: {
+            'chatID': chatID
         }
     });
     return await response.json();       //Hier erhaltene Daten verarbeiten, sodass Sie angezeigt werden
