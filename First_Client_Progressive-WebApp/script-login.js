@@ -31,10 +31,17 @@ const urlToMongoDBDatabase = 'http://localhost:8080/api';
 async function checkUserExistence() {
     const username = document.getElementById("usernameLogin").value;
     const password = document.getElementById("passwordLogin").value;
+    const hashedPassword = hashCode(password);
 
-    const userExists = true;
+    const response = await fetch(`${urlToMongoDBDatabase}/checkUser`, {
+        method: 'POST',
+        body: {
+            'username': username,
+            'password': password
+        }
+    });
 
-    if(userExists) {
+    if(response) {
         document.getElementById("messageBoxText").value = "Anmeldung erfolgreich";
         loginSucessfull = true;
     } else {
@@ -95,3 +102,4 @@ function hideMessageBox() {
 
 //Spring-Boot Sever muss true oder false zurücksenden (sonst nichts) (bei allen Anfragen an dessen Schnittstellen)
 //MessageBox schließt sich automatisch, warum?
+//Passwort Hashen bevor es gesendet wird

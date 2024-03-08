@@ -20,3 +20,7 @@ C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Deb
 C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\Second_Client_WPF.genruntimeconfig.cache
 C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\ref\Second_Client_WPF.dll
 C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\Second_Client_WPF.csproj.AssemblyReference.cache
+C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\PageLogin.g.cs
+C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\bin\Debug\net8.0-windows\RestSharp.dll
+C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\PageLogin.baml
+C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\Second_C.73FA5984.Up2Date

@@ -104,19 +104,52 @@ namespace Second_Client_WPF
             client.Execute(request);
         }
 
-        public int Login(string name, string passwort)
+        //Benutzerdaten checken
+        public int? Login(string name, int passwort)
         {
+            RestRequest request = new RestRequest("/checkUser", Method.Delete);
 
+            var body = new
+            {
+                username = name,
+                password = passwort
+            };
+            request.AddJsonBody(body);
+            request.AddJsonBody(body);
+            string? response = client.Execute(request).Content;
+            if (response != null)
+            {
+                return int.Parse(response);
+            }
+            return null;
         }
 
-        public void Register(string name, string passwort)
+        //Benutzerdaten hinzufügen
+        public void Register(string name, int passwort)
         {
+            RestRequest request = new RestRequest("/newUser", Method.Delete);
 
+            var body = new
+            {
+                username = name,
+                password = passwort
+            };
+            request.AddJsonBody(body);
+            client.Execute(request);
         }
 
-        public void UpdateUser(string name, string passwort)
+        //Passwort ändern
+        public void UpdateUser(string name, int passwort)
         {
+            RestRequest request = new RestRequest("/updateUser", Method.Delete);
 
+            var body = new
+            {
+                username = name,
+                password = passwort
+            };
+            request.AddJsonBody(body);
+            client.Execute(request);
         }
     }
 }
