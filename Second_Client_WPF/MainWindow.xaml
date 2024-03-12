@@ -16,9 +16,9 @@
             <RowDefinition Height="350px"/>
             <RowDefinition Height="50px"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="ChatField" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Height="350"/>
+        <ListView x:Name="ChatField" SelectionChanged="NachrichtAusgewaehlt" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Height="350"/>
         <TextBox x:Name="MessageField" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="50" Width="300" KeyDown="EnterUeberpruefen"/>
         <Button Grid.Column="1" Grid.Row="1" Content="Senden" HorizontalAlignment="Left" Margin="300,0,0,0" Width="100" Click="NachrichtSenden"/>
-        <ListBox x:Name="ShowChats" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+        <ListBox x:Name="ShowChats" SelectionChanged="ChangeChat" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
     </Grid>
 </Window>

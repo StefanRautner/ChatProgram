@@ -29,19 +29,17 @@ const urlToMongoDBDatabase = 'http://localhost:8080/api';
 
 //Benutzer überprüfen
 async function checkUserExistence() {
-    const username = document.getElementById("usernameLogin").value;
-    const password = document.getElementById("passwordLogin").value;
-    const hashedPassword = hashCode(password);
+    const hashedPassword = hashCode(document.getElementById("passwordLogin").value);
 
     const response = await fetch(`${urlToMongoDBDatabase}/checkUser`, {
         method: 'POST',
         body: {
-            'username': username,
-            'password': password
+            'username': document.getElementById("usernameLogin").value,
+            'password': hashedPassword
         }
     });
 
-    if(response) {
+    if(response != null) {
         document.getElementById("messageBoxText").value = "Anmeldung erfolgreich";
         loginSucessfull = true;
     } else {
@@ -52,19 +50,18 @@ async function checkUserExistence() {
 
 //Benutzer hinzufügen
 async function createNewUser() {
-    const username = document.getElementById("usernameRegister").value;
-    const password = document.getElementById("passwordRegister").value;
+    const hashedPassword = hashCode(document.getElementById("passwordLogin").value);
 
     const response = await fetch(`${urlToMongoDBDatabase}/newUser`, {
         method: 'POST',
         body: {
-            'username': username,
+            'username': document.getElementById("passwordLogin").value,
             'password': password
         }
     });
 
     const newUserCreated = await response.json();
-    if(newUserCreated) {
+    if(newUserCreated != null) {
         document.getElementById("messageBoxText").value = "Benutzer erfolgreich aktualisiert";
     } else {
         document.getElementById("messageBoxText").value = "Fehler beim Erstellen des Benutzers";
@@ -74,18 +71,17 @@ async function createNewUser() {
 
 //Benutzer aktualisieren/updaten
 async function updateUser() {
-    const username = document.getElementById("usernamePasswordLost").value;
-    const password = document.getElementById("passwordPasswordLost").value;
+    const hashedPassword = hashCode(document.getElementById("passwordLogin").value);
 
     const response = await fetch(`${urlToMongoDBDatabase}/updateUser`, {
         method: 'PUT',
         body: {
-            'username': username,
-            'password': password
+            'username': document.getElementById("usernamePasswordLost").value,
+            'password': hashedPassword
         }
     });
     const passwordChanged = await response.json();
-    if(passwordChanged) {
+    if(passwordChanged != null) {
         document.getElementById("messageBoxText").value = "Passwort erfolgreich aktualisiert";
     } else {
         document.getElementById("messageBoxText").value = "Fehler beim Aktualisieren des Passworts";
@@ -100,6 +96,5 @@ function hideMessageBox() {
     }
 }
 
-//Spring-Boot Sever muss true oder false zurücksenden (sonst nichts) (bei allen Anfragen an dessen Schnittstellen)
 //MessageBox schließt sich automatisch, warum?
 //Passwort Hashen bevor es gesendet wird

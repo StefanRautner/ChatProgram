@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\App.xaml
-21692127101
+4-871938696
 
-6-64193421
+8-1698396846
 199-2006687600
-MainWindow.xaml;PageLogin.xaml;
+LoginWindow.xaml;MainWindow.xaml;PasswordForgotWindow.xaml;RegisterWindow.xaml;
 
-False
+True
 

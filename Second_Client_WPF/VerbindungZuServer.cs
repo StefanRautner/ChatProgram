@@ -26,6 +26,7 @@ namespace Second_Client_WPF
         {
         }
 
+        //nachricht hinzufügen
         public void NachrichtHinzufuegen(string messageString, int IDchat)
         {
             RestRequest request = new RestRequest("/newMessage", Method.Post);
@@ -34,6 +35,19 @@ namespace Second_Client_WPF
                 userID = IDuser,
                 chatID = IDchat,
                 message = messageString
+            };
+            request.AddJsonBody(body);
+            client.Execute(request);
+        }
+
+        //Chat/Gruppe hinzufügen
+        public void ChatHinzufuegen(string nameChat)
+        {
+            RestRequest request = new RestRequest("/newChat", Method.Post);
+            var body = new
+            {
+                userID = IDuser,
+                chatName = nameChat
             };
             request.AddJsonBody(body);
             client.Execute(request);
@@ -57,7 +71,7 @@ namespace Second_Client_WPF
             return null;
         }
 
-        //Nachrichten der ausgewählten CJtas/der ausgewählten Gruppe anzeigen
+        //Nachrichten der ausgewählten Chats/der ausgewählten Gruppe anzeigen
         public List<string>? NachrichtenErhalten(int chatID)
         {
             RestRequest request = new RestRequest("/getMessages", Method.Get);
@@ -92,7 +106,7 @@ namespace Second_Client_WPF
         //Nachricht/Chat löschen
         public void NachrichtLoeschen(int IDchat, int IDmessage)
         {
-            RestRequest request = new RestRequest("/deleteData", Method.Delete);
+            RestRequest request = new RestRequest("/deleteMessage", Method.Delete);
 
             var body = new
             {
@@ -104,17 +118,30 @@ namespace Second_Client_WPF
             client.Execute(request);
         }
 
+        //Nachricht/Chat löschen
+        public void ChatLoeschen(int IDchat)
+        {
+            RestRequest request = new RestRequest("/deleteChat", Method.Delete);
+
+            var body = new
+            {
+                userID = IDuser,
+                chatID = IDchat
+            };
+            request.AddJsonBody(body);
+            client.Execute(request);
+        }
+
         //Benutzerdaten checken
         public int? Login(string name, int passwort)
         {
-            RestRequest request = new RestRequest("/checkUser", Method.Delete);
+            RestRequest request = new RestRequest("/checkUser", Method.Post);
 
             var body = new
             {
                 username = name,
                 password = passwort
             };
-            request.AddJsonBody(body);
             request.AddJsonBody(body);
             string? response = client.Execute(request).Content;
             if (response != null)
@@ -125,9 +152,9 @@ namespace Second_Client_WPF
         }
 
         //Benutzerdaten hinzufügen
-        public void Register(string name, int passwort)
+        public int? Register(string name, int passwort)
         {
-            RestRequest request = new RestRequest("/newUser", Method.Delete);
+            RestRequest request = new RestRequest("/newUser", Method.Post);
 
             var body = new
             {
@@ -135,13 +162,18 @@ namespace Second_Client_WPF
                 password = passwort
             };
             request.AddJsonBody(body);
-            client.Execute(request);
+            string? response = client.Execute(request).Content;
+            if (response != null)
+            {
+                return int.Parse(response);
+            }
+            return null;
         }
 
         //Passwort ändern
-        public void UpdateUser(string name, int passwort)
+        public int? UpdateUser(string name, int passwort)
         {
-            RestRequest request = new RestRequest("/updateUser", Method.Delete);
+            RestRequest request = new RestRequest("/updateUser", Method.Put);
 
             var body = new
             {
@@ -149,7 +181,12 @@ namespace Second_Client_WPF
                 password = passwort
             };
             request.AddJsonBody(body);
-            client.Execute(request);
+            string? response = client.Execute(request).Content;
+            if(response != null)
+            {
+                return int.Parse(response);
+            }
+            return null;
         }
     }
 }

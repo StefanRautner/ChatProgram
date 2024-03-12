@@ -1,10 +1,17 @@
 //Autor: Stefan Rautner
 
-//userID = ID des aktiven Users
-//type = Nachricht oder Chat (privater Chat oder Gruppe)
-//chatID = ID des Chats (privater Chat oder Gruppe)
-//messageID = ID der zu löschenden Nachricht, bzw. Chats (privater Chat oder Gruppe)
-//data = Nachricht
+/*
+getChats(userID, return:List<string>Chatnamen) = Chats erhalten
+getMessages(chatID, return:List<string> NachrichtenDesChats) = Nachrichten eines Chats erhalten
+newMessage(userID, chatID, message, return:NONE) = Neue Nachricht erstellen
+newChat(userID, chatName, return:NONE) = Neuen Chat/Gruppe erstellen
+updateMessage(userID, chatID, messageID, message, return:NONE) = Nachricht aktualisieren
+deleteMessage(userID, chatID, messageID, return:NONE) = Nachricht löschen
+deleteChat(userID, chatID, return:NONE) = Chat löschen
+checkUser(username, password, return:int? ID) = Userdaten überprüfen
+newUser(username, password, return:int? ID) = Neuen Nutzer anlegen
+updateUser(username, password, return:int? ID) = Nutzer aktualisieren
+*/
 
 
 // URL zur MongoDB Datenbank definieren
@@ -32,7 +39,7 @@ async function getData(chatID) {
     return await response.json();       //Hier erhaltene Daten verarbeiten, sodass Sie angezeigt werden
 }
 
-//Nachricht oder Gruppe hinzufügen
+//Nachricht hinzufügen
 async function sendData(userID, chatID, data) {
     const response = await fetch(`${urlToMongoDBDatabase}/newMessage`, {
         method: 'POST',
@@ -40,6 +47,17 @@ async function sendData(userID, chatID, data) {
             'userID': userID,
             'chatID': chatID,
             'message': data
+        }
+    });
+}
+
+//Chat oder Gruppe hinzufügen
+async function createChat(userID, nameChat) {
+    const response = await fetch(`${urlToMongoDBDatabase}/newChat`, {
+        method: 'POST',
+        body: {
+            'userID': userID,
+            'chatName': nameChat
         }
     });
 }
@@ -57,14 +75,25 @@ async function updateMessage(userID, chatID, messageID, data) {
     });
 }
 
-//Nachricht/Chat löschen
-async function deleteData(userID, type, chatID, messageID) {
-    const response = await fetch(`${urlToMongoDBDatabase}/deleteData`, {
+//Nachricht löschen
+async function deleteMessage(userID, type, chatID, messageID) {
+    const response = await fetch(`${urlToMongoDBDatabase}/deletemessage`, {
         method: 'DELETE',
         body: {
             'userID': userID,
             'chatID': chatID,
             'messageID': messageID
+        }
+    });
+}
+
+//Chat/Gruppe löschen
+async function deleteChat(userID, type, chatID, messageID) {
+    const response = await fetch(`${urlToMongoDBDatabase}/deleteChat`, {
+        method: 'DELETE',
+        body: {
+            'userID': userID,
+            'chatID': chatID
         }
     });
 }

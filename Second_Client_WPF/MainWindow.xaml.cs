@@ -1,15 +1,12 @@
 ﻿//Autor: Stefan rautner
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Second_Client_WPF
 {
     public partial class MainWindow : Window
     {
-        //Variablen definieren
-        public int chatID = 0;
-        private int messageID = 0;
-        private int userID = 0;
 
         public MainWindow()
         {
@@ -18,30 +15,22 @@ namespace Second_Client_WPF
 
         public MainWindow(int userID)
         {
-            this.userID = userID;
             InitializeComponent();
 
             //Methode zum Laden der Nachrichten & Chats Überprüfen
-           ShowChats.ItemsSource = VerbindungZuServer.Instance.NachrichtenErhalten(userID);
+           ShowChats.ItemsSource = VerbindungZuServer.Instance.ChatsNamenErhalten(userID);
         }
 
         //ChatID updaten & anderen Chat anzeigen, wenn Chat gewechselt wird
-        private void ChangeChat(object sender, RoutedEventArgs e)
+        private void ChangeChat(object sender, SelectionChangedEventArgs e)
         {
-            chatID = ShowChats.SelectedIndex;
-            ChatField.ItemsSource = VerbindungZuServer.Instance.NachrichtenErhalten(chatID);
+            ChatField.ItemsSource = VerbindungZuServer.Instance.NachrichtenErhalten(ShowChats.SelectedIndex);
         }
 
-        private void NachrichtAusgewaehlt(object sender, RoutedEventArgs e)
-        {
-            messageID = ChatField.SelectedIndex;
-        }
-
-        //Nachricht senden Knopf wurde gedrückt
+        //Nachricht senden, wenn Senden-Knopf wurde gedrückt
         private void NachrichtSenden(object sender, RoutedEventArgs e)
         {
-            //Methode zum Senden der Nachrichten aufrufen
-            VerbindungZuServer.Instance.NachrichtHinzufuegen(MessageField.Text, chatID);
+            VerbindungZuServer.Instance.NachrichtHinzufuegen(MessageField.Text, ShowChats.SelectedIndex);
         }
         
         //Enter Überprüfen, um zu Überprüfen ob in Nachrichtenfeld Enter gedrückt wurde
@@ -50,22 +39,32 @@ namespace Second_Client_WPF
             if(e.Key == Key.Enter)
             {
                 //Methode zum Senden der Nachrichten aufrufen
-                VerbindungZuServer.Instance.NachrichtHinzufuegen(MessageField.Text, chatID);
+                VerbindungZuServer.Instance.NachrichtHinzufuegen(MessageField.Text, ShowChats.SelectedIndex);
             }
         }
 
-        private void NachrichtUpdaten()
+        //Funktion um Nachricht zu aktualisieren
+        private void NachrichtUpdaten(object sender, RoutedEventArgs e)
         {
-            //Methode zum Aktualisieren/Updaten der Nachrichten aufrufen
-            VerbindungZuServer.Instance.NachrichtUpdaten(chatID, messageID, MessageField.Text);
+            VerbindungZuServer.Instance.NachrichtUpdaten(ShowChats.SelectedIndex, ChatField.SelectedIndex, MessageField.Text);
         }
 
-        private void NachrichtLoeschen()
+        //Funktion zum Löschen einer Nachricht
+        private void NachrichtLoeschen(object sender, RoutedEventArgs e)
         {
-            //Methode zum Löschen der Nachrichten aufrufen
-            VerbindungZuServer.Instance.NachrichtLoeschen(chatID, messageID);
+            VerbindungZuServer.Instance.NachrichtLoeschen(ShowChats.SelectedIndex, ChatField.SelectedIndex);
+        }
+
+        //Funktion um Chat zu Löschen
+        private void ChatLoeschen(object sender, RoutedEventArgs e)
+        {
+            VerbindungZuServer.Instance.ChatLoeschen(ShowChats.SelectedIndex);
+        }
+
+        //Funktion un Chat hinzuzufügen
+        private void ChatHinzufuegen()
+        {
+            VerbindungZuServer.Instance.ChatHinzufuegen(CHATNAME);
         }
     }
 }
-//Login, etc. fehlt (dadurch userid nicht vorhanden, und dadurch wiederum keine Daten vorhanden)
-//Rückgabewert in VerbindungZuServer in Klassen parsen (dadurch leichtere Struktur) Liste von Chat-Klasse, indesse Liste von Nachrichten-Klasse
