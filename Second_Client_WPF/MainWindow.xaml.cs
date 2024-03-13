@@ -17,14 +17,23 @@ namespace Second_Client_WPF
         {
             InitializeComponent();
 
-            //Methode zum Laden der Nachrichten & Chats Überprüfen
-           ShowChats.ItemsSource = VerbindungZuServer.Instance.ChatsNamenErhalten(userID);
+            ShowMessagesFromChat(userID);
+        }
+
+        //Funktion zum Laden aller Chatnamen
+        async public void ShowMessagesFromChat(int userID)
+        {
+            while(true)
+            {
+                ShowChats.ItemsSource = await VerbindungZuServer.Instance.ChatsNamenErhalten(userID);
+                await Task.Delay(100);
+            }
         }
 
         //ChatID updaten & anderen Chat anzeigen, wenn Chat gewechselt wird
-        private void ChangeChat(object sender, SelectionChangedEventArgs e)
+        async private void ChangeChat(object sender, SelectionChangedEventArgs e)
         {
-            ChatField.ItemsSource = VerbindungZuServer.Instance.NachrichtenErhalten(ShowChats.SelectedIndex);
+            ChatField.ItemsSource = await VerbindungZuServer.Instance.NachrichtenErhalten(ShowChats.SelectedIndex);
         }
 
         //Nachricht senden, wenn Senden-Knopf wurde gedrückt

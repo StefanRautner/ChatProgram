@@ -27,7 +27,7 @@ namespace Second_Client_WPF
         }
 
         //nachricht hinzufügen
-        public void NachrichtHinzufuegen(string messageString, int IDchat)
+        async public void NachrichtHinzufuegen(string messageString, int IDchat)
         {
             RestRequest request = new RestRequest("/newMessage", Method.Post);
             var body = new
@@ -37,11 +37,11 @@ namespace Second_Client_WPF
                 message = messageString
             };
             request.AddJsonBody(body);
-            client.Execute(request);
+            await client.ExecuteAsync(request);
         }
 
         //Chat/Gruppe hinzufügen
-        public void ChatHinzufuegen(string nameChat)
+        async public void ChatHinzufuegen(string nameChat)
         {
             RestRequest request = new RestRequest("/newChat", Method.Post);
             var body = new
@@ -50,11 +50,11 @@ namespace Second_Client_WPF
                 chatName = nameChat
             };
             request.AddJsonBody(body);
-            client.Execute(request);
+            await client.ExecuteAsync(request);
         }
 
         //Names aller Chats/Gruppen erhalten
-        public List<string>? ChatsNamenErhalten(int IDuser)
+        async public Task<List<string>?> ChatsNamenErhalten(int IDuser)
         {
             this.IDuser = IDuser;
             RestRequest request = new RestRequest("/getChats", Method.Get);
@@ -63,16 +63,17 @@ namespace Second_Client_WPF
                 userID = IDuser
             };
             request.AddJsonBody(body);
-            string? response= client.Execute(request).Content;
-            if(response != null)
+            RestResponse? response = await client.ExecuteAsync(request);
+            string? content = response.Content;
+            if (content != null)
             {
-                return response.Split('\n').ToList();
+                return content.Split('\n').ToList();
             }
             return null;
         }
 
         //Nachrichten der ausgewählten Chats/der ausgewählten Gruppe anzeigen
-        public List<string>? NachrichtenErhalten(int chatID)
+        async public Task<List<string>?> NachrichtenErhalten(int chatID)
         {
             RestRequest request = new RestRequest("/getMessages", Method.Get);
             var body = new
@@ -80,16 +81,17 @@ namespace Second_Client_WPF
                 chatID = chatID
             };
             request.AddJsonBody(body);
-            string? response = client.Execute(request).Content;
-            if (response != null)
+            RestResponse? response = await client.ExecuteAsync(request);
+            string? content = response.Content;
+            if (content != null)
             {
-                return response.Split('\n').ToList();
+                return content.Split('\n').ToList();
             }
             return null;
         }
 
         //Nachrichten aktualisieren/updaten
-        public void NachrichtUpdaten(int IDchat, int IDmessage, string messageString)
+        async public void NachrichtUpdaten(int IDchat, int IDmessage, string messageString)
         {
             RestRequest request = new RestRequest("/updateMessage", Method.Put);
             var body = new
@@ -100,11 +102,11 @@ namespace Second_Client_WPF
                 message = messageString
             };
             request.AddJsonBody(body);
-            client.Execute(request);
+            await client.ExecuteAsync(request);
         }
 
         //Nachricht/Chat löschen
-        public void NachrichtLoeschen(int IDchat, int IDmessage)
+        async public void NachrichtLoeschen(int IDchat, int IDmessage)
         {
             RestRequest request = new RestRequest("/deleteMessage", Method.Delete);
 
@@ -115,11 +117,11 @@ namespace Second_Client_WPF
                 messageID = IDmessage
             };
             request.AddJsonBody(body);
-            client.Execute(request);
+            await client.ExecuteAsync(request);
         }
 
         //Nachricht/Chat löschen
-        public void ChatLoeschen(int IDchat)
+        async public void ChatLoeschen(int IDchat)
         {
             RestRequest request = new RestRequest("/deleteChat", Method.Delete);
 
@@ -129,11 +131,11 @@ namespace Second_Client_WPF
                 chatID = IDchat
             };
             request.AddJsonBody(body);
-            client.Execute(request);
+            await client.ExecuteAsync(request);
         }
 
         //Benutzerdaten checken
-        public int? Login(string name, int passwort)
+        async public Task<int?> Login(string name, int passwort)
         {
             RestRequest request = new RestRequest("/checkUser", Method.Post);
 
@@ -143,16 +145,17 @@ namespace Second_Client_WPF
                 password = passwort
             };
             request.AddJsonBody(body);
-            string? response = client.Execute(request).Content;
-            if (response != null)
+            RestResponse? response = await client.ExecuteAsync(request);
+            string? content = response.Content;
+            if (content != null)
             {
-                return int.Parse(response);
+                return int.Parse(content);
             }
             return null;
         }
 
         //Benutzerdaten hinzufügen
-        public int? Register(string name, int passwort)
+        async public Task<int?> Register(string name, int passwort)
         {
             RestRequest request = new RestRequest("/newUser", Method.Post);
 
@@ -162,16 +165,17 @@ namespace Second_Client_WPF
                 password = passwort
             };
             request.AddJsonBody(body);
-            string? response = client.Execute(request).Content;
-            if (response != null)
+            RestResponse? response = await client.ExecuteAsync(request);
+            string? content = response.Content;
+            if (content != null)
             {
-                return int.Parse(response);
+                return int.Parse(content);
             }
             return null;
         }
 
         //Passwort ändern
-        public int? UpdateUser(string name, int passwort)
+        async public Task<int?> UpdateUser(string name, int passwort)
         {
             RestRequest request = new RestRequest("/updateUser", Method.Put);
 
@@ -181,10 +185,11 @@ namespace Second_Client_WPF
                 password = passwort
             };
             request.AddJsonBody(body);
-            string? response = client.Execute(request).Content;
-            if(response != null)
+            RestResponse? response = await client.ExecuteAsync(request);
+            string? content = response.Content;
+            if(content != null)
             {
-                return int.Parse(response);
+                return int.Parse(content);
             }
             return null;
         }

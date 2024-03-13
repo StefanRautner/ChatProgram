@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Autor: Stefan rautner
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -24,11 +25,11 @@ namespace Second_Client_WPF
         }
 
         //Einloggen
-        private void Login(object sender, RoutedEventArgs e)
+        async private void Login(object sender, RoutedEventArgs e)
         {
             try
             {
-                int? tmpUserID = VerbindungZuServer.Instance.Login(loginName.Text, loginPassword.Password.GetHashCode());
+                int? tmpUserID = await VerbindungZuServer.Instance.Login(loginName.Text, loginPassword.Password.GetHashCode());
                 if (tmpUserID != null)
                 {
                     MainWindow mainWindow = new MainWindow((int)tmpUserID);
