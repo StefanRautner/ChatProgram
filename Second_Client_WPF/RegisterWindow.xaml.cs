@@ -42,6 +42,9 @@ namespace Second_Client_WPF
                     MainWindow mainWindow = new MainWindow((int)tmpUserID);
                     mainWindow.Show();
                     this.Close();
+                } else
+                {
+                    MessageBox.Show("Benutzer existíert bereits");
                 }
             }
             catch (Exception ex)

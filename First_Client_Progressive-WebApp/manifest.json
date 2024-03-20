@@ -1,7 +1,7 @@
 {
-  "name": "MBot2 Controller",
-  "short_name": "Controller",
-  "description": "Controller for Controlling the MBot2",
+  "name": "Tiny WhatsApp",
+  "short_name": "Chat Program",
+  "description": "Tiny WhatsApp (WebApp zu Spring Boot)",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

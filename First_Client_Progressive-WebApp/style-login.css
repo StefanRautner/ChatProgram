@@ -1,3 +1,4 @@
+/*Body stylen*/
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -8,6 +9,8 @@ body {
     height: 100vh;
     background-color: #f0f0f0;
 }
+
+/*Hintergrundfeld stylen*/
 form {
     background-color: #fff;
     padding: 20px;
@@ -15,6 +18,8 @@ form {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 300px;
 }
+
+/*Bedienelemente stylen*/
 input[type="text"],
 input[type="password"],
 input[type="submit"] {
@@ -25,19 +30,25 @@ input[type="submit"] {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+/*Login/Registerieren/Passwort aktualisieren-Button stylen*/
 input[type="submit"] {
     background-color: #007bff;
     color: #fff;
     cursor: pointer;
 }
+
+/*Login/Registerieren/Passwort aktualisieren-Button bei Hover Hintergrundfarbe ändern*/
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
+/*Feld stylen*/
 div{
     text-align: center;
 }
 
+/*MessageBox stylen*/
 #messageBox {
     position: absolute;
     top: 50%;
@@ -52,6 +63,7 @@ div{
     display: none;
 }
 
+/*Close-button der MessageBox stylen*/
 .closeButton {
     position: absolute;
     top: 5px;

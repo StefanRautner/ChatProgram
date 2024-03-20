@@ -8,6 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ChatProgram</title>
 
+    <!-- Icon einfügen -->
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+
     <!-- Service-Worker registrieren -->
     <script>
         if ('serviceWorker' in navigator) {
@@ -30,11 +33,13 @@
 </head>
 <body>
 <div class="container">
+    <!-- Chatfeld -->
     <div class="chat-box" id="chat-box">
         <div class="chat"></div>
     </div>
+    <!-- Nachrichtenfeld -->
     <div class="input-box">
-        <input type="text" id="user-input" placeholder="Type a message..." onkeypress="if(event.key === 'Enter') {sendData()}">
+        <input type="text" id="user-input" placeholder="Nachricht eingeben..." onkeypress="if(event.key === 'Enter') {sendData()}">
         <input type="submit" value="Send" onclick="sendData()">
     </div>
 </div>

@@ -3,7 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Register</title>
+    <title>Login</title>
+
+    <!-- Icon einfügen -->
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+
+    <!-- Service-Worker registrieren -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch((error) => {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }
+    </script>
 
     <!-- Javascript Script einbinden -->
     <script src="script-login.js"></script>
@@ -12,6 +28,7 @@
     <link rel="stylesheet" href="style-login.css">
 </head>
 <body>
+<!-- Login-Fenster -->
 <form id="loginForm">
     <h2>Login</h2>
     <input id="usernameLogin" type="text" name="Benutzername" placeholder="Benutzername eingeben" required>
@@ -22,6 +39,8 @@
         <p onclick="changeToPasswordLost()">Passwort vergessen?</p>
     </div>
 </form>
+
+<!-- Register-Fenster -->
 <form id="registerForm" style="display: none">
     <h2>Registrieren</h2>
     <input id="usernameRegister" type="text" name="Benutzername" placeholder="Benutzername eingeben" required>
@@ -32,17 +51,19 @@
         <p onclick="changeToPasswordLost()">Passwort vergessen?</p>
     </div>
 </form>
+
+<!-- Passwort-Vergessen-Fenster -->
 <form id="passwordLostForm" style="display: none">
     <h2>Passwort vergessen</h2>
     <input id="usernamePasswordLost" type="text" name="Benutzername" placeholder="Benutzername eingeben" required>
     <input id="passwordPasswordLost" type="password" name="Passwort" placeholder="Neues Passwort eingeben" required>
-    <input type="submit" value="Registrieren" onclick="updateUser()">
+    <input type="submit" value="Passwort aktualisieren" onclick="updateUser()">
     <div id="passwordLostLink" onclick="changeToRegister()">
         <p onclick="changeToLogin()">Passwort wieder eingefallen?</p>
         <p onclick="changeToRegister()">Doch noch kein Account?</p>
     </div>
 </form>
-<!-- Message box -->
+<!-- MessageBox -->
 <div id="messageBox">
     <span class="closeButton" onclick="hideMessageBox()">&times;</span>
     <p id="messageBoxText"></p>

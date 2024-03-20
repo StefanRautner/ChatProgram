@@ -50,6 +50,9 @@ namespace Second_Client_WPF
                     MainWindow mainWindow = new MainWindow((int)tmpUserID);
                     mainWindow.Show();
                     this.Close();
+                } else
+                {
+                    MessageBox.Show("Benutzername existiert nicht");
                 }
             }
             catch (Exception ex)
