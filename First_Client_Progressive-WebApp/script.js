@@ -15,11 +15,11 @@ updateUser(username, password, return:int? ID) = Nutzer aktualisieren
 
 
 // URL zur MongoDB Datenbank definieren
-const urlToMongoDBDatabase = 'http://localhost:8080/api';
+const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp';
 
 //Chatnamen erhalten
 async function getChatNames(userID) {
-    const response = await fetch(`${urlToMongoDBDatabase}/getChats`, {
+    const response = await fetch(`${urlToSpringBoot}/getChats`, {
         methode: 'GET',
         body: {
             'userID': userID
@@ -30,7 +30,7 @@ async function getChatNames(userID) {
 
 //Nachrichten erhalten
 async function getData(chatID) {
-    const response = await fetch(`${urlToMongoDBDatabase}/getMessages`, {
+    const response = await fetch(`${urlToSpringBoot}/getMessages`, {
         methode: 'GET',
         body: {
             'chatID': chatID
@@ -41,7 +41,7 @@ async function getData(chatID) {
 
 //Nachricht hinzufügen
 async function sendData(userID, chatID, data) {
-    const response = await fetch(`${urlToMongoDBDatabase}/newMessage`, {
+    const response = await fetch(`${urlToSpringBoot}/newMessage`, {
         method: 'POST',
         body: {
             'userID': userID,
@@ -53,7 +53,7 @@ async function sendData(userID, chatID, data) {
 
 //Chat oder Gruppe hinzufügen
 async function createChat(userID, nameChat) {
-    const response = await fetch(`${urlToMongoDBDatabase}/newChat`, {
+    const response = await fetch(`${urlToSpringBoot}/newChat`, {
         method: 'POST',
         body: {
             'userID': userID,
@@ -64,7 +64,7 @@ async function createChat(userID, nameChat) {
 
 //Nachricht aktualisieren/updaten
 async function updateMessage(userID, chatID, messageID, data) {
-    const response = await fetch(`${urlToMongoDBDatabase}/updateMessage`, {
+    const response = await fetch(`${urlToSpringBoot}/updateMessage`, {
         method: 'PUT',
         body: {
             'userID': userID,
@@ -77,7 +77,7 @@ async function updateMessage(userID, chatID, messageID, data) {
 
 //Nachricht löschen
 async function deleteMessage(userID, type, chatID, messageID) {
-    const response = await fetch(`${urlToMongoDBDatabase}/deletemessage`, {
+    const response = await fetch(`${urlToSpringBoot}/deletemessage`, {
         method: 'DELETE',
         body: {
             'userID': userID,
@@ -89,7 +89,7 @@ async function deleteMessage(userID, type, chatID, messageID) {
 
 //Chat/Gruppe löschen
 async function deleteChat(userID, type, chatID, messageID) {
-    const response = await fetch(`${urlToMongoDBDatabase}/deleteChat`, {
+    const response = await fetch(`${urlToSpringBoot}/deleteChat`, {
         method: 'DELETE',
         body: {
             'userID': userID,

@@ -1,20 +1,20 @@
 ﻿//Autor: Stefan Rautner
 using RestSharp;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace Second_Client_WPF
 {
     class VerbindungZuServer
     {
         //Variablen definieren
-        private RestClient client = new RestClient("https://your-spring-boot-server-url.com");
+        private RestClient client = new RestClient("http://localhost:8080/tinyWhatsApp");
         private int IDuser = 0;
 
         //Instance (Singleton)
@@ -54,7 +54,7 @@ namespace Second_Client_WPF
         }
 
         //Names aller Chats/Gruppen erhalten
-        async public Task<List<string>?> ChatsNamenErhalten(int IDuser)
+        async public Task<List<ChatNames>?> ChatsNamenErhalten(int IDuser)
         {
             this.IDuser = IDuser;
             RestRequest request = new RestRequest("/getChats", Method.Get);
@@ -67,7 +67,7 @@ namespace Second_Client_WPF
             string? content = response.Content;
             if (content != null)
             {
-                return content.Split('\n').ToList();
+                List<ChatNames>? chats = JsonSerializer.Deserialize<List<ChatNames>>(content);      //NUR CHATNAMES ANZEIGEN (UND ANDERE AUCH AUF DIESE METHODE AKTUALISIEREN)
             }
             return null;
         }
