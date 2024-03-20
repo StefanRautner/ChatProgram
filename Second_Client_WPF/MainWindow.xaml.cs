@@ -7,7 +7,6 @@ namespace Second_Client_WPF
 {
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
@@ -71,9 +70,9 @@ namespace Second_Client_WPF
         }
 
         //Funktion un Chat hinzuzufügen
-        private void ChatHinzufuegen()
+        private void ChatHinzufuegen(object sender, RoutedEventArgs e)
         {
-            VerbindungZuServer.Instance.ChatHinzufuegen(CHATNAME);
+            VerbindungZuServer.Instance.ChatHinzufuegen(newChat.Text);
         }
     }
 }
