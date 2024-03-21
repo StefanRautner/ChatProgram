@@ -28,7 +28,7 @@
         <ListView x:Name="ShowChats" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="ChangeChat" Grid.Row="0" Width="100">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Chats" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Chats" DisplayMemberBinding="{Binding Chatname}"/>
                 </GridView>
             </ListView.View>
         </ListView>

@@ -25,7 +25,6 @@ namespace Second_Client_WPF
             while(true)
             {
                 ShowChats.ItemsSource = await VerbindungZuServer.Instance.ChatsNamenErhalten(userID);
-                await Task.Delay(100);
             }
         }
 

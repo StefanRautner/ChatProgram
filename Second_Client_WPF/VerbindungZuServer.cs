@@ -67,7 +67,7 @@ namespace Second_Client_WPF
             string? content = response.Content;
             if (content != null)
             {
-                return JsonSerializer.Deserialize<List<Chat>>(content);      //NUR CHATNAMES ANZEIGEN (ID NCIHT ANZEIGEN)
+                return JsonSerializer.Deserialize<List<Chat>>(content);
             }
             return null;
         }
@@ -85,7 +85,7 @@ namespace Second_Client_WPF
             string? content = response.Content;
             if (content != null)
             {
-                return JsonSerializer.Deserialize<List<Message>>(content);  //NUR NACHRICHTEN ANZEIGEN (ID NICHT ANZEIGEN)
+                return JsonSerializer.Deserialize<List<Message>>(content);
             }
             return null;
         }

@@ -1,8 +1,8 @@
 //Autor: Stefan Rautner
 
 /*
-getChats(userID, return:List<string>Chatnamen) = Chats erhalten
-getMessages(chatID, return:List<string> NachrichtenDesChats) = Nachrichten eines Chats erhalten
+getChats(userID, return:List<ID, Chatname>Chatnamen) = Chats erhalten
+getMessages(chatID, return:List<ID, Nachricht> NachrichtenDesChats) = Nachrichten eines Chats erhalten
 newMessage(userID, chatID, message, return:NONE) = Neue Nachricht erstellen
 newChat(userID, chatName, return:NONE) = Neuen Chat/Gruppe erstellen
 updateMessage(userID, chatID, messageID, message, return:NONE) = Nachricht aktualisieren
@@ -18,82 +18,105 @@ updateUser(username, password, return:int? ID) = Nutzer aktualisieren
 const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp';
 
 //Chatnamen erhalten
-async function getChatNames(userID) {
+document.onload = async function getChatNames(userID) {
     const response = await fetch(`${urlToSpringBoot}/getChats`, {
         methode: 'GET',
-        body: {
+        body: JSON.stringify({
             'userID': userID
-        }
+        })
     });
-    return await response.json();       //Hier erhaltene Daten verarbeiten, sodass Sie angezeigt werden
+    const data = await response.json();
+
+    //Listenelement erhalten
+    const list = document.getElementById("namesOfChats");
+
+    //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
+    data.forEach(function(element) {
+        const listElement = document.createElement("li");
+        listElement.Text = element.Chatname;
+        listElement.id = element.ID;
+        list.appendChild(listElement);
+    })
 }
 
 //Nachrichten erhalten
 async function getData(chatID) {
     const response = await fetch(`${urlToSpringBoot}/getMessages`, {
         methode: 'GET',
-        body: {
+        body: JSON.stringify({
             'chatID': chatID
-        }
+        })
     });
-    return await response.json();       //Hier erhaltene Daten verarbeiten, sodass Sie angezeigt werden
+    const data = await response.json();
+
+    //Listenelement erhalten
+    const list = document.getElementById("messagesOfChat");
+
+    //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
+    data.forEach(function(element) {
+        const listElement = document.createElement("li");
+        listElement.Text = element.Nachricht;
+        listElement.id = ID;
+        list.appendChild(listElement);
+    })
 }
 
 //Nachricht hinzufügen
 async function sendData(userID, chatID, data) {
-    const response = await fetch(`${urlToSpringBoot}/newMessage`, {
+    await fetch(`${urlToSpringBoot}/newMessage`, {
         method: 'POST',
-        body: {
+        body: JSON.stringify({
             'userID': userID,
             'chatID': chatID,
             'message': data
-        }
+        })
     });
 }
 
 //Chat oder Gruppe hinzufügen
 async function createChat(userID, nameChat) {
-    const response = await fetch(`${urlToSpringBoot}/newChat`, {
+    await fetch(`${urlToSpringBoot}/newChat`, {
         method: 'POST',
-        body: {
+        body: JSON.stringify({
             'userID': userID,
             'chatName': nameChat
-        }
+        })
     });
 }
 
 //Nachricht aktualisieren/updaten
 async function updateMessage(userID, chatID, messageID, data) {
-    const response = await fetch(`${urlToSpringBoot}/updateMessage`, {
+    await fetch(`${urlToSpringBoot}/updateMessage`, {
         method: 'PUT',
-        body: {
+        body: JSON.stringify({
             'userID': userID,
             'chatID': chatID,
             'messageID': messageID,
             'message': data
-        }
+        })
     });
 }
 
 //Nachricht löschen
 async function deleteMessage(userID, type, chatID, messageID) {
-    const response = await fetch(`${urlToSpringBoot}/deletemessage`, {
+    await fetch(`${urlToSpringBoot}/deleteMessage`, {
         method: 'DELETE',
-        body: {
+        body: JSON.stringify({
             'userID': userID,
             'chatID': chatID,
             'messageID': messageID
-        }
+        })
     });
 }
 
 //Chat/Gruppe löschen
 async function deleteChat(userID, type, chatID, messageID) {
-    const response = await fetch(`${urlToSpringBoot}/deleteChat`, {
+    await fetch(`${urlToSpringBoot}/deleteChat`, {
         method: 'DELETE',
-        body: {
+        body: JSON.stringify({
             'userID': userID,
-            'chatID': chatID
-        }
+            'chatID': chatID,
+            'messageID': messageID
+        })
     });
 }
