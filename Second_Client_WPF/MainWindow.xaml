@@ -16,10 +16,22 @@
             <RowDefinition Height="350px"/>
             <RowDefinition Height="50px"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="ChatField" SelectionChanged="NachrichtAusgewaehlt" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Height="350"/>
+        <ListView x:Name="ChatField" SelectionChanged="NachrichtAusgewaehlt" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="350">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nachrichten" DisplayMemberBinding="{Binding Nachricht}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <TextBox x:Name="MessageField" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="50" Width="300" KeyDown="EnterUeberpruefen"/>
         <Button Grid.Column="1" Grid.Row="1" Content="Senden" HorizontalAlignment="Left" Margin="300,0,0,0" Width="100" Click="NachrichtSenden"/>
-        <ListBox x:Name="ShowChats" SelectionChanged="ChangeChat" Grid.Column="0" Grid.Row="0"/>
+        <ListView x:Name="ShowChats" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="ChangeChat" Grid.Row="0" Width="100">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Chats" DisplayMemberBinding="{Binding Name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Button Content="Neuen Chat erstellen" Click="ChatHinzufuegen" HorizontalAlignment="Center" Margin="0,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Height="45"/>
         <TextBox x:Name="newChat" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="100" Height="25"/>
     </Grid>

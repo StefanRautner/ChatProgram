@@ -54,7 +54,7 @@ namespace Second_Client_WPF
         }
 
         //Names aller Chats/Gruppen erhalten
-        async public Task<List<ChatNames>?> ChatsNamenErhalten(int IDuser)
+        async public Task<List<Chat>?> ChatsNamenErhalten(int IDuser)
         {
             this.IDuser = IDuser;
             RestRequest request = new RestRequest("/getChats", Method.Get);
@@ -67,13 +67,13 @@ namespace Second_Client_WPF
             string? content = response.Content;
             if (content != null)
             {
-                List<ChatNames>? chats = JsonSerializer.Deserialize<List<ChatNames>>(content);      //NUR CHATNAMES ANZEIGEN (UND ANDERE AUCH AUF DIESE METHODE AKTUALISIEREN)
+                return JsonSerializer.Deserialize<List<Chat>>(content);      //NUR CHATNAMES ANZEIGEN (ID NCIHT ANZEIGEN)
             }
             return null;
         }
 
         //Nachrichten der ausgewählten Chats/der ausgewählten Gruppe anzeigen
-        async public Task<List<string>?> NachrichtenErhalten(int chatID)
+        async public Task<List<Message>?> NachrichtenErhalten(int chatID)
         {
             RestRequest request = new RestRequest("/getMessages", Method.Get);
             var body = new
@@ -85,7 +85,7 @@ namespace Second_Client_WPF
             string? content = response.Content;
             if (content != null)
             {
-                return content.Split('\n').ToList();
+                return JsonSerializer.Deserialize<List<Message>>(content);  //NUR NACHRICHTEN ANZEIGEN (ID NICHT ANZEIGEN)
             }
             return null;
         }
