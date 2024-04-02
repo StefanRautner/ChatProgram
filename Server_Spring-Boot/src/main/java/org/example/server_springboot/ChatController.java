@@ -2,7 +2,6 @@ package org.example.server_springboot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
 @RequestMapping("/tinyWhatsApp/api")
@@ -26,20 +25,25 @@ public class ChatController {
         return chatService.updateUser(username, password);
     }
 
+    @PostMapping("/addUserToChat")
+    public boolean addUserToChat(@RequestBody String userID, @RequestBody String chatID) {
+        return chatService.addUserToChat(userID, chatID);
+    }
+
     /*CHAT*/
     @GetMapping("/getChats")
-    public List<Chat> getAllChatNames(@RequestBody String userID) {
+    public String getAllChatNames(@RequestBody String userID) {
         return chatService.getChatNames(userID);
     }
 
     @PostMapping("/newChat")
-    public boolean createNewChat(@RequestBody String userID, @RequestBody String chatName) {
-        return chatService.createNewChat(userID, chatName);
+    public boolean createNewChat(@RequestBody String chatName) {
+        return chatService.createNewChat(chatName);
     }
 
     @DeleteMapping("/deleteChat")
-    public boolean deleteChatById(@RequestBody String userID, @RequestBody String chatID) {
-        return chatService.deleteChat(userID, chatID);
+    public boolean deleteChatById(@RequestBody String chatID) {
+        return chatService.deleteChat(chatID);
     }
 
     /*NACHRICHTEN*/
@@ -49,8 +53,8 @@ public class ChatController {
     }
 
     @GetMapping("/getMessages")
-    public List<Chat> getMessages(@RequestBody String userID, @RequestBody String chatID) {
-        return chatService.getMessagesOfChat(userID, chatID);
+    public String getMessages(@RequestBody String chatID) {
+        return chatService.getMessagesOfChat(chatID);
     }
 
     @PutMapping("/updateMessage")

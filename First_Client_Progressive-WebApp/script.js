@@ -13,6 +13,8 @@ newUser(username, password, return:String? ID) = Neuen Nutzer anlegen
 updateUser(username, password, return:String? ID) = Nutzer aktualisieren
 */
 
+/*OBERE ANGABEN STIMMEN NICHT MEHR, AUCH NICHT BEIM WPF-CLIENT*/
+
 
 // URL zur MongoDB Datenbank definieren
 const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp/api';
