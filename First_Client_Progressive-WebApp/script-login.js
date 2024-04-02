@@ -1,6 +1,6 @@
 //Autor: Stefan Rautner
 //Variablen definieren
-let uID = 0;
+let uID = "";
 
 //Login zu Registerform ändern
 function changeToRegister() {
@@ -27,7 +27,7 @@ function changeToPasswordLost() {
 }
 
 // URL zur MongoDB Datenbank definieren
-const urlToMongoDBDatabase = 'http://localhost:8080/api';
+const urlToMongoDBDatabase = 'http://localhost:8080/tinyWhatsApp/api';
 
 //Passwort hashen
 async function hashPassword(password) {
@@ -44,7 +44,7 @@ async function checkUserExistence() {
     });
 
     const response = await fetch(`${urlToMongoDBDatabase}/checkUser`, {
-        method: 'POST',
+        method: 'GET',
         body: JSON.stringify({
             'username': document.getElementById("usernameLogin").value,
             'password': hashedPassword

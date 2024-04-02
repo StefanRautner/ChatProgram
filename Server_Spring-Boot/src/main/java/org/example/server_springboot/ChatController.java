@@ -3,36 +3,63 @@ package org.example.server_springboot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/chats")
+@RequestMapping("/tinyWhatsApp/api")
 public class ChatController {
     @Autowired
     private ChatService chatService;
 
-    @GetMapping("/getAllChats")
-    public List<ChatModel> getAllChats() {
-        return chatService.getAllChats();
+    /*USER*/
+    @GetMapping("/checkUser")
+    public String checkUser(@RequestBody String username, @RequestBody String password) {
+        return chatService.checkUser(username, password);
     }
 
-    @GetMapping("/getChatByID/{id}")
-    public Optional<ChatModel> getChatById(@PathVariable String id) {
-        return chatService.getChatById(id);
+    @PostMapping("/newUser")
+    public String createNewUser(@RequestBody String username, @RequestBody String password) {
+        return chatService.createNewUser(username, password);
     }
 
-    @PostMapping("/CreateNewChat")
-    public ChatModel createChat(@RequestBody ChatModel chat) {
-        return chatService.createChat(chat);
+    @PutMapping("/updateUser")
+    public String updateUser(@RequestBody String username, @RequestBody String password) {
+        return chatService.updateUser(username, password);
     }
 
-    @PutMapping("/UpdateChatByID/{id}")
-    public ChatModel updateChat(@PathVariable String id, @RequestBody ChatModel chat) {
-        return chatService.updateChat(id, chat);
+    /*CHAT*/
+    @GetMapping("/getChats")
+    public List<Chat> getAllChatNames(@RequestBody String userID) {
+        return chatService.getChatNames(userID);
     }
 
-    @DeleteMapping("/deleteChatByID/{id}")
-    public void deleteChat(@PathVariable String id) {
-        chatService.deleteChat(id);
+    @PostMapping("/newChat")
+    public boolean createNewChat(@RequestBody String userID, @RequestBody String chatName) {
+        return chatService.createNewChat(userID, chatName);
+    }
+
+    @DeleteMapping("/deleteChat")
+    public boolean deleteChatById(@RequestBody String userID, @RequestBody String chatID) {
+        return chatService.deleteChat(userID, chatID);
+    }
+
+    /*NACHRICHTEN*/
+    @PostMapping("/newMessage")
+    public boolean addNewMessage(@RequestBody String userID, @RequestBody String chatID, @RequestBody String message) {
+        return chatService.addNewMessage(userID, chatID, message);
+    }
+
+    @GetMapping("/getMessages")
+    public List<Chat> getMessages(@RequestBody String userID, @RequestBody String chatID) {
+        return chatService.getMessagesOfChat(userID, chatID);
+    }
+
+    @PutMapping("/updateMessage")
+    public boolean updateMessage(@RequestBody String userID, @RequestBody String chatID, @RequestBody String messageID, @RequestBody  String message) {
+        return chatService.updateMessage(userID, chatID, messageID, message);
+    }
+
+    @DeleteMapping("/deleteMessage")
+    public boolean deleteMessage(@RequestBody String userID, @RequestBody String chatID, @RequestBody String messageID) {
+        return chatService.deleteMessage(userID, chatID, messageID);
     }
 }

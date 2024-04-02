@@ -73,12 +73,13 @@ namespace Second_Client_WPF
         }
 
         //Nachrichten der ausgewählten Chats/der ausgewählten Gruppe anzeigen
-        async public Task<List<Message>?> NachrichtenErhalten(int chatID)
+        async public Task<List<Message>?> NachrichtenErhalten(int IDchat)
         {
             RestRequest request = new RestRequest("/getMessages", Method.Get);
             var body = new
             {
-                chatID = chatID
+                userID = IDuser,
+                chatID = IDchat
             };
             request.AddJsonBody(body);
             RestResponse? response = await client.ExecuteAsync(request);

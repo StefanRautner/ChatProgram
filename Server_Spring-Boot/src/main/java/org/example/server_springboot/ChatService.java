@@ -1,33 +1,50 @@
 package org.example.server_springboot;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ChatService {
-    @Autowired
-    private ChatRepository chatRepository;
-
-    public List<ChatModel> getAllChats() {
-        return chatRepository.findAll();
+    /*USER*/
+    public String checkUser(String username, String password) {
+        //DO SOMETHING AND RETURN USERID
     }
 
-    public Optional<ChatModel> getChatById(String id) {
-        return chatRepository.findById(id);
+    public String createNewUser(String username, String password) {
+        //DO SOMETHING AND RETURN USERID
     }
 
-    public ChatModel createChat(ChatModel chat) {
-        return chatRepository.save(chat);
+    public String updateUser(String username, String password) {
+        //DO SOMETHING AND RETURN USERID
     }
 
-    public void deleteChat(String id) {
-        chatRepository.deleteById(id);
+    /*CHAT*/
+    public List<Chat> getChatNames(String userID) {
+        //DO SOMETHING AND RETURN LIST OF CHATNAMES
     }
 
-    public ChatModel updateChat(String id, ChatModel newChat) {
-        newChat.setId(id);
-        return chatRepository.save(newChat);
+    public boolean createNewChat(String userID, String chatName) {
+        //DO SOMETHING AND RETURN BOOLEAN (IF SUCCESSFULLY)
+    }
+
+    public boolean deleteChat(String userID, String chatID) {
+        //DO SOMETHING AND RETURN BOOLEAN (IF SUCCESSFULLY)
+    }
+
+    /*NACHRICHTEN*/
+    public boolean addNewMessage(String userID, String chatID, String message) {
+        //DO SOMETHING AND RETURN BOOLEAN (IF SUCCESSFULLY)
+    }
+
+    public List<Chat> getMessagesOfChat(String userID, String chatID) {
+        //DO SOMETHING AND RETURN LIST OF MESSAGES IN CHAT
+    }
+
+    public boolean updateMessage(String userID, String chatID, String messageID, String message) {
+        //DO SOMETHING AND RETURN BOOLEAN (IF SUCCESSFULLY)
+    }
+
+    public boolean deleteMessage(String userID, String chatID, String messageID) {
+        //DO SOMETHING AND RETURN BOOLEAN (IF SUCCESSFULLY)
     }
 }

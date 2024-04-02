@@ -2,20 +2,20 @@
 
 /*
 getChats(userID, return:List<ID, Chatname>Chatnamen) = Chats erhalten
-getMessages(chatID, return:List<ID, Nachricht> NachrichtenDesChats) = Nachrichten eines Chats erhalten
+getMessages(userID, chatID, return:List<ID, Nachricht> NachrichtenDesChats) = Nachrichten eines Chats erhalten
 newMessage(userID, chatID, message, return:NONE) = Neue Nachricht erstellen
 newChat(userID, chatName, return:NONE) = Neuen Chat/Gruppe erstellen
 updateMessage(userID, chatID, messageID, message, return:NONE) = Nachricht aktualisieren
 deleteMessage(userID, chatID, messageID, return:NONE) = Nachricht löschen
 deleteChat(userID, chatID, return:NONE) = Chat löschen
-checkUser(username, password, return:int? ID) = Userdaten überprüfen
-newUser(username, password, return:int? ID) = Neuen Nutzer anlegen
-updateUser(username, password, return:int? ID) = Nutzer aktualisieren
+checkUser(username, password, return:String? ID) = Userdaten überprüfen
+newUser(username, password, return:String? ID) = Neuen Nutzer anlegen
+updateUser(username, password, return:String? ID) = Nutzer aktualisieren
 */
 
 
 // URL zur MongoDB Datenbank definieren
-const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp';
+const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp/api';
 
 //Chatnamen erhalten
 document.onload = async function getChatNames(userID) {
@@ -44,6 +44,7 @@ async function getData(chatID) {
     const response = await fetch(`${urlToSpringBoot}/getMessages`, {
         methode: 'GET',
         body: JSON.stringify({
+            'userID': userID,
             'chatID': chatID
         })
     });
