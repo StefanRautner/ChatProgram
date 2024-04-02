@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "chats")
-public class Chat {
+public class ChatModel {
     @Id
     private String id;
     private String nachricht;

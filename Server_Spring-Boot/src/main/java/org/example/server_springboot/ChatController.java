@@ -11,27 +11,27 @@ public class ChatController {
     @Autowired
     private ChatService chatService;
 
-    @GetMapping
-    public List<Chat> getAllChats() {
+    @GetMapping("/getAllChats")
+    public List<ChatModel> getAllChats() {
         return chatService.getAllChats();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Chat> getChatById(@PathVariable String id) {
+    @GetMapping("/getChatByID/{id}")
+    public Optional<ChatModel> getChatById(@PathVariable String id) {
         return chatService.getChatById(id);
     }
 
-    @PostMapping
-    public Chat createChat(@RequestBody Chat chat) {
+    @PostMapping("/CreateNewChat")
+    public ChatModel createChat(@RequestBody ChatModel chat) {
         return chatService.createChat(chat);
     }
 
-    @PutMapping("/{id}")
-    public Chat updateChat(@PathVariable String id, @RequestBody Chat chat) {
+    @PutMapping("/UpdateChatByID/{id}")
+    public ChatModel updateChat(@PathVariable String id, @RequestBody ChatModel chat) {
         return chatService.updateChat(id, chat);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleteChatByID/{id}")
     public void deleteChat(@PathVariable String id) {
         chatService.deleteChat(id);
     }

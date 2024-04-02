@@ -10,15 +10,15 @@ public class ChatService {
     @Autowired
     private ChatRepository chatRepository;
 
-    public List<Chat> getAllChats() {
+    public List<ChatModel> getAllChats() {
         return chatRepository.findAll();
     }
 
-    public Optional<Chat> getChatById(String id) {
+    public Optional<ChatModel> getChatById(String id) {
         return chatRepository.findById(id);
     }
 
-    public Chat createChat(Chat chat) {
+    public ChatModel createChat(ChatModel chat) {
         return chatRepository.save(chat);
     }
 
@@ -26,7 +26,7 @@ public class ChatService {
         chatRepository.deleteById(id);
     }
 
-    public Chat updateChat(String id, Chat newChat) {
+    public ChatModel updateChat(String id, ChatModel newChat) {
         newChat.setId(id);
         return chatRepository.save(newChat);
     }
