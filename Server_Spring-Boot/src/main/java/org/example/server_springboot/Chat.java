@@ -1,3 +1,4 @@
+//Autor: Stefan Rautner
 package org.example.server_springboot;
 
 import org.springframework.data.annotation.Id;
@@ -22,10 +23,7 @@ public class Chat {
         return this.userList;
     }
 
-    //Getter & Setter for ChatID
-    public void setChatID(String chatID) {
-        this.chatID = chatID;
-    }
+    //Getter for ChatID
 
     public String getChatID() {
         return this.chatID;

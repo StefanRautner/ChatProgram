@@ -1,3 +1,4 @@
+//Autor: Stefan Rautner
 package org.example.server_springboot;
 
 import org.json.JSONArray;
@@ -10,6 +11,7 @@ import java.util.Objects;
 
 @Service
 public class ChatService {
+    //Repositories einbinden
     @Autowired
     ChatRepository chatRepository;
     @Autowired
@@ -41,6 +43,7 @@ public class ChatService {
             user.setUsername(username);
             user.setPassword(password);
             userRepository.save(user);
+            return user.getUserID();
         }
         return null;
     }
@@ -60,9 +63,8 @@ public class ChatService {
     public boolean addUserToChat(String userID, String chatID) {
         try {
             Chat chat = chatRepository.findByChatID(chatID);
-            User user = userRepository.findByUserID(userID);
             List<User> userList = chat.getUserList();
-            userList.add(user);
+            userList.add(userRepository.findByUserID(userID));
             chat.setUserList(userList);
             return true;
         } catch (Exception ex) {
@@ -118,7 +120,7 @@ public class ChatService {
             User user = userRepository.findByUserID(userID);
             Chat chat = chatRepository.findByChatID(chatID);
             List<Message> messageList = chat.getMessageList();
-            if(chat.getUserList().contains(user)) {
+            if (chat.getUserList().contains(user)) {
                 Message message = new Message();
                 message.setMessage(messageText);
                 messageList.add(message);

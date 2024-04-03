@@ -1,11 +1,13 @@
+//Autor: Stefan Rautner
 package org.example.server_springboot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/tinyWhatsApp/api")
+@RequestMapping("/tinyWhatsApp")
 public class ChatController {
+    //Service einbinden
     @Autowired
     private ChatService chatService;
 
@@ -31,7 +33,7 @@ public class ChatController {
     }
 
     /*CHAT*/
-    @GetMapping("/getChats")
+    @GetMapping("/getChatNames")
     public String getAllChatNames(@RequestBody String userID) {
         return chatService.getChatNames(userID);
     }
