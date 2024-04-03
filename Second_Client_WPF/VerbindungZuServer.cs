@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using System.Xml.Linq;
 
 namespace Second_Client_WPF
 {
@@ -15,19 +16,18 @@ namespace Second_Client_WPF
     {
         //Variablen definieren
         private RestClient client = new RestClient("http://localhost:8080/tinyWhatsApp");
-        private int IDuser = 0;
+        private string IDuser = "";
 
         //Instance (Singleton)
         private static VerbindungZuServer? instance = null;
         public static VerbindungZuServer Instance { get { if (instance == null) { instance = new VerbindungZuServer(); } return instance; } }
         
         //Konstruktor
-        private VerbindungZuServer()
-        {
+        private VerbindungZuServer() {
         }
 
-        //nachricht hinzufügen
-        async public void NachrichtHinzufuegen(string messageString, int IDchat)
+        //Nachricht hinzufügen
+        async public Task<bool?> NachrichtHinzufuegen(int IDchat, string messageString)
         {
             RestRequest request = new RestRequest("/newMessage", Method.Post);
             var body = new
@@ -37,27 +37,36 @@ namespace Second_Client_WPF
                 message = messageString
             };
             request.AddJsonBody(body);
-            await client.ExecuteAsync(request);
+            RestResponse? response = await client.ExecuteAsync(request);
+            if (response.Content != null)
+            {
+                return bool.Parse(response.Content);
+            }
+            return null;
         }
 
         //Chat/Gruppe hinzufügen
-        async public void ChatHinzufuegen(string nameChat)
+        async public Task<bool?> ChatHinzufuegen(string nameChat)
         {
             RestRequest request = new RestRequest("/newChat", Method.Post);
             var body = new
             {
-                userID = IDuser,
                 chatName = nameChat
             };
             request.AddJsonBody(body);
-            await client.ExecuteAsync(request);
+            RestResponse? response = await client.ExecuteAsync(request);
+            if (response.Content != null)
+            {
+                return bool.Parse(response.Content);
+            }
+            return null;
         }
 
         //Names aller Chats/Gruppen erhalten
-        async public Task<List<Chat>?> ChatsNamenErhalten(int IDuser)
+        async public Task<List<Chat>?> ChatsNamenErhalten(string IDuser)
         {
             this.IDuser = IDuser;
-            RestRequest request = new RestRequest("/getChats", Method.Get);
+            RestRequest request = new RestRequest("/getChatNames", Method.Get);
             var body = new
             {
                 userID = IDuser
@@ -78,7 +87,6 @@ namespace Second_Client_WPF
             RestRequest request = new RestRequest("/getMessages", Method.Get);
             var body = new
             {
-                userID = IDuser,
                 chatID = IDchat
             };
             request.AddJsonBody(body);
@@ -92,7 +100,7 @@ namespace Second_Client_WPF
         }
 
         //Nachrichten aktualisieren/updaten
-        async public void NachrichtUpdaten(int IDchat, int IDmessage, string messageString)
+        async public Task<bool?> NachrichtUpdaten(int IDchat, int IDmessage, string messageString)
         {
             RestRequest request = new RestRequest("/updateMessage", Method.Put);
             var body = new
@@ -103,11 +111,16 @@ namespace Second_Client_WPF
                 message = messageString
             };
             request.AddJsonBody(body);
-            await client.ExecuteAsync(request);
+            RestResponse? response = await client.ExecuteAsync(request);
+            if (response.Content != null)
+            {
+                return bool.Parse(response.Content);
+            }
+            return null;
         }
 
         //Nachricht/Chat löschen
-        async public void NachrichtLoeschen(int IDchat, int IDmessage)
+        async public Task<bool?> NachrichtLoeschen(int IDchat, int IDmessage)
         {
             RestRequest request = new RestRequest("/deleteMessage", Method.Delete);
 
@@ -118,25 +131,34 @@ namespace Second_Client_WPF
                 messageID = IDmessage
             };
             request.AddJsonBody(body);
-            await client.ExecuteAsync(request);
+            RestResponse? response = await client.ExecuteAsync(request);
+            if (response.Content != null)
+            {
+                return bool.Parse(response.Content);
+            }
+            return null;
         }
 
         //Nachricht/Chat löschen
-        async public void ChatLoeschen(int IDchat)
+        async public Task<bool?> ChatLoeschen(int IDchat)
         {
             RestRequest request = new RestRequest("/deleteChat", Method.Delete);
 
             var body = new
             {
-                userID = IDuser,
                 chatID = IDchat
             };
             request.AddJsonBody(body);
-            await client.ExecuteAsync(request);
+            RestResponse? response = await client.ExecuteAsync(request);
+            if (response.Content != null)
+            {
+                return bool.Parse(response.Content);
+            }
+            return null;
         }
 
         //Benutzerdaten checken
-        async public Task<int?> Login(string name, int passwort)
+        async public Task<string?> Login(string name, int passwort)
         {
             RestRequest request = new RestRequest("/checkUser", Method.Post);
 
@@ -147,16 +169,11 @@ namespace Second_Client_WPF
             };
             request.AddJsonBody(body);
             RestResponse? response = await client.ExecuteAsync(request);
-            string? content = response.Content;
-            if (content != null)
-            {
-                return int.Parse(content);
-            }
-            return null;
+            return response.Content;
         }
 
         //Benutzerdaten hinzufügen
-        async public Task<int?> Register(string name, int passwort)
+        async public Task<string?> Register(string name, int passwort)
         {
             RestRequest request = new RestRequest("/newUser", Method.Post);
 
@@ -167,16 +184,11 @@ namespace Second_Client_WPF
             };
             request.AddJsonBody(body);
             RestResponse? response = await client.ExecuteAsync(request);
-            string? content = response.Content;
-            if (content != null)
-            {
-                return int.Parse(content);
-            }
-            return null;
+            return response.Content;
         }
 
         //Passwort ändern
-        async public Task<int?> UpdateUser(string name, int passwort)
+        async public Task<string?> UpdateUser(string name, int passwort)
         {
             RestRequest request = new RestRequest("/updateUser", Method.Put);
 
@@ -187,10 +199,41 @@ namespace Second_Client_WPF
             };
             request.AddJsonBody(body);
             RestResponse? response = await client.ExecuteAsync(request);
-            string? content = response.Content;
-            if(content != null)
+            return response.Content;
+        }
+
+        async public Task<bool?> AddUserToChat(string IDchat)
+        {
+            RestRequest request = new RestRequest("/addUserToChat", Method.Post);
+
+            var body = new
             {
-                return int.Parse(content);
+                userID = IDuser,
+                chatID = IDchat
+            };
+            request.AddJsonBody(body);
+            RestResponse? response = await client.ExecuteAsync(request);
+            if(response.Content != null)
+            {
+                return bool.Parse(response.Content);
+            }
+            return null;
+        }
+
+        async public Task<bool?> UpdateChatName(string IDchat, string nameChat)
+        {
+            RestRequest request = new RestRequest("/updateChatName", Method.Put);
+
+            var body = new
+            {
+                chatID = IDchat,
+                chatName = nameChat
+            };
+            request.AddJsonBody(body);
+            RestResponse? response = await client.ExecuteAsync(request);
+            if (response.Content != null)
+            {
+                return bool.Parse(response.Content);
             }
             return null;
         }

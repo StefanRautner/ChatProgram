@@ -43,6 +43,11 @@ public class ChatController {
         return chatService.createNewChat(chatName);
     }
 
+    @PutMapping("/updateChatName")
+    public boolean updateChatname(@RequestBody String chatID, @RequestBody String chatName) {
+        return chatService.updateChatName(chatID, chatName);
+    }
+
     @DeleteMapping("/deleteChat")
     public boolean deleteChatById(@RequestBody String chatID) {
         return chatService.deleteChat(chatID);
@@ -60,7 +65,7 @@ public class ChatController {
     }
 
     @PutMapping("/updateMessage")
-    public boolean updateMessage(@RequestBody String userID, @RequestBody String chatID, @RequestBody String messageID, @RequestBody  String message) {
+    public boolean updateMessage(@RequestBody String userID, @RequestBody String chatID, @RequestBody String messageID, @RequestBody String message) {
         return chatService.updateMessage(userID, chatID, messageID, message);
     }
 

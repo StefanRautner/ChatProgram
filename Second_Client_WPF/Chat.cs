@@ -8,7 +8,9 @@ namespace Second_Client_WPF
 {
     internal class Chat
     {
-        public int ID { get; set; } = 0;
-        public string Chatname { get; set; } = "";
+        public string chatID { get; set; } = "";
+        public string chatName{ get; set; } = "";
+        public List<User>? userList { get; set; }
+        public List<Message>? messageList { get; set; }
     }
 }

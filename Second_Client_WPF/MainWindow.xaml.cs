@@ -12,7 +12,7 @@ namespace Second_Client_WPF
             InitializeComponent();
         }
 
-        public MainWindow(int userID)
+        public MainWindow(string userID)
         {
             InitializeComponent();
 
@@ -20,7 +20,7 @@ namespace Second_Client_WPF
         }
 
         //Funktion zum Laden aller Chatnamen
-        async public void ShowMessagesFromChat(int userID)
+        async public void ShowMessagesFromChat(string userID)
         {
             while(true)
             {
@@ -35,43 +35,43 @@ namespace Second_Client_WPF
         }
 
         //Nachricht senden, wenn Senden-Knopf wurde gedrückt
-        private void NachrichtSenden(object sender, RoutedEventArgs e)
+        async private void NachrichtSenden(object sender, RoutedEventArgs e)
         {
-            VerbindungZuServer.Instance.NachrichtHinzufuegen(MessageField.Text, ShowChats.SelectedIndex);
+            bool? erfolgreich = await VerbindungZuServer.Instance.NachrichtHinzufuegen(ShowChats.SelectedIndex, MessageField.Text);             //CHATID ANDERS HOLEN
         }
         
         //Enter Überprüfen, um zu Überprüfen ob in Nachrichtenfeld Enter gedrückt wurde
-        private void EnterUeberpruefen(object sender, KeyEventArgs e)
+        async private void EnterUeberpruefen(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
             {
                 //Methode zum Senden der Nachrichten aufrufen
-                VerbindungZuServer.Instance.NachrichtHinzufuegen(MessageField.Text, ShowChats.SelectedIndex);
+                bool? erfolgreich = await VerbindungZuServer.Instance.NachrichtHinzufuegen(ShowChats.SelectedIndex, MessageField.Text);         //CHATID ANDERS HOLEN
             }
         }
 
         //Funktion um Nachricht zu aktualisieren
-        private void NachrichtUpdaten(object sender, RoutedEventArgs e)
+        async private void NachrichtUpdaten(object sender, RoutedEventArgs e)
         {
-            VerbindungZuServer.Instance.NachrichtUpdaten(ShowChats.SelectedIndex, ChatField.SelectedIndex, MessageField.Text);
+            bool? erfolgreich = await VerbindungZuServer.Instance.NachrichtUpdaten(ShowChats.SelectedIndex, ChatField.SelectedIndex, MessageField.Text);
         }
 
         //Funktion zum Löschen einer Nachricht
-        private void NachrichtLoeschen(object sender, RoutedEventArgs e)
+        async private void NachrichtLoeschen(object sender, RoutedEventArgs e)
         {
-            VerbindungZuServer.Instance.NachrichtLoeschen(ShowChats.SelectedIndex, ChatField.SelectedIndex);
+            bool? erfolgreich = await VerbindungZuServer.Instance.NachrichtLoeschen(ShowChats.SelectedIndex, ChatField.SelectedIndex);
         }
 
         //Funktion um Chat zu Löschen
-        private void ChatLoeschen(object sender, RoutedEventArgs e)
+        async private void ChatLoeschen(object sender, RoutedEventArgs e)
         {
-            VerbindungZuServer.Instance.ChatLoeschen(ShowChats.SelectedIndex);
+            bool? erfolgreich = await VerbindungZuServer.Instance.ChatLoeschen(ShowChats.SelectedIndex);
         }
 
         //Funktion un Chat hinzuzufügen
-        private void ChatHinzufuegen(object sender, RoutedEventArgs e)
+        async private void ChatHinzufuegen(object sender, RoutedEventArgs e)
         {
-            VerbindungZuServer.Instance.ChatHinzufuegen(newChat.Text);
+            bool? erfolgreich = await VerbindungZuServer.Instance.ChatHinzufuegen(newChat.Text);
         }
     }
 }

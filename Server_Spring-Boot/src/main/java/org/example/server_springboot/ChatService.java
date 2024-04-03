@@ -103,6 +103,17 @@ public class ChatService {
         }
     }
 
+    //Chat/Gruppen-namen ändern
+    public boolean updateChatName(String chatID, String chatname) {
+        try {
+            Chat chat = chatRepository.findByChatID(chatID);
+            chat.setChatName(chatname);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
     //Chat/Gruppe von User löschen
     public boolean deleteChat(String chatID) {
         try {

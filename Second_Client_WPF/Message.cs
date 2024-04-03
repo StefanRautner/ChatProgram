@@ -8,7 +8,7 @@ namespace Second_Client_WPF
 {
     internal class Message
     {
-        public int ID { get; set; } = 0;
-        public string Nachricht { get; set; } = "";
+        public string messageID { get; set; } = "";
+        public string message { get; set; } = "";
     }
 }
