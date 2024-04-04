@@ -32,7 +32,7 @@ public class ChatService {
     public String createNewUser(String username, String password) {
         boolean found = false;
         for (User user : userRepository.findAll()) {
-            if (Objects.equals(user.getUsername(), username) && Objects.equals(user.getPassword(), password)) {
+            if (Objects.equals(user.getUsername(), username)) {
                 found = true;
                 break;
             }
@@ -60,11 +60,11 @@ public class ChatService {
     }
 
     //User zu Chat/Gruppe hinzufügen
-    public boolean addUserToChat(String userID, String chatID) {
+    public boolean addUserToChat(String username, String chatID) {
         try {
             Chat chat = chatRepository.findByChatID(chatID);
             List<User> userList = chat.getUserList();
-            userList.add(userRepository.findByUserID(userID));
+            userList.add(userRepository.findUserByUsername(username));
             chat.setUserList(userList);
             return true;
         } catch (Exception ex) {

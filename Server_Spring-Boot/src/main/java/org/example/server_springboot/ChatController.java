@@ -28,8 +28,8 @@ public class ChatController {
     }
 
     @PostMapping("/addUserToChat")
-    public boolean addUserToChat(@RequestBody String userID, @RequestBody String chatID) {
-        return chatService.addUserToChat(userID, chatID);
+    public boolean addUserToChat(@RequestBody String username, @RequestBody String chatID) {
+        return chatService.addUserToChat(username, chatID);
     }
 
     /*CHAT*/
