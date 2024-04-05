@@ -32,6 +32,11 @@ public class ChatController {
         return chatService.addUserToChat(username, chatID);
     }
 
+    @PostMapping("/removeUserFromChat")
+    public boolean removeUserFromChat(@RequestBody String username, @RequestBody String chatID) {
+        return chatService.removeUserFromChat(username, chatID);
+    }
+
     /*CHAT*/
     @GetMapping("/getChatNames")
     public String getAllChatNames(@RequestBody String userID) {

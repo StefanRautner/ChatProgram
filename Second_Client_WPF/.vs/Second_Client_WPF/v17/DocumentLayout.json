@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|c:\\users\\stefa\\onedrive\\desktop\\4ahinf\\pos\\chatprogram\\second_client_wpf\\verbindungzuserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|solutionrelative:verbindungzuserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|c:\\users\\stefa\\onedrive\\desktop\\4ahinf\\pos\\chatprogram\\second_client_wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|c:\\users\\stefa\\onedrive\\desktop\\4ahinf\\pos\\chatprogram\\second_client_wpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -29,19 +29,20 @@
               "ToolTip": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-03-21T06:50:33.681Z"
+              "WhenOpened": "2024-04-05T06:45:54.694Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VerbindungZuServer.cs",
-              "DocumentMoniker": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\VerbindungZuServer.cs",
-              "RelativeDocumentMoniker": "VerbindungZuServer.cs",
-              "ToolTip": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\VerbindungZuServer.cs",
-              "RelativeToolTip": "VerbindungZuServer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAFAAAA",
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AQIAAEsAAAAAAAAAAADwv2gAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-20T14:16:31.474Z",
+              "WhenOpened": "2024-04-05T05:37:15.35Z",
               "EditorCaption": ""
             }
           ]

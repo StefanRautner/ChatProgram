@@ -72,6 +72,19 @@ public class ChatService {
         }
     }
 
+    //User von Chat/Gruppe entfernen
+    public boolean removeUserFromChat(String username, String chatID) {
+        try {
+            Chat chat = chatRepository.findByChatID(chatID);
+            List<User> userList = chat.getUserList();
+            userList.remove(userRepository.findUserByUsername(username));
+            chat.setUserList(userList);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
     /*CHAT*/
     //Alle Chats von MongoDB erhalten und ChatID & chatname in JSON-String extrahieren
     public String getChatNames(String userID) {
@@ -162,7 +175,7 @@ public class ChatService {
             Chat chat = chatRepository.findByChatID(chatID);
             List<Message> messageList = chat.getMessageList();
             for (Message message : messageList) {
-                if (Objects.equals(message.getMessageID(), messageID) && chat.getUserList().contains(user)) {
+                if (Objects.equals(message.getMessageID(), messageID) && Objects.equals(message.getCreatorID(), userID)) {
                     message.setMessage(messageText);
                     chat.setMessageList(messageList);
                     break;

@@ -32,7 +32,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Neuen Chat erstellen" Click="ChatHinzufuegen" HorizontalAlignment="Center" Margin="0,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Height="45"/>
-        <TextBox x:Name="newChat" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="100" Height="25"/>
+        <Button Content="Chat aktualisieren" Click="AddUpdateDeleteChat" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Width="100" Height="60" Grid.RowSpan="2"/>
+        <Canvas>
+            <Button Click="UpdateDeleteMessage" Content="Nachricht updaten" Width="131" Height="23" Canvas.Left="369" Canvas.Top="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        </Canvas>
     </Grid>
 </Window>

@@ -1,21 +1,4 @@
 //Autor: Stefan Rautner
-
-/*
-getChats(userID, return:List<ID, Chatname>Chatnamen) = Chats erhalten
-getMessages(userID, chatID, return:List<ID, Nachricht> NachrichtenDesChats) = Nachrichten eines Chats erhalten
-newMessage(userID, chatID, message, return:NONE) = Neue Nachricht erstellen
-newChat(userID, chatName, return:NONE) = Neuen Chat/Gruppe erstellen
-updateMessage(userID, chatID, messageID, message, return:NONE) = Nachricht aktualisieren
-deleteMessage(userID, chatID, messageID, return:NONE) = Nachricht löschen
-deleteChat(userID, chatID, return:NONE) = Chat löschen
-checkUser(username, password, return:String? ID) = Userdaten überprüfen
-newUser(username, password, return:String? ID) = Neuen Nutzer anlegen
-updateUser(username, password, return:String? ID) = Nutzer aktualisieren
-*/
-
-/*OBERE ANGABEN STIMMEN NICHT MEHR, AUCH NICHT BEIM WPF-CLIENT*/
-
-
 // URL zur MongoDB Datenbank definieren
 const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp/api';
 

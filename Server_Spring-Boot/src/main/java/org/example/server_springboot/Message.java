@@ -6,12 +6,22 @@ import org.springframework.data.annotation.Id;
 public class Message {
     @Id
     private String messageID;
+    private String creatorID;
     private String message;
 
     //Getter für NachrichtenID
 
     public String getMessageID() {
         return messageID;
+    }
+
+    //Setter & Getter für creatorID
+    public String getCreatorID() {
+        return creatorID;
+    }
+
+    public void setCreatorID(String creatorID) {
+        this.creatorID = creatorID;
     }
 
     //Setter & Getter für Nachrichtentext

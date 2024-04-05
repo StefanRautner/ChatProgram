@@ -1,0 +1,23 @@
+﻿<!-- Autor: Stefan Rautner -->
+<Window x:Class="Second_Client_WPF.ChatAddUpdateDelete"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Second_Client_WPF"
+        mc:Ignorable="d"
+        Title="Chat" Height="250" Width="650" Icon="/icon.png">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="29,61,0,0" TextWrapping="Wrap" Text="Bitte geben Sie den neuen Namen des Chats ein" VerticalAlignment="Top"/>
+        <TextBox x:Name="ChatName" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="96,103,0,0"/>
+        <Button Click="ChatHinzufuegen" Content="Hinzufügen" HorizontalAlignment="Left" Margin="136,153,0,0" VerticalAlignment="Top"/>
+        <Button Click="ChatLoeschen" Content="Entfernen" HorizontalAlignment="Left" Margin="244,153,0,0" VerticalAlignment="Top"/>
+        <Button Click="ChatUpdaten" Content="Aktualisieren" HorizontalAlignment="Left" Margin="29,153,0,0" VerticalAlignment="Top"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="426,61,0,0" TextWrapping="Wrap" Text="Bitte Benutzername eingeben" VerticalAlignment="Top"/>
+        <TextBox x:Name="UserName" HorizontalAlignment="Left" Margin="446,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Click="BenutzerAusChatEntfernen" Content="Entfernen" HorizontalAlignment="Left" Margin="543,153,0,0" VerticalAlignment="Top"/>
+        <Button Click="BenutzerZuChatHinzufuegen" Content="Hinzufügen" HorizontalAlignment="Left" Margin="426,153,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

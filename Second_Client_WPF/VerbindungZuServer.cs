@@ -27,7 +27,7 @@ namespace Second_Client_WPF
         }
 
         //Nachricht hinzufügen
-        async public Task<bool?> NachrichtHinzufuegen(int IDchat, string messageString)
+        async public Task<bool> NachrichtHinzufuegen(string IDchat, string messageString)
         {
             RestRequest request = new RestRequest("/newMessage", Method.Post);
             var body = new
@@ -42,11 +42,11 @@ namespace Second_Client_WPF
             {
                 return bool.Parse(response.Content);
             }
-            return null;
+            return false;
         }
 
         //Chat/Gruppe hinzufügen
-        async public Task<bool?> ChatHinzufuegen(string nameChat)
+        async public Task<bool> ChatHinzufuegen(string nameChat)
         {
             RestRequest request = new RestRequest("/newChat", Method.Post);
             var body = new
@@ -59,7 +59,7 @@ namespace Second_Client_WPF
             {
                 return bool.Parse(response.Content);
             }
-            return null;
+            return false;
         }
 
         //Names aller Chats/Gruppen erhalten
@@ -82,7 +82,7 @@ namespace Second_Client_WPF
         }
 
         //Nachrichten der ausgewählten Chats/der ausgewählten Gruppe anzeigen
-        async public Task<List<Message>?> NachrichtenErhalten(int IDchat)
+        async public Task<List<Message>?> NachrichtenErhalten(string IDchat)
         {
             RestRequest request = new RestRequest("/getMessages", Method.Get);
             var body = new
@@ -100,7 +100,7 @@ namespace Second_Client_WPF
         }
 
         //Nachrichten aktualisieren/updaten
-        async public Task<bool?> NachrichtUpdaten(int IDchat, int IDmessage, string messageString)
+        async public Task<bool> NachrichtUpdaten(string IDchat, string IDmessage, string messageString)
         {
             RestRequest request = new RestRequest("/updateMessage", Method.Put);
             var body = new
@@ -116,11 +116,11 @@ namespace Second_Client_WPF
             {
                 return bool.Parse(response.Content);
             }
-            return null;
+            return false;
         }
 
         //Nachricht/Chat löschen
-        async public Task<bool?> NachrichtLoeschen(int IDchat, int IDmessage)
+        async public Task<bool> NachrichtLoeschen(string IDchat, string IDmessage)
         {
             RestRequest request = new RestRequest("/deleteMessage", Method.Delete);
 
@@ -136,11 +136,11 @@ namespace Second_Client_WPF
             {
                 return bool.Parse(response.Content);
             }
-            return null;
+            return false;
         }
 
         //Nachricht/Chat löschen
-        async public Task<bool?> ChatLoeschen(int IDchat)
+        async public Task<bool> ChatLoeschen(string IDchat)
         {
             RestRequest request = new RestRequest("/deleteChat", Method.Delete);
 
@@ -149,12 +149,13 @@ namespace Second_Client_WPF
                 chatID = IDchat
             };
             request.AddJsonBody(body);
+            request.AddJsonBody(body);
             RestResponse? response = await client.ExecuteAsync(request);
             if (response.Content != null)
             {
                 return bool.Parse(response.Content);
             }
-            return null;
+            return false;
         }
 
         //Benutzerdaten checken
@@ -202,13 +203,13 @@ namespace Second_Client_WPF
             return response.Content;
         }
 
-        async public Task<bool?> AddUserToChat(string IDchat)
+        async public Task<bool> AddUserToChat(string IDchat, string username)
         {
             RestRequest request = new RestRequest("/addUserToChat", Method.Post);
 
             var body = new
             {
-                userID = IDuser,
+                username = username,
                 chatID = IDchat
             };
             request.AddJsonBody(body);
@@ -217,10 +218,28 @@ namespace Second_Client_WPF
             {
                 return bool.Parse(response.Content);
             }
-            return null;
+            return false;
         }
 
-        async public Task<bool?> UpdateChatName(string IDchat, string nameChat)
+        async public Task<bool> RemoveUserFromChat(string IDchat, string username)
+        {
+            RestRequest request = new RestRequest("/removeUserFromChat", Method.Post);
+
+            var body = new
+            {
+                username = username,
+                chatID = IDchat
+            };
+            request.AddJsonBody(body);
+            RestResponse? response = await client.ExecuteAsync(request);
+            if (response.Content != null)
+            {
+                return bool.Parse(response.Content);
+            }
+            return false;
+        }
+
+        async public Task<bool> UpdateChatName(string IDchat, string nameChat)
         {
             RestRequest request = new RestRequest("/updateChatName", Method.Put);
 
@@ -235,7 +254,7 @@ namespace Second_Client_WPF
             {
                 return bool.Parse(response.Content);
             }
-            return null;
+            return false;
         }
     }
 }
