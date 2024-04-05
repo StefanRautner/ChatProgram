@@ -1,4 +1,4 @@
-﻿//Autor: Stefan rautner
+﻿//Autor: Stefan Rautner
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -8,7 +8,6 @@ namespace Second_Client_WPF
 {
     public partial class MainWindow : Window
     {
-        List<Chat>? chatList = null;
         List<Message>? messages = null;
         string chatID = "";
         string messageID = "";
@@ -40,8 +39,7 @@ namespace Second_Client_WPF
         //Funktion zum Laden aller Chatnamen
         async public void ShowMessagesFromChat(string userID)
         {
-            this.chatList = await VerbindungZuServer.Instance.ChatsNamenErhalten(userID);
-            ShowChats.ItemsSource = chatList;
+            ShowChats.ItemsSource = await VerbindungZuServer.Instance.ChatsNamenErhalten(userID);
         }
 
         //ChatID updaten & anderen Chat anzeigen, wenn Chat gewechselt wird

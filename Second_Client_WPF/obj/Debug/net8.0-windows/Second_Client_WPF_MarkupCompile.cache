@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\App.xaml
-4-871938696
+6-1396739459
 
-10-497577624
+132025382297
 1991751887109
-LoginWindow.xaml;MainWindow.xaml;PasswordForgotWindow.xaml;RegisterWindow.xaml;
+ChatAddUpdateDelete.xaml;LoginWindow.xaml;MainWindow.xaml;MessageDeleteUpdate.xaml;PasswordForgotWindow.xaml;RegisterWindow.xaml;
 
-True
+False
 

@@ -28,3 +28,7 @@ C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Deb
 C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\RegisterWindow.g.cs
 C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\PasswordForgotWindow.baml
 C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\RegisterWindow.baml
+C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\ChatAddUpdateDelete.g.cs
+C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\MessageDeleteUpdate.g.cs
+C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\ChatAddUpdateDelete.baml
+C:\Users\stefa\OneDrive\Desktop\4AHINF\POS\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\MessageDeleteUpdate.baml
