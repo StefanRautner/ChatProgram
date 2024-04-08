@@ -9,6 +9,7 @@ namespace Second_Client_WPF
     public partial class MainWindow : Window
     {
         List<Message>? messages = null;
+        string userID = "";
         string chatID = "";
         string messageID = "";
 
@@ -21,9 +22,18 @@ namespace Second_Client_WPF
         {
             InitializeComponent();
 
-            ShowMessagesFromChat(userID);
+            this.userID = userID;
 
-            //Alle 100ms den Chat updaten
+            //Chatnamen laden
+            ShowNamesOfChats(userID);
+
+            //Chat alle 10ms laden
+            UpdateChatInterval();
+        }
+
+        //Funktion um alle 100ms die Chat-Nachrichten zu updaten
+        private void UpdateChatInterval()
+        {
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(0.1);
             timer.Tick += UpdateChat;
@@ -37,7 +47,7 @@ namespace Second_Client_WPF
         }
 
         //Funktion zum Laden aller Chatnamen
-        async public void ShowMessagesFromChat(string userID)
+        async public void ShowNamesOfChats(string userID)
         {
             ShowChats.ItemsSource = await VerbindungZuServer.Instance.ChatsNamenErhalten(userID);
         }

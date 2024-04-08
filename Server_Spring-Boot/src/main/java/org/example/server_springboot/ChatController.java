@@ -27,6 +27,7 @@ public class ChatController {
         return chatService.updateUser(username, password);
     }
 
+    /*USER & CHAT*/
     @PostMapping("/addUserToChat")
     public boolean addUserToChat(@RequestParam String username, @RequestParam String chatID) {
         return chatService.addUserToChat(username, chatID);
@@ -44,8 +45,8 @@ public class ChatController {
     }
 
     @PostMapping("/newChat")
-    public boolean createNewChat(@RequestParam String chatName) {
-        return chatService.createNewChat(chatName);
+    public boolean createNewChat(@RequestParam String userID, @RequestParam String chatName) {
+        return chatService.createNewChat(userID, chatName);
     }
 
     @PutMapping("/updateChatName")

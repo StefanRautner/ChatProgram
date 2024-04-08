@@ -18,7 +18,7 @@ body {
 }
 
 /*Nachrichten stylen*/
-.chat{
+.chat {
 
 }
 
@@ -48,6 +48,9 @@ body {
 .input-box {
     border-top: 1px solid #ccc;
     padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 90px;
 }
 
 /*Nachrichten-Feld stylen*/
@@ -73,4 +76,33 @@ body {
 /*Punkte bei Chatnamen-Liste & Messages-Liste entfernen*/
 #namesOfChats, #messagesOfChat {
     list-style-type: none;
+}
+
+/*Buttons für Chat & Message stylen*/
+.button-box {
+    margin-left: auto;
+    margin-top: 10px;
+    display: flex;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+/*Buttons für die Button-Box stylen*/
+.button-box button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*Hintergrund bleichen, wenn Mauszeiger darüber ist*/
+.input-box input[type="submit"]:hover {
+    background-color: #007bffb3;
+}
+
+/*Hintergrund bleichen, wenn Mauszeiger darüber ist*/
+.button-box button:hover {
+    background-color: #007bffb3;
 }

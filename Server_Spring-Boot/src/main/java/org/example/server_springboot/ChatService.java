@@ -104,11 +104,14 @@ public class ChatService {
         return jsonArray.toString();
     }
 
-    //Neuen Chat/Gruppe für User erstellen
-    public boolean createNewChat(String chatName) {
+    //Neuen Chat/Gruppe für User erstellen (und User dazu hinzufügen)
+    public boolean createNewChat(String userID, String chatName) {
         try {
             Chat chat = new Chat();
             chat.setChatName(chatName);
+            List<User> userList = chat.getUserList();
+            userList.add(userRepository.findByUserID(userID));
+            chat.setUserList(userList);
             chatRepository.save(chat);
             return true;
         } catch (Exception ex) {

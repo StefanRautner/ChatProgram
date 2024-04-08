@@ -1,0 +1,28 @@
+<!-- Autor: Stefan Rautner -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Message</title>
+
+    <!-- Icon einfügen -->
+    <link rel="icon" href="../icon/icon.ico" type="image/x-icon">
+
+    <!-- Javascript Script einbinden -->
+    <script src="script.js"></script>
+
+    <!-- CSS Script einbinden -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="container">
+    <p class="return-arrow" onclick="backToHome()"></p>
+    <input type="text" id="new-message" placeholder="Hier neue Nachricht eingeben">
+    <div class="button-box">
+        <button onclick="updateMessage()">Nachricht aktualisieren</button>
+        <button onclick="deleteMessage()">Nachricht löschen</button>
+    </div>
+</div>
+</body>
+</html>

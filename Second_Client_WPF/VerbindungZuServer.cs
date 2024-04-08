@@ -51,6 +51,7 @@ namespace Second_Client_WPF
             RestRequest request = new RestRequest("/newChat", Method.Post);
             var body = new
             {
+                userID = IDuser,
                 chatName = nameChat
             };
             request.AddJsonBody(body);
@@ -203,6 +204,7 @@ namespace Second_Client_WPF
             return response.Content;
         }
 
+        //Beutzer zu Chat hinzufügen
         async public Task<bool> AddUserToChat(string IDchat, string username)
         {
             RestRequest request = new RestRequest("/addUserToChat", Method.Post);
@@ -221,6 +223,7 @@ namespace Second_Client_WPF
             return false;
         }
 
+        //Benutzer von CHat entfernen
         async public Task<bool> RemoveUserFromChat(string IDchat, string username)
         {
             RestRequest request = new RestRequest("/removeUserFromChat", Method.Post);
@@ -239,6 +242,7 @@ namespace Second_Client_WPF
             return false;
         }
 
+        //Chatnamen updaten
         async public Task<bool> UpdateChatName(string IDchat, string nameChat)
         {
             RestRequest request = new RestRequest("/updateChatName", Method.Put);

@@ -1,10 +1,15 @@
 //Autor: Stefan Rautner
 // URL zur MongoDB Datenbank definieren
-const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp/api';
+const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp';
+
+//Intervall zum Updaten des Chats (alle 100ms)
+const updateInterval = setInterval(function() {
+    getData(chatID);
+}, 100);
 
 //Chatnamen erhalten
 document.onload = async function getChatNames(userID) {
-    const response = await fetch(`${urlToSpringBoot}/getChats`, {
+    const response = await fetch(`${urlToSpringBoot}/getChatNames`, {
         methode: 'GET',
         body: JSON.stringify({
             'userID': userID
@@ -59,50 +64,10 @@ async function sendData(userID, chatID, data) {
     });
 }
 
-//Chat oder Gruppe hinzufügen
-async function createChat(userID, nameChat) {
-    await fetch(`${urlToSpringBoot}/newChat`, {
-        method: 'POST',
-        body: JSON.stringify({
-            'userID': userID,
-            'chatName': nameChat
-        })
-    });
+function editDeleteMessage() {
+    window.location.href = '../message/editDeleteMessage.html';
 }
 
-//Nachricht aktualisieren/updaten
-async function updateMessage(userID, chatID, messageID, data) {
-    await fetch(`${urlToSpringBoot}/updateMessage`, {
-        method: 'PUT',
-        body: JSON.stringify({
-            'userID': userID,
-            'chatID': chatID,
-            'messageID': messageID,
-            'message': data
-        })
-    });
-}
-
-//Nachricht löschen
-async function deleteMessage(userID, type, chatID, messageID) {
-    await fetch(`${urlToSpringBoot}/deleteMessage`, {
-        method: 'DELETE',
-        body: JSON.stringify({
-            'userID': userID,
-            'chatID': chatID,
-            'messageID': messageID
-        })
-    });
-}
-
-//Chat/Gruppe löschen
-async function deleteChat(userID, type, chatID, messageID) {
-    await fetch(`${urlToSpringBoot}/deleteChat`, {
-        method: 'DELETE',
-        body: JSON.stringify({
-            'userID': userID,
-            'chatID': chatID,
-            'messageID': messageID
-        })
-    });
+function addEditDeleteChat() {
+    window.location.href = '../chat/addEditDeleteChat.html';
 }

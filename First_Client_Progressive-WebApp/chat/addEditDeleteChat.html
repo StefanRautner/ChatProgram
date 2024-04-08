@@ -1,0 +1,34 @@
+<!-- Autor: Stefan Rautner -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+
+    <!-- Icon einfügen -->
+    <link rel="icon" href="../icon/icon.ico" type="image/x-icon">
+
+    <!-- Javascript Script einbinden -->
+    <script src="script.js"></script>
+
+    <!-- CSS Script einbinden -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="container">
+    <p class="return-arrow" onclick="backToHome()"></p>
+    <input type="text" id="new-chatname" placeholder="Neuen Chatnamen eingeben">
+    <div class="button-box">
+        <button onclick="createChat()">Chat hinzufügen</button>
+        <button onclick="updateChatNames()">Chatnamen aktualisieren</button>
+        <button onclick="deleteChat()">Chat löschen</button>
+    </div>
+    <input type="text" id="add-user" placeholder="Hier Benutzernamen eingeben">
+    <div class="button-box">
+        <button onclick="addUserToChat()">Benutzer hinzufügen</button>
+        <button onclick="removeUserFromChat()">Benutzer entfernen</button>
+    </div>
+</div>
+</body>
+</html>

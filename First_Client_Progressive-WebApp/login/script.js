@@ -11,7 +11,7 @@ function changeToRegister() {
 }
 
 //Register zu Loginform ändern
-function changeToLogin() {
+function    changeToLogin() {
     document.title = "Login";
     document.getElementById("registerForm").style.display = "none";
     document.getElementById("loginForm").style.display = "block";
@@ -27,7 +27,7 @@ function changeToPasswordLost() {
 }
 
 // URL zur MongoDB Datenbank definieren
-const urlToMongoDBDatabase = 'http://localhost:8080/tinyWhatsApp/api';
+const urlToMongoDBDatabase = 'http://localhost:8080/tinyWhatsApp';
 
 //Passwort hashen
 async function hashPassword(password) {
@@ -56,7 +56,7 @@ async function checkUserExistence() {
         document.getElementById("messageBoxText").value = "Anmeldung fehlgeschlagen";
     } else {
         uID = data.userID;
-        window.location.href = 'home.html';
+        window.location.href = '../home/home.html';
     }
     document.getElementById("messageBox").style.display = "block";
 }
@@ -81,7 +81,7 @@ async function createNewUser() {
         document.getElementById("messageBoxText").value = "Benutzer existiert bereits";
     } else {
         uID = data.userID;
-        window.location.href = 'home.html';
+        window.location.href = '../home/home.html';
     }
     document.getElementById("messageBox").style.display = "block";
 }
@@ -106,7 +106,7 @@ async function updateUser() {
         document.getElementById("messageBoxText").value = "Dieser Username existiert nicht";
     } else {
         uID = data.userID;
-        window.location.href = 'home.html';
+        window.location.href = '../home/home.html';
     }
     document.getElementById("messageBox").style.display = "block";
 }
@@ -114,5 +114,3 @@ async function updateUser() {
 function hideMessageBox() {
     document.getElementById("messageBox").style.display = "none";
 }
-
-//MessageBox schließt sich automatisch, warum?

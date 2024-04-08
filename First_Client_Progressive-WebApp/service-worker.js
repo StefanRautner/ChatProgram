@@ -5,13 +5,20 @@ let cacheVersion = 'my-cache';
 
 //Definition Versions-Dokumente
 const versionDocuments = [
-    'icon.ico',
-    'home.html',
-    'style-home.css',
-    'script.js',
-    'login.html',
-    'style-login.css',
-    'script-login.js',
+    'icon/icon.ico',
+    'icon/replacement_icon.png',
+    'home/home.html',
+    'home/style.css',
+    'home/script.js',
+    'login/login.html',
+    'login/style.css',
+    'login/script.js',
+    'message/editDeleteMessage.html',
+    'message/style.css',
+    'message/script.js',
+    'chat/addEditDeleteChat.html',
+    'chat/style.css',
+    'chat/script.js',
     'manifest.json',
     'service-worker.js'
 ]
