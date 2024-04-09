@@ -36,7 +36,7 @@ namespace Second_Client_WPF
         //Funktion un Chat hinzuzufügen
         async private void ChatHinzufuegen(object sender, RoutedEventArgs e)
         {
-            if (!await VerbindungZuServer.Instance.ChatHinzufuegen(userID, ChatName.Text))
+            if (!await VerbindungZuServer.Instance.ChatHinzufuegen(ChatName.Text))
             {
                 MessageBox.Show("Chat konnte nicht hinzugefügt werden");
             }

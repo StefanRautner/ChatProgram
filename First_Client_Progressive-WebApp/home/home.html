@@ -11,19 +11,6 @@
     <!-- Icon einfügen -->
     <link rel="icon" href="../icon/icon.ico" type="image/x-icon">
 
-    <!-- Service-Worker registrieren -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('../service-worker.js')
-                .then((registration) => {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                })
-                .catch((error) => {
-                    console.error('Service Worker registration failed:', error);
-                });
-        }
-    </script>
-
     <!-- Javascript Script einbinden -->
     <script src="script.js"></script>
 

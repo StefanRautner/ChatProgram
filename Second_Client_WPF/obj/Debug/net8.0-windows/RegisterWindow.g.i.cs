@@ -69,7 +69,7 @@ namespace Second_Client_WPF {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Second_Client_WPF;V1.0.0.0;component/registerwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Second_Client_WPF;component/registerwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\RegisterWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

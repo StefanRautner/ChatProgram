@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Message" Height="200" Width="200" Icon="/icon.png">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="28,32,0,0" TextWrapping="Wrap" Text="Neue Nachricht eingeben" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="27,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"><Run Text="Neue"/><Run Language="de-at" Text="n"/><Run Text=" Nachricht"/><Run Language="de-at" Text="entext"/><Run Text=" eingeben"/></TextBlock>
         <TextBox x:Name="NeueNachricht" HorizontalAlignment="Left" Margin="35,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Click="NachrichtUpdaten" Content="Aktualisieren" HorizontalAlignment="Left" Margin="27,115,0,0" VerticalAlignment="Top"/>
         <Button Click="NachrichtEntfernen" Content="Löschen" HorizontalAlignment="Left" Margin="115,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.171,0.489"/>

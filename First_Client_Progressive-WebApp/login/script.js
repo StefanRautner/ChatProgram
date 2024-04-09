@@ -50,7 +50,7 @@ async function checkUserExistence() {
             'password': hashedPassword
         })
     });
-    const data = await response.json();
+    const data = await response;
 
     if(data == null) {
         document.getElementById("messageBoxText").value = "Anmeldung fehlgeschlagen";
@@ -71,11 +71,11 @@ async function createNewUser() {
     const response = await fetch(`${urlToMongoDBDatabase}/newUser`, {
         method: 'POST',
         body: JSON.stringify({
-            'username': document.getElementById("passwordLogin").value,
+            'username': document.getElementById("usernameRegister").value,
             'password': hashedPassword
         })
     });
-    const data = await response.json();
+    const data = await response;
 
     if(data == null) {
         document.getElementById("messageBoxText").value = "Benutzer existiert bereits";
@@ -100,7 +100,7 @@ async function updateUser() {
             'password': hashedPassword
         })
     });
-    const data = await response.json();
+    const data = await response;
 
     if(data == null) {
         document.getElementById("messageBoxText").value = "Dieser Username existiert nicht";

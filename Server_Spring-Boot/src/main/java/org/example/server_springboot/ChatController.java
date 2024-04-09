@@ -1,6 +1,7 @@
 //Autor: Stefan Rautner
 package org.example.server_springboot;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,70 +14,83 @@ public class ChatController {
 
     /*USER*/
     @GetMapping("/checkUser")
-    public String checkUser(@RequestParam String username, @RequestParam String password) {
-        return chatService.checkUser(username, password);
+    public String checkUser(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.checkUser(jsonBody.getString("username"), jsonBody.getString("password"));
     }
 
     @PostMapping("/newUser")
-    public String createNewUser(@RequestParam String username, @RequestParam String password) {
-        return chatService.createNewUser(username, password);
+    public String createNewUser(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.createNewUser(jsonBody.getString("username"), jsonBody.getString("password"));
     }
 
     @PutMapping("/updateUser")
-    public String updateUser(@RequestParam String username, @RequestParam String password) {
-        return chatService.updateUser(username, password);
+    public String updateUser(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.updateUser(jsonBody.getString("username"), jsonBody.getString("password"));
     }
 
     /*USER & CHAT*/
     @PostMapping("/addUserToChat")
-    public boolean addUserToChat(@RequestParam String username, @RequestParam String chatID) {
-        return chatService.addUserToChat(username, chatID);
+    public boolean addUserToChat(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.addUserToChat(jsonBody.getString("username"), jsonBody.getString("chatID"));
     }
 
     @PostMapping("/removeUserFromChat")
-    public boolean removeUserFromChat(@RequestParam String username, @RequestParam String chatID) {
-        return chatService.removeUserFromChat(username, chatID);
+    public boolean removeUserFromChat(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.removeUserFromChat(jsonBody.getString("username"), jsonBody.getString("chatID"));
     }
 
     /*CHAT*/
     @GetMapping("/getChatNames")
-    public String getAllChatNames(@RequestParam String userID) {
-        return chatService.getChatNames(userID);
+    public String getAllChatNames(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.getChatNames(jsonBody.getString("userID"));
     }
 
     @PostMapping("/newChat")
-    public boolean createNewChat(@RequestParam String userID, @RequestParam String chatName) {
-        return chatService.createNewChat(userID, chatName);
+    public boolean createNewChat(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.createNewChat(jsonBody.getString("userID"), jsonBody.getString("chatName"));
     }
 
     @PutMapping("/updateChatName")
-    public boolean updateChatname(@RequestParam String chatID, @RequestParam String chatName) {
-        return chatService.updateChatName(chatID, chatName);
+    public boolean updateChatname(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.updateChatName(jsonBody.getString("chatID"), jsonBody.getString("chatName"));
     }
 
     @DeleteMapping("/deleteChat")
-    public boolean deleteChatById(@RequestParam String chatID) {
-        return chatService.deleteChat(chatID);
+    public boolean deleteChatById(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.deleteChat(jsonBody.getString("chatID"));
     }
 
     /*NACHRICHTEN*/
     @PostMapping("/newMessage")
-    public boolean addNewMessage(@RequestParam String userID, @RequestParam String chatID, @RequestParam String message) {
-        return chatService.addNewMessage(userID, chatID, message);
+    public boolean addNewMessage(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.addNewMessage(jsonBody.getString("userID"), jsonBody.getString("chatID"), jsonBody.getString("message"));
     }
 
     @GetMapping("/getMessages")
-    public String getMessages(@RequestParam String chatID) {
-        return chatService.getMessagesOfChat(chatID);
+    public String getMessages(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.getMessagesOfChat(jsonBody.getString("chatID"));
     }
 
     @PutMapping("/updateMessage")
-    public boolean updateMessage(@RequestParam String userID, @RequestParam String chatID, @RequestParam String messageID, @RequestParam String message) {
-        return chatService.updateMessage(userID, chatID, messageID, message);
+    public boolean updateMessage(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.updateMessage(jsonBody.getString("userID"), jsonBody.getString("chatID"), jsonBody.getString("messageID"), jsonBody.getString("message"));
     }
 
     @DeleteMapping("/deleteMessage")
-    public boolean deleteMessage(@RequestParam String userID, @RequestParam String chatID, @RequestParam String messageID) {
-        return chatService.deleteMessage(userID, chatID, messageID);
+    public boolean deleteMessage(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.deleteMessage(jsonBody.getString("userID"), jsonBody.getString("chatID"), jsonBody.getString("messageID"));
     }
 }
