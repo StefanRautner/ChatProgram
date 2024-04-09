@@ -150,6 +150,7 @@ public class ChatService {
             if (chat.getUserList().contains(user)) {
                 Message message = new Message();
                 message.setMessage(messageText);
+                message.setCreatorID(userID);
                 messageList.add(message);
             }
             return true;
@@ -174,7 +175,6 @@ public class ChatService {
     //NachrichtenText updaten
     public boolean updateMessage(String userID, String chatID, String messageID, String messageText) {
         try {
-            User user = userRepository.findByUserID(userID);
             Chat chat = chatRepository.findByChatID(chatID);
             List<Message> messageList = chat.getMessageList();
             for (Message message : messageList) {
@@ -193,11 +193,10 @@ public class ChatService {
     //Nachricht von Chat/Gruppe löschen
     public boolean deleteMessage(String userID, String chatID, String messageID) {
         try {
-            User user = userRepository.findByUserID(userID);
             Chat chat = chatRepository.findByChatID(chatID);
             List<Message> messageList = chat.getMessageList();
             for (Message message : messageList) {
-                if (Objects.equals(message.getMessageID(), messageID) && chat.getUserList().contains(user)) {
+                if (Objects.equals(message.getMessageID(), messageID) && Objects.equals(message.getCreatorID(), userID)) {
                     messageList.remove(message);
                     chat.setMessageList(messageList);
                     break;

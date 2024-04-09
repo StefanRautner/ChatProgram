@@ -3,26 +3,26 @@
 const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp';
 
 //Nachricht aktualisieren/updaten
-async function updateMessage(userID, chatID, messageID) {
+async function updateMessage() {
     await fetch(`${urlToSpringBoot}/updateMessage`, {
         method: 'PUT',
         body: JSON.stringify({
-            'userID': userID,
-            'chatID': chatID,
-            'messageID': messageID,
+            'userID': window.userID,
+            'chatID': window.chatID,
+            'messageID': window.messageID,
             'message': document.getElementById("new-message").value
         })
     });
 }
 
 //Nachricht löschen
-async function deleteMessage(userID, type, chatID, messageID) {
+async function deleteMessage() {
     await fetch(`${urlToSpringBoot}/deleteMessage`, {
         method: 'DELETE',
         body: JSON.stringify({
-            'userID': userID,
-            'chatID': chatID,
-            'messageID': messageID
+            'userID': window.userID,
+            'chatID': window.chatID,
+            'messageID': window.messageID
         })
     });
 }

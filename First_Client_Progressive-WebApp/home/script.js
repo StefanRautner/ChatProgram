@@ -7,6 +7,10 @@ const updateInterval = setInterval(function() {
     getData(chatID);
 }, 100);
 
+//Variable setzen
+let chatID;
+let messageID;
+
 //Chatnamen erhalten
 document.onload = async function getChatNames(userID) {
     const response = await fetch(`${urlToSpringBoot}/getChatNames`, {
@@ -21,10 +25,13 @@ document.onload = async function getChatNames(userID) {
     const list = document.getElementById("namesOfChats");
 
     //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
-    data.forEach(function(element) {
+    data.forEach(function(chatName) {
         const listElement = document.createElement("li");
-        listElement.Text = element.Chatname;
-        listElement.id = element.ID;
+        listElement.Text = chatName.Chatname;
+        listElement.id = chatName.ID;
+        listElement.onclick = function() {
+            chatID = this.id;
+        };
         list.appendChild(listElement);
     })
 }
@@ -48,6 +55,9 @@ async function getData(chatID) {
         const listElement = document.createElement("li");
         listElement.Text = element.Nachricht;
         listElement.id = ID;
+        listElement.onclick = function() {
+            messageID = this.id;
+        };
         list.appendChild(listElement);
     })
 }
@@ -71,3 +81,7 @@ function editDeleteMessage() {
 function addEditDeleteChat() {
     window.location.href = '../chat/addEditDeleteChat.html';
 }
+
+//Variable für andere Scripte verfügbar machen
+window.chatID = chatID;
+window.messageID = messageID;

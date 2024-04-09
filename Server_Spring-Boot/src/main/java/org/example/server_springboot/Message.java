@@ -10,7 +10,6 @@ public class Message {
     private String message;
 
     //Getter für NachrichtenID
-
     public String getMessageID() {
         return messageID;
     }

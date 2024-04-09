@@ -3,54 +3,52 @@
 const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp';
 
 //Chat oder Gruppe hinzufügen
-async function createChat(userID, nameChat) {
+async function createChat() {
     await fetch(`${urlToSpringBoot}/newChat`, {
         method: 'POST',
         body: JSON.stringify({
-            'userID': userID,
+            'userID': window.userID,
             'chatName': document.getElementById("new-chatname").value
         })
     });
 }
 
 //Chat/Gruppe löschen
-async function deleteChat(userID, type, chatID, messageID) {
+async function deleteChat() {
     await fetch(`${urlToSpringBoot}/deleteChat`, {
         method: 'DELETE',
         body: JSON.stringify({
-            'userID': userID,
-            'chatID': chatID,
-            'messageID': messageID
+            'chatID': window.chatID
         })
     });
 }
 
-async function updateChatNames(chatID) {
+async function updateChatNames() {
     await fetch(`${urlToSpringBoot}/updateChatName`, {
         method: 'PUT',
         body: JSON.stringify({
-            'chatID': chatID,
+            'chatID': window.chatID,
             'chatName': document.getElementById("new-chatname").value
         })
     });
 }
 
-async function addUserToChat(chatID) {
+async function addUserToChat() {
     await fetch(`${urlToSpringBoot}/addUserToChat`, {
         method: 'POST',
         body: JSON.stringify({
             'username': document.getElementById("add-user").value,
-            'chatID': chatID
+            'chatID': window.chatID
         })
     });
 }
 
-async function removeUserFromChat(chatID) {
+async function removeUserFromChat() {
     await fetch(`${urlToSpringBoot}/removeUserFromChat`, {
         method: 'POST',
         body: JSON.stringify({
             'username': document.getElementById("add-user").value,
-            'chatID': chatID
+            'chatID': window.chatID
         })
     });
 }

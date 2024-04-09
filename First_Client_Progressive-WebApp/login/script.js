@@ -114,3 +114,6 @@ async function updateUser() {
 function hideMessageBox() {
     document.getElementById("messageBox").style.display = "none";
 }
+
+//Variable für andere Scripte verfügbar machen
+window.userID = uID;
