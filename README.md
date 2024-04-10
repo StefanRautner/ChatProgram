@@ -2,7 +2,7 @@
 
 - Server in Spring-Boot (Kommunikation zwischen Clients und Datenbank)
 1. Client in C# (WPF)
-2. Client in HTML, CSS & JS (React?) == progressive WebApp
+2. Client in HTML, CSS & JS (progressive WebApp)
 
 - Speichern in Mongodb
 
