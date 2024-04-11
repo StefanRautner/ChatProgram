@@ -12,7 +12,7 @@ let chatID;
 let messageID;
 
 //Chatnamen erhalten
-document.onload = async function getChatNames(userID) {
+document.onload = async function getChatNames() {
     const response = await fetch(`${urlToSpringBoot}/getChatNames`, {
         methode: 'GET',
         body: JSON.stringify({
@@ -27,8 +27,8 @@ document.onload = async function getChatNames(userID) {
     //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
     data.forEach(function(chatName) {
         const listElement = document.createElement("li");
-        listElement.Text = chatName.Chatname;
-        listElement.id = chatName.ID;
+        listElement.Text = chatName.name;
+        listElement.id = chatName.chatID;
         listElement.onclick = function() {
             chatID = this.id;
         };
@@ -37,7 +37,7 @@ document.onload = async function getChatNames(userID) {
 }
 
 //Nachrichten erhalten
-async function getData(chatID) {
+async function getData() {
     const response = await fetch(`${urlToSpringBoot}/getMessages`, {
         methode: 'GET',
         body: JSON.stringify({
@@ -53,8 +53,8 @@ async function getData(chatID) {
     //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
     data.forEach(function(element) {
         const listElement = document.createElement("li");
-        listElement.Text = element.Nachricht;
-        listElement.id = ID;
+        listElement.Text = element.messageText;
+        listElement.id = element.messageID;
         listElement.onclick = function() {
             messageID = this.id;
         };
@@ -63,25 +63,25 @@ async function getData(chatID) {
 }
 
 //Nachricht hinzufügen
-async function sendData(userID, chatID, data) {
+async function sendData() {
     await fetch(`${urlToSpringBoot}/newMessage`, {
         method: 'POST',
         body: JSON.stringify({
             'userID': userID,
             'chatID': chatID,
-            'message': data
+            'message': document.getElementById("user-input").value
         })
     });
 }
 
 function editDeleteMessage() {
-    window.location.href = '../message/editDeleteMessage.html';
+    window.location.href = '../message/message.html';
 }
 
 function addEditDeleteChat() {
-    window.location.href = '../chat/addEditDeleteChat.html';
+    window.location.href = '../chat/chat.html';
 }
 
-//Variable für andere Scripte verfügbar machen
+//Variablen für andere Skripte verfügbar machen
 window.chatID = chatID;
 window.messageID = messageID;

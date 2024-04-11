@@ -6,6 +6,8 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 
@@ -151,6 +153,7 @@ public class ChatService {
                 Message message = new Message();
                 message.setMessage(messageText);
                 message.setCreatorID(userID);
+                message.setZeitstempel(Instant.now());
                 messageList.add(message);
             }
             return true;
@@ -178,7 +181,8 @@ public class ChatService {
             Chat chat = chatRepository.findByChatID(chatID);
             List<Message> messageList = chat.getMessageList();
             for (Message message : messageList) {
-                if (Objects.equals(message.getMessageID(), messageID) && Objects.equals(message.getCreatorID(), userID)) {
+                Duration zeitSeitErstellung = Duration.between(message.getZeitstempel(), Instant.now());
+                if (Objects.equals(message.getMessageID(), messageID) && Objects.equals(message.getCreatorID(), userID) && 5 <= zeitSeitErstellung.toMinutes()) {
                     message.setMessage(messageText);
                     chat.setMessageList(messageList);
                     break;

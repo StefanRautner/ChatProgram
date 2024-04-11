@@ -11,15 +11,14 @@
   - private Chats
   - Daten verschlüsseln (verschlüsselt übermitteln)
   - Benutzer muss Konto haben (Registerieren & Login)
-  - Zeitstempel?
-  - Gelesen anzeige?
-  - Bilder, Video- & Audiodateien?
+  - Zeitstempel
+  - Bilder, Video- & Audiodateien???
 
 - Spring-Boot soll CRUD (Create, Read, Update, Delete) enthalten
   - Create = Nachrichten schreiben (und in Datenbank speichern)
   - Read = Lesen der Nachrichten des aktuellen Chats aus der Datenbank
   - Update = Verändern einer Nachricht
-  - Delete = Löschen eines Chats & eienr Nachricht
+  - Delete = Löschen eines Chats & einer Nachricht
 
 - Doku in Markdown (statt dieser README)
   - Softwaredesign (Architektur)

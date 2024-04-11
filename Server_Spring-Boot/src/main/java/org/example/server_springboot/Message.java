@@ -3,11 +3,14 @@ package org.example.server_springboot;
 
 import org.springframework.data.annotation.Id;
 
+import java.time.Instant;
+
 public class Message {
     @Id
     private String messageID;
     private String creatorID;
     private String message;
+    private Instant zeitstempel;
 
     //Getter für NachrichtenID
     public String getMessageID() {
@@ -30,5 +33,14 @@ public class Message {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    //Setter & Getter für Zeitstempel
+    public Instant getZeitstempel() {
+        return zeitstempel;
+    }
+
+    public void setZeitstempel(Instant zeitstempel) {
+        this.zeitstempel = zeitstempel;
     }
 }

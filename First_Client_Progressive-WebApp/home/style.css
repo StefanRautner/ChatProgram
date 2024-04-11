@@ -9,7 +9,7 @@ body {
 
 /*Hintergrundfeld stylen*/
 .container {
-    max-width: 700px;
+    width: 60%;
     margin: 20px auto;
     background-color: #fff;
     border-radius: 10px;
@@ -25,14 +25,21 @@ body {
 /*Chatfeld stylen*/
 #chat-box {
     height: 400px;
-    width: 700px;
+    width: 100%;
     display: flex;
+}
+
+/*Media Query, für Handys*/
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
 }
 
 /*Chat-Auswahl stylen*/
 #chat-names {
     height: 400px;
-    width: 200px;
+    width: 35%;
     overflow-y: auto;
     background-color: lightgray;
 }
