@@ -7,13 +7,13 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="ChatAddUpdateDelete.xaml.cs">
+    <Compile Update="Chat.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MessageDeleteUpdate.xaml.cs">
+    <Compile Update="Message.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="PasswordForgotWindow.xaml.cs">
@@ -24,7 +24,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="ChatAddUpdateDelete.xaml">
+    <Page Update="Chat.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
@@ -33,7 +33,7 @@
     <Page Update="LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MessageDeleteUpdate.xaml">
+    <Page Update="Message.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="PasswordForgotWindow.xaml">

@@ -64,7 +64,7 @@ namespace Second_Client_WPF
         }
 
         //Names aller Chats/Gruppen erhalten
-        async public Task<List<Chat>?> ChatsNamenErhalten(string IDuser)
+        async public Task<List<Chat_Model>?> ChatsNamenErhalten(string IDuser)
         {
             this.IDuser = IDuser;
             RestRequest request = new RestRequest("/getChatNames", Method.Get);
@@ -77,13 +77,13 @@ namespace Second_Client_WPF
             string? content = response.Content;
             if (content != null)
             {
-                return JsonSerializer.Deserialize<List<Chat>>(content);
+                return JsonSerializer.Deserialize<List<Chat_Model>>(content);
             }
             return null;
         }
 
         //Nachrichten der ausgewählten Chats/der ausgewählten Gruppe anzeigen
-        async public Task<List<Message>?> NachrichtenErhalten(string IDchat)
+        async public Task<List<Message_Model>?> NachrichtenErhalten(string IDchat)
         {
             RestRequest request = new RestRequest("/getMessages", Method.Get);
             var body = new
@@ -95,7 +95,7 @@ namespace Second_Client_WPF
             string? content = response.Content;
             if (content != null)
             {
-                return JsonSerializer.Deserialize<List<Message>>(content);
+                return JsonSerializer.Deserialize<List<Message_Model>>(content);
             }
             return null;
         }

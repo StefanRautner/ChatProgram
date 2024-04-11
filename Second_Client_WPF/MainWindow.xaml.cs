@@ -8,7 +8,7 @@ namespace Second_Client_WPF
 {
     public partial class MainWindow : Window
     {
-        List<Message>? messages = null;
+        List<Message_Model>? messages = null;
         string userID = "";
         string chatID = "";
         string messageID = "";
@@ -55,7 +55,7 @@ namespace Second_Client_WPF
         //ChatID updaten & anderen Chat anzeigen, wenn Chat gewechselt wird
         async private void ChangeChat(object sender, SelectionChangedEventArgs e)
         {
-            Chat? chat = (Chat?)ShowChats.SelectedItems[0];
+            Chat_Model? chat = (Chat_Model?)ShowChats.SelectedItems[0];
             if(chat != null)
             {
                 this.chatID = chat.chatID;
@@ -103,7 +103,7 @@ namespace Second_Client_WPF
 
         private void NachrichtAusgewaehlt(object sender, SelectionChangedEventArgs e)
         {
-            Message? message = (Message?)ShowChats.SelectedItems[0];
+            Message_Model? message = (Message_Model?)ShowChats.SelectedItems[0];
             if (message != null)
             {
                 this.messageID = message.messageID;

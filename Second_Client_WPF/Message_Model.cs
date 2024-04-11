@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Second_Client_WPF
 {
-    internal class Message
+    internal class Message_Model
     {
         public string messageID { get; set; } = "";
         public string message { get; set; } = "";

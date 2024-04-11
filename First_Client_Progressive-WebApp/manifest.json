@@ -1,7 +1,7 @@
 {
-  "name": "Tiny WhatsApp",
-  "short_name": "Chat Program",
-  "description": "Tiny WhatsApp (WebApp-Client)",
+  "name": "Chat Programm",
+  "short_name": "TinyWhatsApp",
+  "description": "Tiny WhatsApp (in Form of WebApp-Client)",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
