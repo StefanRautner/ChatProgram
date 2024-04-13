@@ -38,28 +38,37 @@ async function hashPassword(password) {
 
 //Benutzer überprüfen
 async function checkUserExistence() {
-    let hashedPassword = "";
-    await hashPassword(document.getElementById("passwordLogin").value).then(hash => {
+    let hashedPassword = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
+    /*await hashPassword(document.getElementById("passwordLogin").value).then(hash => {
         hashedPassword = hash;
-    });
+    });*/
 
-    const response = await fetch(`${urlToMongoDBDatabase}/checkUser`, {
-        method: 'GET',
-        body: JSON.stringify({
-            'username': document.getElementById("usernameLogin").value,
-            'password': hashedPassword
-        })
-    });
-    const data = await response;
+    try {
+        const response = await fetch(`${urlToMongoDBDatabase}/checkUser`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'username': document.getElementById("usernameLogin").value,
+                'password': hashedPassword
+            })
+        });
 
-    if(data == null) {
-        document.getElementById("messageBoxText").value = "Anmeldung fehlgeschlagen";
-    } else {
-        uID = data.userID;
-        window.location.href = '../home/home.html';
+        const data = await response.text();
+        console.log(data);
+        if(data === null) {
+            document.getElementById("messageBoxText").value = "Anmeldung fehlgeschlagen";
+        } else {
+            uID = data.userID;
+            window.location.href = '../home/home.html';
+        }
+        document.getElementById("messageBox").style.display = "block";
+    } catch (error) {
+        console.error(error);
     }
-    document.getElementById("messageBox").style.display = "block";
 }
+
 
 //Benutzer hinzufügen
 async function createNewUser() {
@@ -75,9 +84,9 @@ async function createNewUser() {
             'password': hashedPassword
         })
     });
-    const data = await response;
+    const data = await response.text();
 
-    if(data == null) {
+    if(data === null) {
         document.getElementById("messageBoxText").value = "Benutzer existiert bereits";
     } else {
         uID = data.userID;
@@ -100,9 +109,9 @@ async function updateUser() {
             'password': hashedPassword
         })
     });
-    const data = await response;
+    const data = await response.text();
 
-    if(data == null) {
+    if(data === null) {
         document.getElementById("messageBoxText").value = "Dieser Username existiert nicht";
     } else {
         uID = data.userID;

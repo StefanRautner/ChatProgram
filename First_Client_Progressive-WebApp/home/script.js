@@ -19,7 +19,7 @@ document.onload = async function getChatNames() {
             'userID': userID
         })
     });
-    const data = await response;
+    const data = await response.json;
 
     //Listenelement erhalten
     const list = document.getElementById("namesOfChats");
@@ -45,7 +45,7 @@ async function getData() {
             'chatID': chatID
         })
     });
-    const data = await response;
+    const data = await response.json;
 
     //Listenelement erhalten
     const list = document.getElementById("messagesOfChat");
