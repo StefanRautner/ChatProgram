@@ -31,3 +31,9 @@
   - Und wichtig: Die Grafik müssen mittels mermaid erstellt werden! (GitHub bietet eine Unterstützung für Mermaid-Diagramme)
 
 - Ergebnispräsentation
+
+
+
+
+- 
+- Es wird was zum Server gesendet aber nciht empfangen (aber in postman geht es)
