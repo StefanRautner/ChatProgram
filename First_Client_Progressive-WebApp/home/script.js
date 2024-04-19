@@ -2,6 +2,9 @@
 // URL zur MongoDB Datenbank definieren
 const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp';
 
+//Prompt des WebApp-Downloads
+let installPrompt = null;
+
 //Intervall zum Updaten des Chats (alle 100ms)
 const updateInterval = setInterval(function() {
     getData(chatID);
@@ -81,6 +84,41 @@ function editDeleteMessage() {
 function addEditDeleteChat() {
     window.location.href = '../chat/chat.html';
 }
+
+// Function um das Install-Prompt aufzurufen
+async function downloadWebApp() {
+    if (installPrompt) {
+        // Show the install prompt
+        installPrompt.prompt();
+
+        // Wait for the user to respond to the prompt
+        installPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the installation prompt');
+            } else {
+                console.log('User dismissed the installation prompt');
+            }
+            // Reset the deferredPrompt variable, as it can only be used once
+            installPrompt = null;
+        });
+    }
+}
+
+// Eventlistener zum Abfangen des "beforeinstallprompt"s
+window.addEventListener('beforeinstallprompt', (event) => {
+    // Prevent the default browser install prompt
+    event.preventDefault();
+
+    // Store the event object for later use
+    installPrompt = event;
+
+    // Show the install button
+    document.getElementById('download-button').style.visibility = 'visible';
+});
+
+//Wartezeit für Download-Button
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 
 //Variablen für andere Skripte verfügbar machen
 window.chatID = chatID;

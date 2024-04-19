@@ -163,14 +163,16 @@ public class ChatService {
     }
 
     //Alle Nachrichten eines Chats von MongoDB erhalten und NachrichtenID & NachrichtenText in JSON-String extrahieren
-    public String getMessagesOfChat(String chatID) {
-        Chat chatList = chatRepository.findByChatID(chatID);
+    public String getMessagesOfChat(String chatID, String userID) {
+        Chat chat = chatRepository.findByChatID(chatID);
         JSONArray jsonArray = new JSONArray();
-        for (Message message : chatList.getMessageList()) {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("messageID", message.getMessageID());
-            jsonObject.put("messageText", message.getMessage());
-            jsonArray.put(jsonObject);
+        if(chat.getUserList().contains(userRepository.findByUserID(userID))) {
+            for (Message message : chat.getMessageList()) {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("messageID", message.getMessageID());
+                jsonObject.put("messageText", message.getMessage());
+                jsonArray.put(jsonObject);
+            }
         }
         return jsonArray.toString();
     }

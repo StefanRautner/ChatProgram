@@ -13,7 +13,7 @@ public class ChatController {
     private ChatService chatService;
 
     /*USER*/
-    @GetMapping("/checkUser")
+    @PostMapping("/checkUser")
     public String checkUser(@RequestBody String body) {
         JSONObject jsonBody = new JSONObject(body);
         return chatService.checkUser(jsonBody.getString("username"), jsonBody.getString("password"));
@@ -45,7 +45,7 @@ public class ChatController {
     }
 
     /*CHAT*/
-    @GetMapping("/getChatNames")
+    @PostMapping("/getChatNames")
     public String getAllChatNames(@RequestBody String body) {
         JSONObject jsonBody = new JSONObject(body);
         return chatService.getChatNames(jsonBody.getString("userID"));
@@ -76,10 +76,10 @@ public class ChatController {
         return chatService.addNewMessage(jsonBody.getString("userID"), jsonBody.getString("chatID"), jsonBody.getString("message"));
     }
 
-    @GetMapping("/getMessages")
+    @PostMapping("/getMessages")
     public String getMessages(@RequestBody String body) {
         JSONObject jsonBody = new JSONObject(body);
-        return chatService.getMessagesOfChat(jsonBody.getString("chatID"));
+        return chatService.getMessagesOfChat(jsonBody.getString("chatID"), jsonBody.getString("userID"));
     }
 
     @PutMapping("/updateMessage")

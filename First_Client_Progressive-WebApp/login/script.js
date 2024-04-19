@@ -38,17 +38,13 @@ async function hashPassword(password) {
 
 //Benutzer überprüfen
 async function checkUserExistence() {
-    let hashedPassword = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
-    /*await hashPassword(document.getElementById("passwordLogin").value).then(hash => {
+    await hashPassword(document.getElementById("passwordLogin").value).then(hash => {
         hashedPassword = hash;
-    });*/
+    });
 
     try {
         const response = await fetch(`${urlToMongoDBDatabase}/checkUser`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            method: 'POST',
             body: JSON.stringify({
                 'username': document.getElementById("usernameLogin").value,
                 'password': hashedPassword

@@ -24,7 +24,6 @@ body {
 
 /*Chatfeld stylen*/
 #chat-box {
-    height: 400px;
     width: 100%;
     display: flex;
 }
@@ -47,8 +46,23 @@ body {
 /*Chatnachrichten stylen*/
 #chat-messages {
     height: 400px;
-    width: 500px;
+    width: 90%;
+    background-color: black;
     overflow-y: auto;
+}
+
+/*Download Button stylen*/
+#download-button {
+    color: white;
+    background-color: #007bff;
+    padding: 10px;
+    cursor: pointer;
+    border: black solid 1px;
+    border-radius: 5px;
+}
+
+#download-button:hover {
+    background-color: #007bffb3;
 }
 
 /*Nachrichten-Hintergrund-Feld stylen*/

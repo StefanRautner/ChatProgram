@@ -67,7 +67,7 @@ namespace Second_Client_WPF
         async public Task<List<Chat_Model>?> ChatsNamenErhalten(string IDuser)
         {
             this.IDuser = IDuser;
-            RestRequest request = new RestRequest("/getChatNames", Method.Get);
+            RestRequest request = new RestRequest("/getChatNames", Method.Post);
             var body = new
             {
                 userID = IDuser
@@ -85,10 +85,11 @@ namespace Second_Client_WPF
         //Nachrichten der ausgewählten Chats/der ausgewählten Gruppe anzeigen
         async public Task<List<Message_Model>?> NachrichtenErhalten(string IDchat)
         {
-            RestRequest request = new RestRequest("/getMessages", Method.Get);
+            RestRequest request = new RestRequest("/getMessages", Method.Post);
             var body = new
             {
-                chatID = IDchat
+                chatID = IDchat,
+                userID = IDuser
             };
             request.AddJsonBody(body);
             RestResponse? response = await client.ExecuteAsync(request);

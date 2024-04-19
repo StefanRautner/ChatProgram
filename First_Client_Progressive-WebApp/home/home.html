@@ -17,13 +17,31 @@
     <!-- CSS Script einbinden -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- Manifest einbinden -->
+    <link rel="manifest" href="../manifest.json">
+
+    <!-- Service-Worker registrieren -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('../service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch((error) => {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }
+    </script>
 </head>
 <body>
 <div class="container">
     <!-- Chatfeld -->
     <div id="chat-box">
         <div id="chat-names"><ul id="namesOfChats"></ul></div>
-        <div id="chat-messages"><ul id="messagesOfChat"></ul></div>
+        <div id="chat-messages">
+            <ul id="messagesOfChat"></ul>
+            <button id="download-button" onclick="downloadWebApp()">Download WebApp</button>
+        </div>
     </div>
     <!-- Nachrichtenfeld -->
     <div class="input-box">
