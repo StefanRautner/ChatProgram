@@ -1,9 +1,12 @@
 ﻿//Autor: Stefan Rautner
 using RestSharp;
 using System;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection.PortableExecutable;
+using System.Security.Cryptography;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -21,7 +24,10 @@ namespace Second_Client_WPF
         //Instance (Singleton)
         private static VerbindungZuServer? instance = null;
         public static VerbindungZuServer Instance { get { if (instance == null) { instance = new VerbindungZuServer(); } return instance; } }
-        
+
+        //Verschlüsselung-Schlüssel
+        byte[] key = Encoding.UTF8.GetBytes("g9F@3H#kdE7q8nT$S!zG5*bW+mY2p^VhA6vC");
+
         //Konstruktor
         private VerbindungZuServer() {
         }
@@ -161,14 +167,14 @@ namespace Second_Client_WPF
         }
 
         //Benutzerdaten checken
-        async public Task<string?> Login(string name, int passwort)
+        async public Task<string?> Login(string name, string passwort)
         {
             RestRequest request = new RestRequest("/checkUser", Method.Post);
 
             var body = new
             {
                 username = name,
-                password = passwort
+                password = this.Encrypt(passwort)
             };
             request.AddJsonBody(body);
             RestResponse? response = await client.ExecuteAsync(request);
@@ -176,14 +182,14 @@ namespace Second_Client_WPF
         }
 
         //Benutzerdaten hinzufügen
-        async public Task<string?> Register(string name, int passwort)
+        async public Task<string?> Register(string name, string passwort)
         {
             RestRequest request = new RestRequest("/newUser", Method.Post);
 
             var body = new
             {
                 username = name,
-                password = passwort
+                password = this.Encrypt(passwort)
             };
             request.AddJsonBody(body);
             RestResponse? response = await client.ExecuteAsync(request);
@@ -191,14 +197,14 @@ namespace Second_Client_WPF
         }
 
         //Passwort ändern
-        async public Task<string?> UpdateUser(string name, int passwort)
+        async public Task<string?> UpdateUser(string name, string passwort)
         {
             RestRequest request = new RestRequest("/updateUser", Method.Put);
 
             var body = new
             {
                 username = name,
-                password = passwort
+                password = this.Encrypt(passwort)
             };
             request.AddJsonBody(body);
             RestResponse? response = await client.ExecuteAsync(request);
@@ -260,6 +266,39 @@ namespace Second_Client_WPF
                 return bool.Parse(response.Content);
             }
             return false;
+        }
+
+        //AES Verschlüsselungs Algorithmus
+        public string? Encrypt(string password)
+        {
+            using (Aes aes = Aes.Create())
+            {
+                aes.KeySize = 256;
+                aes.BlockSize = 128;
+                aes.Key = key;
+                aes.Mode = CipherMode.CBC;
+                aes.Padding = PaddingMode.PKCS7;
+
+                ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+
+                byte[]? encrypted = null;
+
+                using (MemoryStream memoryEncrypt = new MemoryStream())
+                {
+                    using (CryptoStream cryptostreamEncrypt = new CryptoStream(memoryEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        if (encrypted == null)
+                        {
+                            encrypted = memoryEncrypt.ToArray();
+                        }
+                        else
+                        {
+                            encrypted.Concat(memoryEncrypt.ToArray());
+                        }
+                    }
+                }
+                return Convert.ToString(encrypted);
+            }
         }
     }
 }

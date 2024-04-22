@@ -44,7 +44,7 @@ namespace Second_Client_WPF
         {
             try
             {
-                string? tmpUserID = await VerbindungZuServer.Instance.UpdateUser(loginName.Text, loginPassword.Password.GetHashCode());
+                string? tmpUserID = await VerbindungZuServer.Instance.UpdateUser(loginName.Text, loginPassword.Password);
                 if (tmpUserID != null)
                 {
                     MainWindow mainWindow = new MainWindow(tmpUserID);

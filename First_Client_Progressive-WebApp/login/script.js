@@ -29,25 +29,30 @@ function changeToPasswordLost() {
 // URL zur MongoDB Datenbank definieren
 const urlToMongoDBDatabase = 'http://localhost:8080/tinyWhatsApp';
 
-//Passwort hashen
-async function hashPassword(password) {
-    const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(password));
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+//Verschlüsselungs-Schlüssel
+const key = "g9F@3H#kdE7q8nT$S!zG5*bW+mY2p^VhA6vC";
+
+//Passwort mit AES verschlüsseln
+function encrypt(password) {
+    const iv = CryptoJS.lib.WordArray.random(16);
+    const encryptedPassword = CryptoJS.AES.encrypt(password, CryptoJS.enc.Utf8.parse(key), {
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7,
+        keySize: 32,
+        blockSize: 4
+    });
+    return iv.concat(encryptedPassword.ciphertext).toString(CryptoJS.enc.Base64);
 }
 
 //Benutzer überprüfen
 async function checkUserExistence() {
-    await hashPassword(document.getElementById("passwordLogin").value).then(hash => {
-        hashedPassword = hash;
-    });
-
     try {
         const response = await fetch(`${urlToMongoDBDatabase}/checkUser`, {
             method: 'POST',
             body: JSON.stringify({
                 'username': document.getElementById("usernameLogin").value,
-                'password': hashedPassword
+                'password': encrypt(document.getElementById("passwordLogin").value)
             })
         });
 
@@ -68,16 +73,11 @@ async function checkUserExistence() {
 
 //Benutzer hinzufügen
 async function createNewUser() {
-    let hashedPassword = "";
-    await hashPassword(document.getElementById("passwordRegister").value).then(hash => {
-        hashedPassword = hash;
-    });
-
     const response = await fetch(`${urlToMongoDBDatabase}/newUser`, {
         method: 'POST',
         body: JSON.stringify({
             'username': document.getElementById("usernameRegister").value,
-            'password': hashedPassword
+            'password': encrypt(document.getElementById("passwordRegister").value)
         })
     });
     const data = await response.text();
@@ -93,16 +93,11 @@ async function createNewUser() {
 
 //Benutzer aktualisieren/updaten
 async function updateUser() {
-    let hashedPassword = "";
-    await hashPassword(document.getElementById("passwordPasswordLost").value).then(hash => {
-        hashedPassword = hash;
-    });
-
     const response = await fetch(`${urlToMongoDBDatabase}/updateUser`, {
         method: 'PUT',
         body: JSON.stringify({
             'username': document.getElementById("usernamePasswordLost").value,
-            'password': hashedPassword
+            'password': encrypt(document.getElementById("passwordPasswordLost").value)
         })
     });
     const data = await response.text();
