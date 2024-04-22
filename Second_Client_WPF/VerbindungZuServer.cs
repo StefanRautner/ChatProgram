@@ -271,33 +271,30 @@ namespace Second_Client_WPF
         //AES Verschlüsselungs Algorithmus
         public string? Encrypt(string password)
         {
+            byte[] ivBytes = new byte[16];
+
             using (Aes aes = Aes.Create())
             {
                 aes.KeySize = 256;
                 aes.BlockSize = 128;
                 aes.Key = key;
+                aes.IV = ivBytes;
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.PKCS7;
 
                 ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
 
-                byte[]? encrypted = null;
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
-                using (MemoryStream memoryEncrypt = new MemoryStream())
-                {
-                    using (CryptoStream cryptostreamEncrypt = new CryptoStream(memoryEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        if (encrypted == null)
-                        {
-                            encrypted = memoryEncrypt.ToArray();
-                        }
-                        else
-                        {
-                            encrypted.Concat(memoryEncrypt.ToArray());
-                        }
-                    }
-                }
-                return Convert.ToString(encrypted);
+                byte[] encryptedPasssword = encryptor.TransformFinalBlock(passwordBytes, 0, passwordBytes.Length);
+
+                //IV und verschlüsseltes-Passwort verketten
+                byte[] combinedBytes = new byte[ivBytes.Length + encryptedPasssword.Length];
+                Buffer.BlockCopy(ivBytes, 0, combinedBytes, 0, ivBytes.Length);
+                Buffer.BlockCopy(encryptedPasssword, 0, combinedBytes, ivBytes.Length, encryptedPasssword.Length);
+
+                //Bytes zu String konvertieren
+                return Convert.ToString(combinedBytes);
             }
         }
     }
