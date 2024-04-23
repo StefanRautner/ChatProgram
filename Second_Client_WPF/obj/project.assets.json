@@ -196,11 +196,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\Second_Client_WPF.csproj",
+      "projectUniqueName": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\Second_Client_WPF.csproj",
       "projectName": "Second_Client_WPF",
-      "projectPath": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\Second_Client_WPF.csproj",
+      "projectPath": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\Second_Client_WPF.csproj",
       "packagesPath": "C:\\Users\\stefa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\obj\\",
+      "outputPath": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\stefa\\AppData\\Roaming\\NuGet\\NuGet.Config"

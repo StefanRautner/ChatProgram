@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QIgVT/q8xr4jG3aSjcP4dQnXKJcsaX2FDdW5psC87oj98wHPLvx1w9DQi5iTeYMc5ugOTyHFsIcdxt4SWwTb7g==",
+  "dgSpecHash": "UevaAgY+2Mnq3sB5+r9wHlESt+ZhVByJlkFldJsafBBlNFhCAuhwYmu7gYCCkzG6hyOQ3WEa7WuItrWESNrkQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\Second_Client_WPF.csproj",
+  "projectFilePath": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\Second_Client_WPF.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\stefa\\.nuget\\packages\\restsharp\\110.2.0\\restsharp.110.2.0.nupkg.sha512",
     "C:\\Users\\stefa\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
