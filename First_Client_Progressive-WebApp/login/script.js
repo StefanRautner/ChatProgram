@@ -46,8 +46,9 @@ function encrypt(password) {
 }
 
 //Benutzer überprüfen
-async function checkUserExistence() {
+async function checkUserExistence(event) {
     try {
+        event.preventDefault();
         const response = await fetch(`${urlToMongoDBDatabase}/checkUser`, {
             method: 'POST',
             body: JSON.stringify({
@@ -72,43 +73,53 @@ async function checkUserExistence() {
 
 
 //Benutzer hinzufügen
-async function createNewUser() {
-    const response = await fetch(`${urlToMongoDBDatabase}/newUser`, {
-        method: 'POST',
-        body: JSON.stringify({
-            'username': document.getElementById("usernameRegister").value,
-            'password': encrypt(document.getElementById("passwordRegister").value)
-        })
-    });
-    const data = await response.text();
+async function createNewUser(event) {
+    try{
+        event.preventDefault();
+        const response = await fetch(`${urlToMongoDBDatabase}/newUser`, {
+            method: 'POST',
+            body: JSON.stringify({
+                'username': document.getElementById("usernameRegister").value,
+                'password': encrypt(document.getElementById("passwordRegister").value)
+            })
+        });
+        const data = await response.text();
 
-    if(data === null) {
-        document.getElementById("messageBoxText").value = "Benutzer existiert bereits";
-    } else {
-        uID = data.userID;
-        window.location.href = '../home/home.html';
+        if(data === null) {
+            document.getElementById("messageBoxText").value = "Benutzer existiert bereits";
+        } else {
+            uID = data.userID;
+            window.location.href = '../home/home.html';
+        }
+        document.getElementById("messageBox").style.display = "block";
+    } catch (error) {
+        console.error(error);
     }
-    document.getElementById("messageBox").style.display = "block";
 }
 
 //Benutzer aktualisieren/updaten
-async function updateUser() {
-    const response = await fetch(`${urlToMongoDBDatabase}/updateUser`, {
-        method: 'PUT',
-        body: JSON.stringify({
-            'username': document.getElementById("usernamePasswordLost").value,
-            'password': encrypt(document.getElementById("passwordPasswordLost").value)
-        })
-    });
-    const data = await response.text();
+async function updateUser(event) {
+    try {
+        event.preventDefault();
+        const response = await fetch(`${urlToMongoDBDatabase}/updateUser`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                'username': document.getElementById("usernamePasswordLost").value,
+                'password': encrypt(document.getElementById("passwordPasswordLost").value)
+            })
+        });
+        const data = await response.text();
 
-    if(data === null) {
-        document.getElementById("messageBoxText").value = "Dieser Username existiert nicht";
-    } else {
-        uID = data.userID;
-        window.location.href = '../home/home.html';
+        if(data === null) {
+            document.getElementById("messageBoxText").value = "Dieser Username existiert nicht";
+        } else {
+            uID = data.userID;
+            window.location.href = '../home/home.html';
+        }
+        document.getElementById("messageBox").style.display = "block";
+    } catch (error) {
+        console.error(error);
     }
-    document.getElementById("messageBox").style.display = "block";
 }
 
 function hideMessageBox() {

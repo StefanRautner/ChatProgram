@@ -5,76 +5,97 @@ const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp';
 //Prompt des WebApp-Downloads
 let installPrompt = null;
 
-//Intervall zum Updaten des Chats (alle 100ms)
-const updateInterval = setInterval(function() {
-    getData(chatID);
-}, 100);
-
 //Variable setzen
 let chatID;
 let messageID;
 
+//Interval zum Erhalten der Nachrichten
+let chatUpdateIntervall = null;
+
 //Chatnamen erhalten
-document.onload = async function getChatNames() {
-    const response = await fetch(`${urlToSpringBoot}/getChatNames`, {
-        methode: 'GET',
-        body: JSON.stringify({
-            'userID': userID
-        })
-    });
-    const data = await response.json;
+document.onload = async function getChatNames(event) {
+    try {
+        event.preventDefault();
+        const response = await fetch(`${urlToSpringBoot}/getChatNames`, {
+            methode: 'GET',
+            body: JSON.stringify({
+                'userID': userID
+            })
+        });
+        const data = await response.json;
 
-    //Listenelement erhalten
-    const list = document.getElementById("namesOfChats");
+        //Listenelement erhalten
+        const list = document.getElementById("namesOfChats");
 
-    //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
-    data.forEach(function(chatName) {
-        const listElement = document.createElement("li");
-        listElement.Text = chatName.name;
-        listElement.id = chatName.chatID;
-        listElement.onclick = function() {
-            chatID = this.id;
-        };
-        list.appendChild(listElement);
-    })
+        //Chat nicht mehr updaten, wenn anderer Chat ausgewählt wurde
+        list.onselectionchange = function() {
+            clearInterval(chatUpdateIntervall);
+        }
+
+        //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
+        data.forEach(function(chatName) {
+            const listElement = document.createElement("li");
+            listElement.Text = chatName.name;
+            listElement.id = chatName.chatID;
+            listElement.onclick = function() {
+                chatID = this.id;
+                chatUpdateIntervall = setInterval(function() {
+                    getData(event);
+                }, 100);
+            }
+            list.appendChild(listElement);
+        });
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 //Nachrichten erhalten
-async function getData() {
-    const response = await fetch(`${urlToSpringBoot}/getMessages`, {
-        methode: 'GET',
-        body: JSON.stringify({
-            'userID': userID,
-            'chatID': chatID
-        })
-    });
-    const data = await response.json;
+async function getData(event) {
+    try {
+        event.preventDefault();
+        const response = await fetch(`${urlToSpringBoot}/getMessages`, {
+            methode: 'GET',
+            body: JSON.stringify({
+                'userID': userID,
+                'chatID': chatID
+            })
+        });
+        const data = await response.json;
 
-    //Listenelement erhalten
-    const list = document.getElementById("messagesOfChat");
+        //Listenelement erhalten
+        const list = document.getElementById("messagesOfChat");
 
-    //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
-    data.forEach(function(element) {
-        const listElement = document.createElement("li");
-        listElement.Text = element.messageText;
-        listElement.id = element.messageID;
-        listElement.onclick = function() {
-            messageID = this.id;
-        };
-        list.appendChild(listElement);
-    })
+        //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
+        data.forEach(function(element) {
+            const listElement = document.createElement("li");
+            listElement.Text = element.messageText;
+            listElement.id = element.messageID;
+            listElement.onclick = function() {
+                messageID = this.id;
+            };
+            list.appendChild(listElement);
+        });
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 //Nachricht hinzufügen
-async function sendData() {
-    await fetch(`${urlToSpringBoot}/newMessage`, {
-        method: 'POST',
-        body: JSON.stringify({
-            'userID': userID,
-            'chatID': chatID,
-            'message': document.getElementById("user-input").value
-        })
-    });
+async function sendData(event) {
+    try {
+        event.preventDefault();
+        await fetch(`${urlToSpringBoot}/newMessage`, {
+            method: 'POST',
+            body: JSON.stringify({
+                'userID': userID,
+                'chatID': chatID,
+                'message': document.getElementById("user-input").value
+            })
+        });
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function editDeleteMessage() {

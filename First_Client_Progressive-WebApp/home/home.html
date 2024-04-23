@@ -45,8 +45,8 @@
     </div>
     <!-- Nachrichtenfeld -->
     <div class="input-box">
-        <input type="text" id="user-input" placeholder="Nachricht eingeben..." onkeypress="if(event.key === 'Enter') {sendData()}">
-        <input type="submit" value="Send" onclick="sendData()">
+        <input type="text" id="user-input" placeholder="Nachricht eingeben..." onkeypress="if(event.key === 'Enter') {sendData(event)}">
+        <input type="submit" value="Send" onclick="sendData(event)">
         <div class="button-box">
             <button id="addEditDeleteChat" onclick="addEditDeleteChat()">Edit Chat</button>
             <button id="editDeleteMessage" onclick="editDeleteMessage()">Edit Message</button>
