@@ -57,6 +57,10 @@ async function checkUserExistence(event) {
             })
         });
 
+        //Form leeren
+        document.getElementById("usernameLogin").value = "";
+        document.getElementById("passwordLogin").value = "";
+
         const data = await response.text();
         console.log(data);
         if(data === null) {
@@ -83,6 +87,12 @@ async function createNewUser(event) {
                 'password': encrypt(document.getElementById("passwordRegister").value)
             })
         });
+
+        //Form leeren & zu Login wechseln
+        document.getElementById("usernameRegister").value = "";
+        document.getElementById("passwordRegister").value = "";
+        changeToLogin();
+
         const data = await response.text();
 
         if(data === null) {
@@ -108,6 +118,12 @@ async function updateUser(event) {
                 'password': encrypt(document.getElementById("passwordPasswordLost").value)
             })
         });
+
+        //Form leeren & zu Login wechseln
+        document.getElementById("usernamePasswordLost").value = "";
+        document.getElementById("passwordPasswordLost").value = "";
+        changeToLogin();
+
         const data = await response.text();
 
         if(data === null) {
