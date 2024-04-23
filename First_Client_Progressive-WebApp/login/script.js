@@ -30,7 +30,7 @@ function changeToPasswordLost() {
 const urlToMongoDBDatabase = 'http://localhost:8080/tinyWhatsApp';
 
 //Verschlüsselungs-Schlüssel
-const key = "g9F@3H#kdE7q8nT$S!zG5*bW+mY2p^VhA6vC";
+const key = "g9F@3H#kdE7q8nT$S!zG5*bW+mY2p^Vh";
 
 //Passwort mit AES verschlüsseln
 function encrypt(password) {

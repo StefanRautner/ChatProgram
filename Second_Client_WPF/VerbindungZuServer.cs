@@ -26,7 +26,7 @@ namespace Second_Client_WPF
         public static VerbindungZuServer Instance { get { if (instance == null) { instance = new VerbindungZuServer(); } return instance; } }
 
         //Verschlüsselung-Schlüssel
-        byte[] key = Encoding.UTF8.GetBytes("g9F@3H#kdE7q8nT$S!zG5*bW+mY2p^VhA6vC");
+        byte[] key = Encoding.UTF8.GetBytes("g9F@3H#kdE7q8nT$S!zG5*bW+mY2p^Vh");
 
         //Konstruktor
         private VerbindungZuServer() {
@@ -277,7 +277,7 @@ namespace Second_Client_WPF
             {
                 aes.KeySize = 256;
                 aes.BlockSize = 128;
-                aes.Key = key;
+                aes.Key = key;      //HIER PROBLEM (System.Security.Cryptography.CryptographicException: "Specified key is not a valid size for this algorithm.")
                 aes.IV = ivBytes;
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.PKCS7;
