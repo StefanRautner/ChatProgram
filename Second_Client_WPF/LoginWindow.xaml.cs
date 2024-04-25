@@ -62,5 +62,13 @@ namespace Second_Client_WPF
             passwordForgotWindow.Show();
             this.Close();
         }
+
+        //Konto löschen
+        private void DeleteAccount(object sender, RoutedEventArgs e)
+        {
+            DeleteWindow deleteWindow = new DeleteWindow();
+            deleteWindow.Show();
+            this.Close();
+        }
     }
 }

@@ -211,6 +211,21 @@ namespace Second_Client_WPF
             return response.Content;
         }
 
+        //User löchen
+        async public Task<string?> DeleteUser(string name, string passwort)
+        {
+            RestRequest request = new RestRequest("/deleteUser", Method.Delete);
+
+            var body = new
+            {
+                username = name,
+                password = this.Encrypt(passwort)
+            };
+            request.AddJsonBody(body);
+            RestResponse? response = await client.ExecuteAsync(request);
+            return response.Content;
+        }
+
         //Beutzer zu Chat hinzufügen
         async public Task<bool> AddUserToChat(string IDchat, string username)
         {
@@ -277,7 +292,7 @@ namespace Second_Client_WPF
             {
                 aes.KeySize = 256;
                 aes.BlockSize = 128;
-                aes.Key = key;      //HIER PROBLEM (System.Security.Cryptography.CryptographicException: "Specified key is not a valid size for this algorithm.")
+                aes.Key = key;
                 aes.IV = ivBytes;
                 aes.Mode = CipherMode.CBC;
                 aes.Padding = PaddingMode.PKCS7;
@@ -294,7 +309,7 @@ namespace Second_Client_WPF
                 Buffer.BlockCopy(encryptedPasssword, 0, combinedBytes, ivBytes.Length, encryptedPasssword.Length);
 
                 //Bytes zu String konvertieren
-                return Convert.ToString(combinedBytes);
+                return Convert.ToBase64String(combinedBytes);
             }
         }
     }

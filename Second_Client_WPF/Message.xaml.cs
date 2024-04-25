@@ -19,10 +19,12 @@ namespace Second_Client_WPF
     /// </summary>
     public partial class MessageDeleteUpdate : Window
     {
+        string userID = "";
         string chatID = "";
         string messageID = "";
-        public MessageDeleteUpdate(string chatID, string messageID)
+        public MessageDeleteUpdate(string userID, string chatID, string messageID)
         {
+            this.userID = userID;
             this.chatID = chatID;
             this.messageID = messageID;
             InitializeComponent();
@@ -44,6 +46,14 @@ namespace Second_Client_WPF
             {
                 MessageBox.Show("Naxhricht konnte nicht entfernt werden");
             }
+        }
+
+        //Funktion um zum Chatfenster zurück zu kommen
+        private void GoToMainWindow(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow(userID, chatID);
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

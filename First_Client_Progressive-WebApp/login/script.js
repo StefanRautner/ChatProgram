@@ -2,28 +2,40 @@
 //Variablen definieren
 let uID = "";
 
-//Login zu Registerform ändern
+//Zu RegisterForm wechseln
+function changeToLogin() {
+    document.title = "Einloggen";
+    document.getElementById("loginForm").style.display = "block";
+    document.getElementById("registerForm").style.display = "none";
+    document.getElementById("passwordLostForm").style.display = "none";
+    document.getElementById("deleteForm").style.display = "none";
+}
+
+//Zu LoginForm wechseln
 function changeToRegister() {
     document.title = "Registrieren";
     document.getElementById("loginForm").style.display = "none";
     document.getElementById("registerForm").style.display = "block";
     document.getElementById("passwordLostForm").style.display = "none";
+    document.getElementById("deleteForm").style.display = "none";
 }
 
-//Register zu Loginform ändern
-function    changeToLogin() {
-    document.title = "Login";
-    document.getElementById("registerForm").style.display = "none";
-    document.getElementById("loginForm").style.display = "block";
-    document.getElementById("passwordLostForm").style.display = "none";
-}
-
-//PasswordLost wieder zu aufrufenForm zurück
+//Zu PasswordLostForm wechseln
 function changeToPasswordLost() {
     document.title = "Password Vergessen";
-    document.getElementById("registerForm").style.display = "none";
     document.getElementById("loginForm").style.display = "none";
+    document.getElementById("registerForm").style.display = "none";
     document.getElementById("passwordLostForm").style.display = "block";
+    document.getElementById("deleteForm").style.display = "none";
+}
+
+//Zu DeleteForm wechseln
+function changeToDelete() {
+    document.title = "Konto löschen";
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("registerForm").style.display = "none";
+    document.getElementById("passwordLostForm").style.display = "none";
+    document.getElementById("deleteForm").style.display = "block";
 }
 
 // URL zur MongoDB Datenbank definieren
@@ -65,11 +77,11 @@ async function checkUserExistence(event) {
         console.log(data);
         if(data === null) {
             document.getElementById("messageBoxText").value = "Anmeldung fehlgeschlagen";
+            document.getElementById("messageBox").style.display = "block";
         } else {
             uID = data.userID;
             window.location.href = '../home/home.html';
         }
-        document.getElementById("messageBox").style.display = "block";
     } catch (error) {
         console.error(error);
     }
@@ -96,12 +108,12 @@ async function createNewUser(event) {
         const data = await response.text();
 
         if(data === null) {
-            document.getElementById("messageBoxText").value = "Benutzer existiert bereits";
+            document.getElementById("messageBoxText").value = "Dieser User existiert bereits";
+            document.getElementById("messageBox").style.display = "block";
         } else {
             uID = data.userID;
             window.location.href = '../home/home.html';
         }
-        document.getElementById("messageBox").style.display = "block";
     } catch (error) {
         console.error(error);
     }
@@ -127,11 +139,35 @@ async function updateUser(event) {
         const data = await response.text();
 
         if(data === null) {
-            document.getElementById("messageBoxText").value = "Dieser Username existiert nicht";
+            document.getElementById("messageBoxText").value = "Dieser User existiert nicht";
+            document.getElementById("messageBox").style.display = "block";
         } else {
             uID = data.userID;
             window.location.href = '../home/home.html';
         }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+//Benutzer aktualisieren/updaten
+async function deleteUser(event) {
+    try {
+        event.preventDefault();
+        const response = await fetch(`${urlToMongoDBDatabase}/deleteUser`, {
+            method: 'DELETE',
+            body: JSON.stringify({
+                'username': document.getElementById("usernameDelete").value,
+                'password': encrypt(document.getElementById("passwordDelete").value)
+            })
+        });
+
+        //Form leeren & zu Login wechseln
+        document.getElementById("usernameDelete").value = "";
+        document.getElementById("passwordDelete").value = "";
+        changeToLogin();
+
+        document.getElementById("messageBoxText").value = await response.text();
         document.getElementById("messageBox").style.display = "block";
     } catch (error) {
         console.error(error);

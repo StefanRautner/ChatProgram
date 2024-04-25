@@ -13,11 +13,7 @@ namespace Second_Client_WPF
         string chatID = "";
         string messageID = "";
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
+        //Konstruktor
         public MainWindow(string userID)
         {
             InitializeComponent();
@@ -26,9 +22,17 @@ namespace Second_Client_WPF
 
             //Chatnamen laden
             ShowNamesOfChats(userID);
+        }
 
-            //Chat alle 10ms laden
-            UpdateChatInterval();
+        //Konstruktor (von Chat & Message aus)
+        public MainWindow(string userID, string chatID)
+        {
+            InitializeComponent();
+
+            this.userID = userID;
+            this.chatID = chatID;
+
+            ShowNamesOfChats(userID);
         }
 
         //Funktion um alle 100ms die Chat-Nachrichten zu updaten
@@ -61,6 +65,9 @@ namespace Second_Client_WPF
                 this.chatID = chat.chatID;
             }
             ChatField.ItemsSource = await VerbindungZuServer.Instance.NachrichtenErhalten(chatID);
+
+            //Chat alle 10ms laden
+            UpdateChatInterval();
         }
 
         //Nachricht senden, wenn Senden-Knopf wurde gedrückt
@@ -88,7 +95,7 @@ namespace Second_Client_WPF
         //Funktion um einen Chat zu updaten, löschen oder hinzufügen
         private void AddUpdateDeleteChat(object sender, RoutedEventArgs e)
         {
-            ChatAddUpdateDelete chatUpdateAddDelete = new ChatAddUpdateDelete(chatID);
+            ChatAddUpdateDelete chatUpdateAddDelete = new ChatAddUpdateDelete(userID, chatID);
             chatUpdateAddDelete.Show();
             this.Close();
         }
@@ -96,7 +103,7 @@ namespace Second_Client_WPF
         //FUnktion um eine Nachricht zu updaten & löschen
         private void UpdateDeleteMessage(object sender, RoutedEventArgs e)
         {
-            MessageDeleteUpdate messageDeleteUpdate = new MessageDeleteUpdate(chatID, messageID);
+            MessageDeleteUpdate messageDeleteUpdate = new MessageDeleteUpdate(userID, chatID, messageID);
             messageDeleteUpdate.Show();
             this.Close();
         }

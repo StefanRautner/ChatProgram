@@ -25,8 +25,9 @@
     <input id="passwordLogin" type="password" name="Passwort" placeholder="Passwort eingeben" required>
     <input type="submit" value="Einloggen" onclick="checkUserExistence(event)">
     <div id="registerLink">
-        <p onclick="changeToRegister()">Noch keinen Account?</p>
+        <p onclick="changeToRegister()">Registrieren</p>
         <p onclick="changeToPasswordLost()">Passwort vergessen?</p>
+        <p onclick="changeToDelete()">Konto löschen</p>
     </div>
 </form>
 
@@ -37,8 +38,9 @@
     <input id="passwordRegister" type="password" name="Passwort" placeholder="Passwort eingeben" required>
     <input type="submit" value="Registrieren" onclick="createNewUser(event)">
     <div id="loginLink">
-        <p onclick="changeToLogin()">Doch schon ein Account?</p>
+        <p onclick="changeToLogin()">Einloggen</p>
         <p onclick="changeToPasswordLost()">Passwort vergessen?</p>
+        <p onclick="changeToDelete()">Konto löschen</p>
     </div>
 </form>
 
@@ -48,11 +50,26 @@
     <input id="usernamePasswordLost" type="text" name="Benutzername" placeholder="Benutzername eingeben" required>
     <input id="passwordPasswordLost" type="password" name="Passwort" placeholder="Neues Passwort eingeben" required>
     <input type="submit" value="Passwort aktualisieren" onclick="updateUser(event)">
-    <div id="passwordLostLink" onclick="changeToRegister()">
-        <p onclick="changeToLogin()">Passwort wieder eingefallen?</p>
-        <p onclick="changeToRegister()">Doch noch kein Account?</p>
+    <div id="passwordLostLink">
+        <p onclick="changeToLogin()">Einloggen</p>
+        <p onclick="changeToRegister()">Registrieren</p>
+        <p onclick="changeToDelete()">Konto löschen</p>
     </div>
 </form>
+
+<!-- Delete-Fenster -->
+<form id="deleteForm" style="display: none">
+    <h2>Passwort vergessen</h2>
+    <input id="usernameDelete" type="text" name="Benutzername" placeholder="Benutzername eingeben" required>
+    <input id="passwordDelete" type="password" name="Passwort" placeholder="Neues Passwort eingeben" required>
+    <input type="submit" value="Passwort aktualisieren" onclick="deleteUser(event)">
+    <div id="deleteLink">
+        <p onclick="changeToLogin()">Einloggen</p>
+        <p onclick="changeToRegister()">Registrieren</p>
+        <p onclick="changeToPasswordLost()">Passwort vergessen?</p>
+    </div>
+</form>
+
 <!-- MessageBox -->
 <div id="messageBox">
     <span class="closeButton" onclick="hideMessageBox()">&times;</span>

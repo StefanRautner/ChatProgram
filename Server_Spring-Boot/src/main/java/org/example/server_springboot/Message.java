@@ -2,9 +2,12 @@
 package org.example.server_springboot;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 
+
+@Document(collection = "messages")
 public class Message {
     @Id
     private String messageID;

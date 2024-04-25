@@ -17,9 +17,11 @@ namespace Second_Client_WPF
 {
     public partial class ChatAddUpdateDelete : Window
     {
+        string userID = "";
         string chatID = "";
-        public ChatAddUpdateDelete(string chatID)
+        public ChatAddUpdateDelete(string userID, string chatID)
         {
+            this.userID = userID;
             this.chatID = chatID;
             InitializeComponent();
         }
@@ -67,6 +69,14 @@ namespace Second_Client_WPF
             {
                 MessageBox.Show("Benutzer konnte nicht aus dem Chat entfernt werden");
             }
+        }
+
+        //Funktion um zum Chatfenster zurück zu kommen
+        private void GoToMainWindow(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow(userID, chatID);
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

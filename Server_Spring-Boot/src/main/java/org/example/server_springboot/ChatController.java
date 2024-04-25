@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://127.0.0.1:8080")
+@CrossOrigin(origins = "http://127.0.0.1:63343")
 @RestController
 @RequestMapping("/tinyWhatsApp")
 public class ChatController {
@@ -30,6 +30,12 @@ public class ChatController {
     public String updateUser(@RequestBody String body) {
         JSONObject jsonBody = new JSONObject(body);
         return chatService.updateUser(jsonBody.getString("username"), jsonBody.getString("password"));
+    }
+
+    @DeleteMapping("deleteUser")
+    public String deleteUser(@RequestBody String body) {
+        JSONObject jsonBody = new JSONObject(body);
+        return chatService.deleteUser(jsonBody.getString("username"), jsonBody.getString("password"));
     }
 
     /*USER & CHAT*/

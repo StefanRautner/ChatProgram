@@ -55,10 +55,22 @@ public class ChatService {
         for (User user : userRepository.findAll()) {
             if (Objects.equals(user.getUsername(), username)) {
                 user.setPassword(password);
+                userRepository.save(user);
                 break;
             }
         }
         return null;
+    }
+
+    //Benutzer löschen, falls er vorhanden ist
+    public String deleteUser(String username, String password) {
+        for(User user : userRepository.findAll()) {
+            if(Objects.equals(user.getUsername(), username) && Objects.equals(user.getPassword(), password)) {
+                userRepository.delete(user);
+                return "Der User wurde gelöscht";
+            }
+        }
+        return "Der User existiert nicht";
     }
 
     //User zu Chat/Gruppe hinzufügen

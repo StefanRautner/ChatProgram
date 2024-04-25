@@ -66,3 +66,5 @@ C:\Users\stefa\OneDrive\Desktop\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-w
 C:\Users\stefa\OneDrive\Desktop\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\Chat.baml
 C:\Users\stefa\OneDrive\Desktop\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\Message.baml
 C:\Users\stefa\OneDrive\Desktop\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\Second_C.73FA5984.Up2Date
+C:\Users\stefa\OneDrive\Desktop\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\DeleteWindow.g.cs
+C:\Users\stefa\OneDrive\Desktop\ChatProgram\Second_Client_WPF\obj\Debug\net8.0-windows\DeleteWindow.baml
