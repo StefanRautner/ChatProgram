@@ -22,54 +22,47 @@ public class ChatService {
     /*USER*/
     //UserID aus MongoDB erhalten
     public String checkUser(String username, String password) {
-        for (User user : userRepository.findAll()) {
-            if (Objects.equals(user.getUsername(), username) && Objects.equals(user.getPassword(), password)) {
-                return user.getUserID();
-            }
+        User user = userRepository.findUserByUsernameAndPassword(username, password);
+        if (user != null) {
+            return user.getUserID();
         }
         return null;
     }
 
     //Neuen User erstellen, falls er noch nicht existiert
     public String createNewUser(String username, String password) {
-        boolean found = false;
-        for (User user : userRepository.findAll()) {
-            if (Objects.equals(user.getUsername(), username)) {
-                found = true;
-                break;
-            }
-        }
+        User user = userRepository.findUserByUsername(username);
 
-        if (!found) {
-            User user = new User();
-            user.setUsername(username);
-            user.setPassword(password);
-            userRepository.save(user);
-            return user.getUserID();
+        if (user != null) {
+            User newUser = new User();
+            newUser.setUsername(username);
+            newUser.setPassword(password);
+            userRepository.save(newUser);
+            return newUser.getUserID();
         }
         return null;
     }
 
     //Benutzer updaten, falls er vorhanden ist
     public String updateUser(String username, String password) {
-        for (User user : userRepository.findAll()) {
-            if (Objects.equals(user.getUsername(), username)) {
-                user.setPassword(password);
-                userRepository.save(user);
-                break;
-            }
+        User user = userRepository.findUserByUsername(username);
+
+        if(user != null) {
+            user.setPassword(password);
+            return user.getUserID();
         }
         return null;
     }
 
     //Benutzer löschen, falls er vorhanden ist
     public String deleteUser(String username, String password) {
-        for(User user : userRepository.findAll()) {
-            if(Objects.equals(user.getUsername(), username) && Objects.equals(user.getPassword(), password)) {
-                userRepository.delete(user);
-                return "Der User wurde gelöscht";
-            }
+        User user = userRepository.findUserByUsernameAndPassword(username, password);
+
+        if(user != null) {
+            userRepository.delete(user);
+            return "Der User wurde gelöscht";
         }
+
         return "Der User existiert nicht";
     }
 
@@ -178,7 +171,7 @@ public class ChatService {
     public String getMessagesOfChat(String chatID, String userID) {
         Chat chat = chatRepository.findByChatID(chatID);
         JSONArray jsonArray = new JSONArray();
-        if(chat.getUserList().contains(userRepository.findByUserID(userID))) {
+        if (chat.getUserList().contains(userRepository.findByUserID(userID))) {
             for (Message message : chat.getMessageList()) {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("messageID", message.getMessageID());

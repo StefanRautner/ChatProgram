@@ -39,7 +39,7 @@ namespace Second_Client_WPF
                 string? tmpUserID = await VerbindungZuServer.Instance.Register(registerName.Text, registerPassword.Password);
                 registerName.Text = "";
                 registerPassword.Password = "";
-                if (tmpUserID != null)
+                if (tmpUserID != "")
                 {
                     MainWindow mainWindow = new MainWindow(tmpUserID);
                     mainWindow.Show();

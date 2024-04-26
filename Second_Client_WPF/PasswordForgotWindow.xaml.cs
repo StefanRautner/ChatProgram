@@ -47,7 +47,7 @@ namespace Second_Client_WPF
                 string? tmpUserID = await VerbindungZuServer.Instance.UpdateUser(passwordForgottenName.Text, passwordForgottenPassword.Password);
                 passwordForgottenName.Text = "";
                 passwordForgottenPassword.Password = "";
-                if (tmpUserID != null)
+                if (tmpUserID != "")
                 {
                     MainWindow mainWindow = new MainWindow(tmpUserID);
                     mainWindow.Show();
