@@ -5,7 +5,8 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://127.0.0.1:63343")
+//CrossOrigin für die PWA (Progressiv WebApp) erlauben
+@CrossOrigin(origins = "http://localhost:63343")
 @RestController
 @RequestMapping("/tinyWhatsApp")
 public class ChatController {
