@@ -8,7 +8,6 @@ namespace Second_Client_WPF
 {
     public partial class MainWindow : Window
     {
-        List<Message_Model>? messages = null;
         string userID = "";
         string chatID = "";
         string messageID = "";

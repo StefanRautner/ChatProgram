@@ -32,7 +32,7 @@ namespace Second_Client_WPF
                 string? tmpUserID = await VerbindungZuServer.Instance.Login(loginName.Text, loginPassword.Password);
                 loginName.Text = "";
                 loginPassword.Password = "";
-                if (tmpUserID != "")
+                if (tmpUserID != null && tmpUserID != "")
                 {
                     MainWindow mainWindow = new MainWindow(tmpUserID);
                     mainWindow.Show();

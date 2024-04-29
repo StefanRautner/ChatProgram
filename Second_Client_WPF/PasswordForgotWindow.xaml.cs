@@ -47,14 +47,14 @@ namespace Second_Client_WPF
                 string? tmpUserID = await VerbindungZuServer.Instance.UpdateUser(passwordForgottenName.Text, passwordForgottenPassword.Password);
                 passwordForgottenName.Text = "";
                 passwordForgottenPassword.Password = "";
-                if (tmpUserID != "")
+                if (tmpUserID != null && tmpUserID != "")
                 {
                     MainWindow mainWindow = new MainWindow(tmpUserID);
                     mainWindow.Show();
                     this.Close();
                 } else
                 {
-                    MessageBox.Show("Benutzername existiert nicht");
+                    MessageBox.Show("Benutzer existiert nicht");
                 }
             }
             catch (Exception ex)

@@ -158,7 +158,6 @@ namespace Second_Client_WPF
                 chatID = IDchat
             };
             request.AddJsonBody(body);
-            request.AddJsonBody(body);
             RestResponse? response = await client.ExecuteAsync(request);
             if (response.Content != null)
             {
