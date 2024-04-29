@@ -4,7 +4,5 @@
     {
         public string chatID { get; set; } = "";
         public string chatName { get; set; } = "";
-        public List<User_Model>? userList { get; set; }
-        public List<Message_Model>? messageList { get; set; }
     }
 }

@@ -318,7 +318,7 @@ namespace Second_Client_WPF
             return false;
         }
 
-        //Benutzer von CHat entfernen
+        //Benutzer von Chat entfernen
         async public Task<bool> RemoveUserFromChat(string IDchat, string username)
         {
             try
@@ -407,3 +407,4 @@ namespace Second_Client_WPF
         }
     }
 }
+//Chat-ID wird nicht richtig erhalten(angezeigt, verarbeitet)

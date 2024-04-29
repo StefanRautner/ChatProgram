@@ -19,8 +19,8 @@ namespace Second_Client_WPF
 
             this.userID = userID;
 
-            //Chatnamen laden
-            ShowNamesOfChats(userID);
+            //Chat(namen)-Anzeigen updaten
+            UpdateChatInterval();
         }
 
         //Konstruktor (von Chat & Message aus)
@@ -31,7 +31,8 @@ namespace Second_Client_WPF
             this.userID = userID;
             this.chatID = chatID;
 
-            ShowNamesOfChats(userID);
+            //Chat(namen)-Anzeigen updaten
+            UpdateChatInterval();
         }
 
         //Funktion um alle 100ms die Chat-Nachrichten zu updaten
@@ -39,10 +40,15 @@ namespace Second_Client_WPF
         {
             try
             {
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(0.1);
-                timer.Tick += UpdateChat;
-                timer.Start();
+                DispatcherTimer updateMessagesOfChat = new DispatcherTimer();
+                updateMessagesOfChat.Interval = TimeSpan.FromSeconds(0.1);
+                updateMessagesOfChat.Tick += UpdateChat;
+                updateMessagesOfChat.Start();
+
+                DispatcherTimer updateNamesOfChats = new DispatcherTimer();
+                updateNamesOfChats.Interval = TimeSpan.FromSeconds(0.1);
+                updateNamesOfChats.Tick += ShowNamesOfChats;
+                updateNamesOfChats.Start();
             }
             catch (Exception ex)
             {
@@ -64,7 +70,7 @@ namespace Second_Client_WPF
         }
 
         //Funktion zum Laden aller Chatnamen
-        async public void ShowNamesOfChats(string userID)
+        async private void ShowNamesOfChats(object? sender, EventArgs e)
         {
             try
             {
@@ -87,9 +93,6 @@ namespace Second_Client_WPF
                     this.chatID = chat.chatID;
                 }
                 ChatField.ItemsSource = await VerbindungZuServer.Instance.NachrichtenErhalten(chatID);
-
-                //Chat alle 10ms laden
-                UpdateChatInterval();
             }
             catch (Exception ex)
             {

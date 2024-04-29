@@ -33,7 +33,7 @@ public class ChatService {
     public String createNewUser(String username, String password) {
         User user = userRepository.findUserByUsername(username);
 
-        if (user != null) {
+        if (user == null) {
             User newUser = new User();
             newUser.setUsername(username);
             newUser.setPassword(password);
@@ -49,6 +49,7 @@ public class ChatService {
 
         if (user != null) {
             user.setPassword(password);
+            userRepository.save(user);
             return user.getUserID();
         }
         return null;
@@ -103,7 +104,7 @@ public class ChatService {
                 if (Objects.equals(user.getUserID(), userID)) {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("chatID", chat.getChatID());
-                    jsonObject.put("name", chat.getChatName());
+                    jsonObject.put("chatName", chat.getChatName());
                     jsonArray.put(jsonObject);
                 }
             }

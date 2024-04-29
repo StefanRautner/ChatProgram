@@ -19,7 +19,7 @@
         <ListView x:Name="ChatField" SelectionChanged="NachrichtAusgewaehlt" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="350">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Nachrichten" DisplayMemberBinding="{Binding Nachricht}"/>
+                    <GridViewColumn Header="Nachrichten" DisplayMemberBinding="{Binding message}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -28,7 +28,7 @@
         <ListView x:Name="ShowChats" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="ChangeChat" Grid.Row="0" Width="100">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Chats" DisplayMemberBinding="{Binding Chatname}"/>
+                    <GridViewColumn Header="Chats" DisplayMemberBinding="{Binding Chat_Model.chatName}"/>
                 </GridView>
             </ListView.View>
         </ListView>

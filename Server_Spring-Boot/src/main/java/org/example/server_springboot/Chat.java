@@ -4,14 +4,15 @@ package org.example.server_springboot;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "chats")
 public class Chat {
     @Id
     private String chatID;
-    private List<User> userList;
-    private List<Message> messageList;
+    private List<User> userList = new ArrayList<>();
+    private List<Message> messageList = new ArrayList<>();
     private String chatName;
 
     //Getter & Setter for UserList

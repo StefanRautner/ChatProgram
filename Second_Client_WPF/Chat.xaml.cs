@@ -22,6 +22,9 @@ namespace Second_Client_WPF
                 if (!await VerbindungZuServer.Instance.ChatLoeschen(chatID))
                 {
                     MessageBox.Show("Chat konnte nicht entfernt werden");
+                } else
+                {
+                    MessageBox.Show("Chat erfolgreich gelöscht");
                 }
             }
             catch (Exception ex)
@@ -39,6 +42,10 @@ namespace Second_Client_WPF
                 {
                     MessageBox.Show("Chat konnte nicht hinzugefügt werden");
                 }
+                else
+                {
+                    MessageBox.Show("Chat erfolgreich hinzugefügt");
+                }
             }
             catch (Exception ex)
             {
@@ -54,6 +61,10 @@ namespace Second_Client_WPF
                 if (!await VerbindungZuServer.Instance.UpdateChatName(chatID, ChatName.Text))
                 {
                     MessageBox.Show("Chatname konnte nicht aktulisiert werden");
+                }
+                else
+                {
+                    MessageBox.Show("Chatname erfolgreich aktualisiert");
                 }
             }
             catch (Exception ex)
@@ -73,6 +84,10 @@ namespace Second_Client_WPF
                 {
                     MessageBox.Show("Benutzer konnte nicht zum Chat hinzugefügt werden");
                 }
+                else
+                {
+                    MessageBox.Show("Benutzer wurde erfolgreich in den Chat hinzugefügt");
+                }
             }
             catch (Exception ex)
             {
@@ -88,6 +103,10 @@ namespace Second_Client_WPF
                 if (!await VerbindungZuServer.Instance.RemoveUserFromChat(chatID, UserName.Text))
                 {
                     MessageBox.Show("Benutzer konnte nicht aus dem Chat entfernt werden");
+                }
+                else
+                {
+                    MessageBox.Show("Benutzer konnte erfolgreich aus dem Chat entfernt werden");
                 }
             }
             catch (Exception ex)
