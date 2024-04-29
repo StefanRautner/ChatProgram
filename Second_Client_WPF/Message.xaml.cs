@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace Second_Client_WPF
 {
@@ -33,27 +21,48 @@ namespace Second_Client_WPF
         //Funktion um Nachricht zu aktualisieren
         async private void NachrichtUpdaten(object sender, RoutedEventArgs e)
         {
-            if (!await VerbindungZuServer.Instance.NachrichtUpdaten(chatID, messageID, NeueNachricht.Text))
+            try
             {
-                MessageBox.Show("Nachricht konnte nicht aktualisiert werden");
+                if (!await VerbindungZuServer.Instance.NachrichtUpdaten(chatID, messageID, NeueNachricht.Text))
+                {
+                    MessageBox.Show("Nachricht konnte nicht aktualisiert werden");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         //Funktion zum Löschen einer Nachricht
         async private void NachrichtEntfernen(object sender, RoutedEventArgs e)
         {
-            if (!await VerbindungZuServer.Instance.NachrichtLoeschen(chatID, messageID))
+            try
             {
-                MessageBox.Show("Naxhricht konnte nicht entfernt werden");
+                if (!await VerbindungZuServer.Instance.NachrichtLoeschen(chatID, messageID))
+                {
+                    MessageBox.Show("Naxhricht konnte nicht entfernt werden");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         //Funktion um zum Chatfenster zurück zu kommen
         private void GoToMainWindow(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow(userID, chatID);
-            mainWindow.Show();
-            this.Close();
+            try
+            {
+                MainWindow mainWindow = new MainWindow(userID, chatID);
+                mainWindow.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

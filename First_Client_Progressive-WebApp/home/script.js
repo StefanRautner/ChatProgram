@@ -28,18 +28,18 @@ document.onload = async function getChatNames(event) {
         const list = document.getElementById("namesOfChats");
 
         //Chat nicht mehr updaten, wenn anderer Chat ausgewählt wurde
-        list.onselectionchange = function() {
+        list.onselectionchange = function () {
             clearInterval(chatUpdateIntervall);
         }
 
         //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
-        data.forEach(function(chatName) {
+        data.forEach(function (chatName) {
             const listElement = document.createElement("li");
             listElement.Text = chatName.name;
             listElement.id = chatName.chatID;
-            listElement.onclick = function() {
+            listElement.onclick = function () {
                 chatID = this.id;
-                chatUpdateIntervall = setInterval(function() {
+                chatUpdateIntervall = setInterval(function () {
                     getData(event);
                 }, 100);
             }
@@ -67,11 +67,11 @@ async function getData(event) {
         const list = document.getElementById("messagesOfChat");
 
         //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
-        data.forEach(function(element) {
+        data.forEach(function (element) {
             const listElement = document.createElement("li");
             listElement.Text = element.messageText;
             listElement.id = element.messageID;
-            listElement.onclick = function() {
+            listElement.onclick = function () {
                 messageID = this.id;
             };
             list.appendChild(listElement);

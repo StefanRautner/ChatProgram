@@ -75,7 +75,7 @@ async function checkUserExistence(event) {
 
         const data = await response.text();
         console.log(data);
-        if(data === null) {
+        if (data === null) {
             document.getElementById("messageBoxText").value = "Anmeldung fehlgeschlagen";
             document.getElementById("messageBox").style.display = "block";
         } else {
@@ -90,7 +90,7 @@ async function checkUserExistence(event) {
 
 //Benutzer hinzufügen
 async function createNewUser(event) {
-    try{
+    try {
         event.preventDefault();
         const response = await fetch(`${urlToMongoDBDatabase}/newUser`, {
             method: 'POST',
@@ -107,7 +107,7 @@ async function createNewUser(event) {
 
         const data = await response.text();
 
-        if(data === null) {
+        if (data === null) {
             document.getElementById("messageBoxText").value = "Dieser User existiert bereits";
             document.getElementById("messageBox").style.display = "block";
         } else {
@@ -138,7 +138,7 @@ async function updateUser(event) {
 
         const data = await response.text();
 
-        if(data === null) {
+        if (data === null) {
             document.getElementById("messageBoxText").value = "Dieser User existiert nicht";
             document.getElementById("messageBox").style.display = "block";
         } else {

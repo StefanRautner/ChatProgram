@@ -47,7 +47,7 @@ public class ChatService {
     public String updateUser(String username, String password) {
         User user = userRepository.findUserByUsername(username);
 
-        if(user != null) {
+        if (user != null) {
             user.setPassword(password);
             return user.getUserID();
         }
@@ -58,7 +58,7 @@ public class ChatService {
     public String deleteUser(String username, String password) {
         User user = userRepository.findUserByUsernameAndPassword(username, password);
 
-        if(user != null) {
+        if (user != null) {
             userRepository.delete(user);
             return "Der User wurde gelöscht";
         }

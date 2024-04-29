@@ -37,7 +37,9 @@
 <div class="container">
     <!-- Chatfeld -->
     <div id="chat-box">
-        <div id="chat-names"><ul id="namesOfChats"></ul></div>
+        <div id="chat-names">
+            <ul id="namesOfChats"></ul>
+        </div>
         <div id="chat-messages">
             <ul id="messagesOfChat"></ul>
             <button id="download-button" onclick="downloadWebApp()">Download WebApp</button>
@@ -45,7 +47,8 @@
     </div>
     <!-- Nachrichtenfeld -->
     <div class="input-box">
-        <input type="text" id="user-input" placeholder="Nachricht eingeben..." onkeypress="if(event.key === 'Enter') {sendData(event)}">
+        <input type="text" id="user-input" placeholder="Nachricht eingeben..."
+               onkeypress="if(event.key === 'Enter') {sendData(event)}">
         <input type="submit" value="Send" onclick="sendData(event)">
         <div class="button-box">
             <button id="addEditDeleteChat" onclick="addEditDeleteChat()">Edit Chat</button>

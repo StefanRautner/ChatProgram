@@ -1,19 +1,5 @@
 ﻿//Autor: Stefan rautner
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Second_Client_WPF
 {
@@ -37,38 +23,61 @@ namespace Second_Client_WPF
                     MainWindow mainWindow = new MainWindow(tmpUserID);
                     mainWindow.Show();
                     this.Close();
-                } else
+                }
+                else
                 {
                     MessageBox.Show("Anmeldung fehlgeschlagen");
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 
         //Registrieren
         private void Register(object sender, RoutedEventArgs e)
         {
-            RegisterWindow registerWindow = new RegisterWindow();
-            registerWindow.Show();
-            this.Close();
+            try
+            {
+                RegisterWindow registerWindow = new RegisterWindow();
+                registerWindow.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //Passwort vergessen
         private void ForgotPassword(object sender, RoutedEventArgs e)
         {
-            PasswordForgotWindow passwordForgotWindow = new PasswordForgotWindow();
-            passwordForgotWindow.Show();
-            this.Close();
+            try
+            {
+                PasswordForgotWindow passwordForgotWindow = new PasswordForgotWindow();
+                passwordForgotWindow.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //Konto löschen
         private void DeleteAccount(object sender, RoutedEventArgs e)
         {
-            DeleteWindow deleteWindow = new DeleteWindow();
-            deleteWindow.Show();
-            this.Close();
+            try
+            {
+                DeleteWindow deleteWindow = new DeleteWindow();
+                deleteWindow.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
