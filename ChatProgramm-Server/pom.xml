@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.example</groupId>
-    <artifactId>Server_Spring-Boot</artifactId>
+    <artifactId>ChatProgramm-Server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Server_Spring-Boot</name>
     <description>Server_Spring-Boot</description>

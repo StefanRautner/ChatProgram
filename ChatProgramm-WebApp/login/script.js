@@ -68,7 +68,6 @@ async function checkUserExistence(event) {
         document.getElementById("passwordLogin").value = "";
 
         const data = await response.text();
-        console.log(data);
         if (data === null) {
             document.getElementById("messageBoxText").value = "Anmeldung fehlgeschlagen";
             document.getElementById("messageBox").style.display = "block";

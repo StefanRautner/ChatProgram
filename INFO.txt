@@ -1,0 +1,6 @@
+Spring-Boot Server fertig
+WPF-Client fertig
+MongoDB fertig
+
+WebApp-Client ausständig
+Dokumentation ausständig
