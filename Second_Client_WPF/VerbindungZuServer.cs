@@ -1,7 +1,9 @@
 ﻿//Autor: Stefan Rautner
 using RestSharp;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Windows;
 
@@ -16,9 +18,6 @@ namespace Second_Client_WPF
         //Instance (Singleton)
         private static VerbindungZuServer? instance = null;
         public static VerbindungZuServer Instance { get { if (instance == null) { instance = new VerbindungZuServer(); } return instance; } }
-
-        //Verschlüsselung-Schlüssel
-        byte[] key = Encoding.UTF8.GetBytes("g9F@3H#kdE7q8nT$S!zG5*bW+mY2p^Vh");
 
         //Konstruktor
         private VerbindungZuServer()
@@ -214,7 +213,7 @@ namespace Second_Client_WPF
                 var body = new
                 {
                     username = name,
-                    password = this.Encrypt(passwort)
+                    password = this.Hash(passwort)
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
@@ -236,7 +235,7 @@ namespace Second_Client_WPF
                 var body = new
                 {
                     username = name,
-                    password = this.Encrypt(passwort)
+                    password = this.Hash(passwort)
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
@@ -258,7 +257,7 @@ namespace Second_Client_WPF
                 var body = new
                 {
                     username = name,
-                    password = this.Encrypt(passwort)
+                    password = this.Hash(passwort)
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
@@ -280,7 +279,7 @@ namespace Second_Client_WPF
                 var body = new
                 {
                     username = name,
-                    password = this.Encrypt(passwort)
+                    password = this.Hash(passwort)
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
@@ -368,35 +367,21 @@ namespace Second_Client_WPF
             return false;
         }
 
-        //AES Verschlüsselungs Algorithmus
-        public string? Encrypt(string password)
+        //Hashen-Algorithmus
+        public string? Hash(string password)
         {
             try
             {
-                byte[] ivBytes = new byte[16];
-
-                using (Aes aes = Aes.Create())
+                using (HashAlgorithm algorithmProvider = SHA256.Create())
                 {
-                    aes.KeySize = 256;
-                    aes.BlockSize = 128;
-                    aes.Key = key;
-                    aes.IV = ivBytes;
-                    aes.Mode = CipherMode.CBC;
-                    aes.Padding = PaddingMode.PKCS7;
-
-                    ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
-
-                    byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-
-                    byte[] encryptedPasssword = encryptor.TransformFinalBlock(passwordBytes, 0, passwordBytes.Length);
-
-                    //IV und verschlüsseltes-Passwort verketten
-                    byte[] combinedBytes = new byte[ivBytes.Length + encryptedPasssword.Length];
-                    Buffer.BlockCopy(ivBytes, 0, combinedBytes, 0, ivBytes.Length);
-                    Buffer.BlockCopy(encryptedPasssword, 0, combinedBytes, ivBytes.Length, encryptedPasssword.Length);
-
-                    //Bytes zu String konvertieren
-                    return Convert.ToBase64String(combinedBytes);
+                    byte[] dataBytes = Encoding.UTF8.GetBytes(password);
+                    byte[] hashBytes = algorithmProvider.ComputeHash(dataBytes);
+                    StringBuilder sb = new StringBuilder();
+                    foreach (byte b in hashBytes)
+                    {
+                        sb.Append(b.ToString("x2"));
+                    }
+                    return sb.ToString();
                 }
             }
             catch (Exception ex)

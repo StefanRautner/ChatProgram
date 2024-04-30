@@ -1,4 +1,5 @@
 //Autor: Stefan Rautner
+
 //Variablen definieren
 let uID = "";
 
@@ -41,20 +42,13 @@ function changeToDelete() {
 // URL zur MongoDB Datenbank definieren
 const urlToMongoDBDatabase = 'http://localhost:8080/tinyWhatsApp';
 
-//Verschlüsselungs-Schlüssel
-const key = "g9F@3H#kdE7q8nT$S!zG5*bW+mY2p^Vh";
-
-//Passwort mit AES verschlüsseln
-function encrypt(password) {
-    const iv = CryptoJS.lib.WordArray.random(16);
-    const encryptedPassword = CryptoJS.AES.encrypt(password, CryptoJS.enc.Utf8.parse(key), {
-        iv: iv,
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7,
-        keySize: 32,
-        blockSize: 4
-    });
-    return iv.concat(encryptedPassword.ciphertext).toString(CryptoJS.enc.Base64);
+//Passwort hashen
+async function hash(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
 }
 
 //Benutzer überprüfen
@@ -65,7 +59,7 @@ async function checkUserExistence(event) {
             method: 'POST',
             body: JSON.stringify({
                 'username': document.getElementById("usernameLogin").value,
-                'password': encrypt(document.getElementById("passwordLogin").value)
+                'password': await hash(document.getElementById("passwordLogin").value)
             })
         });
 
@@ -96,7 +90,7 @@ async function createNewUser(event) {
             method: 'POST',
             body: JSON.stringify({
                 'username': document.getElementById("usernameRegister").value,
-                'password': encrypt(document.getElementById("passwordRegister").value)
+                'password': await hash(document.getElementById("passwordRegister").value)
             })
         });
 
@@ -127,7 +121,7 @@ async function updateUser(event) {
             method: 'PUT',
             body: JSON.stringify({
                 'username': document.getElementById("usernamePasswordLost").value,
-                'password': encrypt(document.getElementById("passwordPasswordLost").value)
+                'password': await hash(document.getElementById("passwordPasswordLost").value)
             })
         });
 
@@ -158,7 +152,7 @@ async function deleteUser(event) {
             method: 'DELETE',
             body: JSON.stringify({
                 'username': document.getElementById("usernameDelete").value,
-                'password': encrypt(document.getElementById("passwordDelete").value)
+                'password': await hash(document.getElementById("passwordDelete").value)
             })
         });
 

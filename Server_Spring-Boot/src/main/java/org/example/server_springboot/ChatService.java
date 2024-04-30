@@ -6,8 +6,13 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.Key;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +29,7 @@ public class ChatService {
     /*USER*/
     //UserID aus MongoDB erhalten
     public String checkUser(String username, String password) {
-        User user = userRepository.findUserByUsernameAndPassword(username, password);
+        User user = userRepository.findUserByUsernameAndPassword(username, this.encrypt(password));
         if (user != null) {
             return user.getUserID();
         }
@@ -38,7 +43,7 @@ public class ChatService {
         if (user == null) {
             User newUser = new User();
             newUser.setUsername(username);
-            newUser.setPassword(password);
+            newUser.setPassword(this.encrypt(password));
             userRepository.save(newUser);
             return newUser.getUserID();
         }
@@ -50,7 +55,7 @@ public class ChatService {
         User user = userRepository.findUserByUsername(username);
 
         if (user != null) {
-            user.setPassword(password);
+            user.setPassword(this.encrypt(password));
             userRepository.save(user);
             return user.getUserID();
         }
@@ -59,7 +64,7 @@ public class ChatService {
 
     //Benutzer löschen, falls er vorhanden ist
     public String deleteUser(String username, String password) {
-        User user = userRepository.findUserByUsernameAndPassword(username, password);
+        User user = userRepository.findUserByUsernameAndPassword(username, this.encrypt(password));
 
         if (user != null) {
             userRepository.delete(user);
@@ -254,5 +259,26 @@ public class ChatService {
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    //Passwort verschlüsseln
+    private static final String ALGORITHM = "AES";
+    private static final String MODE = "CBC";
+    private static final String PADDING = "PKCS5Padding";
+    private static final String KEY = "g9F@3H#kdE7q8nT$S!zG5*bW+mY2p^Vh"; // 128-bit key
+    private static final String IV = "LDN6mQ/CqnFFOxUP"; // 16-byte initialization vector
+
+    public String encrypt(String plaintext) {
+        try {
+            Key key = new SecretKeySpec(KEY.getBytes(), ALGORITHM);
+            IvParameterSpec iv = new IvParameterSpec(IV.getBytes());
+            Cipher cipher = Cipher.getInstance(ALGORITHM + "/" + MODE + "/" + PADDING);
+            cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+            byte[] encryptedBytes = cipher.doFinal(plaintext.getBytes());
+            return Base64.getEncoder().encodeToString(encryptedBytes);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
 }
