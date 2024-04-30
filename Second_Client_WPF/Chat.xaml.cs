@@ -27,6 +27,7 @@ namespace Second_Client_WPF
                     }
                     else
                     {
+                        GoToMainWindow(sender, e);
                         MessageBox.Show("Chat erfolgreich gelöscht");
                     }
                 }
@@ -53,6 +54,7 @@ namespace Second_Client_WPF
                 }
                 else
                 {
+                    GoToMainWindow(sender, e);
                     MessageBox.Show("Chat erfolgreich hinzugefügt");
                 }
                 ChatName.Text = "";
@@ -76,6 +78,7 @@ namespace Second_Client_WPF
                     }
                     else
                     {
+                        GoToMainWindow(sender, e);
                         MessageBox.Show("Chatname erfolgreich aktualisiert");
                     }
                 }

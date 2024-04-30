@@ -139,7 +139,7 @@ namespace Second_Client_WPF
             }
         }
 
-        //FUnktion um eine Nachricht zu updaten & löschen
+        //Funktion um eine Nachricht zu updaten & löschen
         private void UpdateDeleteMessage(object sender, RoutedEventArgs e)
         {
             try
@@ -169,6 +169,42 @@ namespace Second_Client_WPF
                 if (message != null)
                 {
                     this.messageID = message.messageID;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ChangeChatAtDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                ChatAddUpdateDelete chatUpdateAddDelete = new ChatAddUpdateDelete(userID, chatID);
+                chatUpdateAddDelete.Show();
+                this.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ChangeMessageAtDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                if (messageID != null && messageID != "" && chatID != null && chatID != "")
+                {
+                    MessageDeleteUpdate messageDeleteUpdate = new MessageDeleteUpdate(userID, chatID, messageID);
+                    messageDeleteUpdate.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Bitte wählen Sie eine Nachricht aus");
                 }
             }
             catch (Exception ex)

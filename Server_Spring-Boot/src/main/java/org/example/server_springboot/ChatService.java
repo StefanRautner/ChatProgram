@@ -228,10 +228,11 @@ public class ChatService {
                         message.setMessage(messageText);
                         chat.setMessageList(messageList);
                         chatRepository.save(chat);
-                        break;
+                        return true;
+                    } else {
+                        return false;
                     }
                 }
-                return true;
             }
             return false;
         } catch (Exception ex) {
