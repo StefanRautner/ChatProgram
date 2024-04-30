@@ -1,4 +1,4 @@
-Spring-Boot Server fertig
+Server fertig
 WPF-Client fertig
 MongoDB fertig
 
