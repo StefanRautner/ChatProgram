@@ -116,7 +116,9 @@ namespace Second_Client_WPF
                 RestResponse? response = await client.ExecuteAsync(request);
                 if (response.Content != null && response.Content != "")
                 {
-                    return JsonSerializer.Deserialize<List<Message_Model>>(response.Content);
+                    List<Message_Model>? messageList = JsonSerializer.Deserialize<List<Message_Model>>(response.Content);
+                    //return JsonSerializer.Deserialize<List<Message_Model>>(response.Content);
+                    return messageList;
                 }
             }
             catch (Exception ex)
@@ -405,4 +407,3 @@ namespace Second_Client_WPF
         }
     }
 }
-//Chat-ID wird nicht richtig erhalten(angezeigt, verarbeitet)

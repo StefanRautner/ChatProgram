@@ -19,13 +19,22 @@ namespace Second_Client_WPF
         {
             try
             {
-                if (!await VerbindungZuServer.Instance.ChatLoeschen(chatID))
+                if (chatID != null && chatID != "")
                 {
-                    MessageBox.Show("Chat konnte nicht entfernt werden");
-                } else
-                {
-                    MessageBox.Show("Chat erfolgreich gelöscht");
+                    if (!await VerbindungZuServer.Instance.ChatLoeschen(chatID))
+                    {
+                        MessageBox.Show("Chat konnte nicht entfernt werden");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chat erfolgreich gelöscht");
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Bitte wählen Sie einen Chat aus");
+                }
+
             }
             catch (Exception ex)
             {
@@ -46,6 +55,7 @@ namespace Second_Client_WPF
                 {
                     MessageBox.Show("Chat erfolgreich hinzugefügt");
                 }
+                ChatName.Text = "";
             }
             catch (Exception ex)
             {
@@ -58,14 +68,22 @@ namespace Second_Client_WPF
         {
             try
             {
-                if (!await VerbindungZuServer.Instance.UpdateChatName(chatID, ChatName.Text))
+                if (chatID != null && chatID != "")
                 {
-                    MessageBox.Show("Chatname konnte nicht aktulisiert werden");
+                    if (!await VerbindungZuServer.Instance.UpdateChatName(chatID, ChatName.Text))
+                    {
+                        MessageBox.Show("Chatname konnte nicht aktulisiert werden");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chatname erfolgreich aktualisiert");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Chatname erfolgreich aktualisiert");
+                    MessageBox.Show("Bitte wählen Sie einen Chat aus");
                 }
+                ChatName.Text = "";
             }
             catch (Exception ex)
             {
@@ -80,14 +98,22 @@ namespace Second_Client_WPF
         {
             try
             {
-                if (!await VerbindungZuServer.Instance.AddUserToChat(chatID, UserName.Text))
+                if (chatID != null && chatID != "")
                 {
-                    MessageBox.Show("Benutzer konnte nicht zum Chat hinzugefügt werden");
+                    if (!await VerbindungZuServer.Instance.AddUserToChat(chatID, UserName.Text))
+                    {
+                        MessageBox.Show("Benutzer konnte nicht zum Chat hinzugefügt werden");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Benutzer wurde erfolgreich in den Chat hinzugefügt");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Benutzer wurde erfolgreich in den Chat hinzugefügt");
+                    MessageBox.Show("Bitte wählen Sie einen Chat aus");
                 }
+                UserName.Text = "";
             }
             catch (Exception ex)
             {
@@ -100,14 +126,22 @@ namespace Second_Client_WPF
         {
             try
             {
-                if (!await VerbindungZuServer.Instance.RemoveUserFromChat(chatID, UserName.Text))
+                if (chatID != null && chatID != "")
                 {
-                    MessageBox.Show("Benutzer konnte nicht aus dem Chat entfernt werden");
+                    if (!await VerbindungZuServer.Instance.RemoveUserFromChat(chatID, UserName.Text))
+                    {
+                        MessageBox.Show("Benutzer konnte nicht aus dem Chat entfernt werden");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Benutzer konnte erfolgreich aus dem Chat entfernt werden");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Benutzer konnte erfolgreich aus dem Chat entfernt werden");
+                    MessageBox.Show("Bitte wählen Sie einen Chat aus");
                 }
+                UserName.Text = "";
             }
             catch (Exception ex)
             {

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Second_Client_WPF
 {
@@ -58,7 +59,26 @@ namespace Second_Client_WPF
             }
         }
 
-        //Registrieren
+        //Enter Überprüfen, um zu Überprüfen ob in Passwortfeld Enter gedrückt wurde
+        async private void EnterUeberpruefen(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Enter)
+                {
+                    string? message = await VerbindungZuServer.Instance.DeleteUser(deleteName.Text, deletePassword.Password);
+                    deleteName.Text = "";
+                    deletePassword.Password = "";
+                    MessageBox.Show(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //Löschen
         async private void Delete(object sender, RoutedEventArgs e)
         {
             try

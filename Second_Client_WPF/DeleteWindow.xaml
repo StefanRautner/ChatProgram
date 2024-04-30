@@ -13,7 +13,7 @@
         <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="Benutzername eingeben" VerticalAlignment="Top" Margin="82,53,82,0" FontSize="12px"/>
         <TextBox x:Name="deleteName" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,69,0,0" Width="136" FontSize="12px"/>
         <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="Passwort eingeben" VerticalAlignment="Top" Margin="82,107,82,0" FontSize="12px"/>
-        <PasswordBox x:Name="deletePassword" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,123,0,0" Width="136" FontSize="12px"/>
+        <PasswordBox x:Name="deletePassword" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,123,0,0" Width="136" FontSize="12px" KeyDown="EnterUeberpruefen"/>
         <Button Content="Einloggen" Click="Login" HorizontalAlignment="Left" Margin="108,146,0,0" VerticalAlignment="Top"/>
         <Button Content="Registrieren" Click="Register" HorizontalAlignment="Left" Margin="19,146,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.117,0.633"/>
         <Button Content="Passwort vergessen" Click="ForgotPassword" Margin="183,146,10,0" VerticalAlignment="Top"/>

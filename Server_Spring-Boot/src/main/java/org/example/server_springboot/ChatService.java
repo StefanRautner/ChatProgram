@@ -18,6 +18,8 @@ public class ChatService {
     ChatRepository chatRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    MessageRepository messageRepository;
 
     /*USER*/
     //UserID aus MongoDB erhalten
@@ -74,6 +76,7 @@ public class ChatService {
             List<User> userList = chat.getUserList();
             userList.add(userRepository.findUserByUsername(username));
             chat.setUserList(userList);
+            chatRepository.save(chat);
             return true;
         } catch (Exception ex) {
             return false;
@@ -84,10 +87,19 @@ public class ChatService {
     public boolean removeUserFromChat(String username, String chatID) {
         try {
             Chat chat = chatRepository.findByChatID(chatID);
-            List<User> userList = chat.getUserList();
-            userList.remove(userRepository.findUserByUsername(username));
-            chat.setUserList(userList);
-            return true;
+            if (chat != null) {
+                List<User> userList = chat.getUserList();
+                for (User usersInChat : userList) {
+                    if (Objects.equals(usersInChat.getUsername(), username)) {
+                        userList.remove(usersInChat);
+                        break;
+                    }
+                }
+                chat.setUserList(userList);
+                chatRepository.save(chat);
+                return true;
+            }
+            return false;
         } catch (Exception ex) {
             return false;
         }
@@ -132,6 +144,7 @@ public class ChatService {
         try {
             Chat chat = chatRepository.findByChatID(chatID);
             chat.setChatName(chatname);
+            chatRepository.save(chat);
             return true;
         } catch (Exception ex) {
             return false;
@@ -154,15 +167,24 @@ public class ChatService {
         try {
             User user = userRepository.findByUserID(userID);
             Chat chat = chatRepository.findByChatID(chatID);
-            List<Message> messageList = chat.getMessageList();
-            if (chat.getUserList().contains(user)) {
-                Message message = new Message();
-                message.setMessage(messageText);
-                message.setCreatorID(userID);
-                message.setZeitstempel(Instant.now());
-                messageList.add(message);
+            if (chat != null && user != null) {
+                List<Message> messageList = chat.getMessageList();
+                for (User userInChat : chat.getUserList()) {
+                    if (Objects.equals(userInChat.getUserID(), userID)) {
+                        Message message = new Message();
+                        message.setMessage(messageText);
+                        message.setCreatorID(userID);
+                        message.setZeitstempel(Instant.now());
+                        messageList.add(message);
+                        messageRepository.save(message);
+                        break;
+                    }
+                }
+                chat.setMessageList(messageList);
+                chatRepository.save(chat);
+                return true;
             }
-            return true;
+            return false;
         } catch (Exception ex) {
             return false;
         }
@@ -171,14 +193,17 @@ public class ChatService {
     //Alle Nachrichten eines Chats von MongoDB erhalten und NachrichtenID & NachrichtenText in JSON-String extrahieren
     public String getMessagesOfChat(String chatID, String userID) {
         Chat chat = chatRepository.findByChatID(chatID);
-        if(chat != null) {
+        if (chat != null) {
             JSONArray jsonArray = new JSONArray();
-            if (chat.getUserList().contains(userRepository.findByUserID(userID))) {
-                for (Message message : chat.getMessageList()) {
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("messageID", message.getMessageID());
-                    jsonObject.put("message", message.getMessage());
-                    jsonArray.put(jsonObject);
+            for (User userInChat : chat.getUserList()) {
+                if (Objects.equals(userInChat.getUserID(), userID)) {
+                    for (Message message : chat.getMessageList()) {
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("messageID", message.getMessageID());
+                        jsonObject.put("message", message.getMessage());
+                        jsonArray.put(jsonObject);
+                    }
+                    break;
                 }
             }
             return jsonArray.toString();
@@ -190,16 +215,20 @@ public class ChatService {
     public boolean updateMessage(String userID, String chatID, String messageID, String messageText) {
         try {
             Chat chat = chatRepository.findByChatID(chatID);
-            List<Message> messageList = chat.getMessageList();
-            for (Message message : messageList) {
-                Duration zeitSeitErstellung = Duration.between(message.getZeitstempel(), Instant.now());
-                if (Objects.equals(message.getMessageID(), messageID) && Objects.equals(message.getCreatorID(), userID) && 5 <= zeitSeitErstellung.toMinutes()) {
-                    message.setMessage(messageText);
-                    chat.setMessageList(messageList);
-                    break;
+            if (chat != null) {
+                List<Message> messageList = chat.getMessageList();
+                for (Message message : messageList) {
+                    Duration zeitSeitErstellung = Duration.between(message.getZeitstempel(), Instant.now());
+                    if (Objects.equals(message.getMessageID(), messageID) && Objects.equals(message.getCreatorID(), userID) && 5 > (int) zeitSeitErstellung.toMinutes()) {
+                        message.setMessage(messageText);
+                        chat.setMessageList(messageList);
+                        chatRepository.save(chat);
+                        break;
+                    }
                 }
+                return true;
             }
-            return true;
+            return false;
         } catch (Exception ex) {
             return false;
         }
@@ -209,15 +238,19 @@ public class ChatService {
     public boolean deleteMessage(String userID, String chatID, String messageID) {
         try {
             Chat chat = chatRepository.findByChatID(chatID);
-            List<Message> messageList = chat.getMessageList();
-            for (Message message : messageList) {
-                if (Objects.equals(message.getMessageID(), messageID) && Objects.equals(message.getCreatorID(), userID)) {
-                    messageList.remove(message);
-                    chat.setMessageList(messageList);
-                    break;
+            if (chat != null) {
+                List<Message> messageList = chat.getMessageList();
+                for (Message message : messageList) {
+                    if (Objects.equals(message.getMessageID(), messageID) && Objects.equals(message.getCreatorID(), userID)) {
+                        messageList.remove(message);
+                        chat.setMessageList(messageList);
+                        chatRepository.save(chat);
+                        break;
+                    }
                 }
+                return true;
             }
-            return true;
+            return false;
         } catch (Exception ex) {
             return false;
         }

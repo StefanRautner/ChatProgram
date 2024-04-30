@@ -41,14 +41,9 @@ namespace Second_Client_WPF
             try
             {
                 DispatcherTimer updateMessagesOfChat = new DispatcherTimer();
-                updateMessagesOfChat.Interval = TimeSpan.FromSeconds(0.1);
-                updateMessagesOfChat.Tick += UpdateChat;
+                updateMessagesOfChat.Interval = TimeSpan.FromSeconds(0.05);
+                updateMessagesOfChat.Tick += UpdateChatnamesAndMessages;
                 updateMessagesOfChat.Start();
-
-                DispatcherTimer updateNamesOfChats = new DispatcherTimer();
-                updateNamesOfChats.Interval = TimeSpan.FromSeconds(0.1);
-                updateNamesOfChats.Tick += ShowNamesOfChats;
-                updateNamesOfChats.Start();
             }
             catch (Exception ex)
             {
@@ -56,24 +51,15 @@ namespace Second_Client_WPF
             }
         }
 
-        //ChatID updaten & anderen Chat anzeigen, um Chat zu Updaten
-        async private void UpdateChat(object? sender, EventArgs e)
+        //Funktion zum Laden aller Chatnamen & erhalten der Nachrichten des aktuellen Chats
+        async private void UpdateChatnamesAndMessages(object? sender, EventArgs e)
         {
             try
             {
-                ChatField.ItemsSource = await VerbindungZuServer.Instance.NachrichtenErhalten(chatID);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        //Funktion zum Laden aller Chatnamen
-        async private void ShowNamesOfChats(object? sender, EventArgs e)
-        {
-            try
-            {
+                if (chatID != null && chatID != "")
+                {
+                    ChatField.ItemsSource = await VerbindungZuServer.Instance.NachrichtenErhalten(chatID);
+                }
                 ShowChats.ItemsSource = await VerbindungZuServer.Instance.ChatsNamenErhalten(userID);
             }
             catch (Exception ex)
@@ -83,7 +69,7 @@ namespace Second_Client_WPF
         }
 
         //ChatID updaten & anderen Chat anzeigen, wenn Chat gewechselt wird
-        async private void ChangeChat(object sender, SelectionChangedEventArgs e)
+        private void ChangeChat(object sender, SelectionChangedEventArgs e)
         {
             try
             {
@@ -92,7 +78,6 @@ namespace Second_Client_WPF
                 {
                     this.chatID = chat.chatID;
                 }
-                ChatField.ItemsSource = await VerbindungZuServer.Instance.NachrichtenErhalten(chatID);
             }
             catch (Exception ex)
             {
@@ -109,6 +94,7 @@ namespace Second_Client_WPF
                 {
                     MessageBox.Show("Nachricht konnte nicht hinzugefügt werden");
                 }
+                MessageField.Text = "";
             }
             catch (Exception ex)
             {
@@ -128,6 +114,7 @@ namespace Second_Client_WPF
                     {
                         MessageBox.Show("Nachricht konnte nicht hinzugefügt werden");
                     }
+                    MessageField.Text = "";
                 }
             }
             catch (Exception ex)
@@ -144,6 +131,7 @@ namespace Second_Client_WPF
                 ChatAddUpdateDelete chatUpdateAddDelete = new ChatAddUpdateDelete(userID, chatID);
                 chatUpdateAddDelete.Show();
                 this.Close();
+
             }
             catch (Exception ex)
             {
@@ -156,9 +144,16 @@ namespace Second_Client_WPF
         {
             try
             {
-                MessageDeleteUpdate messageDeleteUpdate = new MessageDeleteUpdate(userID, chatID, messageID);
-                messageDeleteUpdate.Show();
-                this.Close();
+                if (messageID != null && messageID != "" && chatID != null && chatID != "")
+                {
+                    MessageDeleteUpdate messageDeleteUpdate = new MessageDeleteUpdate(userID, chatID, messageID);
+                    messageDeleteUpdate.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Bitte wählen Sie eine Nachricht aus");
+                }
             }
             catch (Exception ex)
             {
@@ -170,7 +165,7 @@ namespace Second_Client_WPF
         {
             try
             {
-                Message_Model? message = (Message_Model?)ShowChats.SelectedItems[0];
+                Message_Model? message = (Message_Model?)ChatField.SelectedItem;
                 if (message != null)
                 {
                     this.messageID = message.messageID;

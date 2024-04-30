@@ -25,8 +25,13 @@ namespace Second_Client_WPF
             {
                 if (!await VerbindungZuServer.Instance.NachrichtUpdaten(chatID, messageID, NeueNachricht.Text))
                 {
-                    MessageBox.Show("Nachricht konnte nicht aktualisiert werden");
+                    MessageBox.Show("Nachricht existiert schon zu lange");
+                } else
+                {
+                    GoToMainWindow(sender, e);
+                    MessageBox.Show("Nachricht wurde erfolgreich aktualisiert");
                 }
+                NeueNachricht.Text = "";
             }
             catch (Exception ex)
             {
@@ -41,7 +46,11 @@ namespace Second_Client_WPF
             {
                 if (!await VerbindungZuServer.Instance.NachrichtLoeschen(chatID, messageID))
                 {
-                    MessageBox.Show("Naxhricht konnte nicht entfernt werden");
+                    MessageBox.Show("Nachricht konnte nicht entfernt werden");
+                } else
+                {
+                    GoToMainWindow(sender, e);
+                    MessageBox.Show("Nachricht erfolgreich entfernt");
                 }
             }
             catch (Exception ex)

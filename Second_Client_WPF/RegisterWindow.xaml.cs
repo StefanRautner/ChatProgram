@@ -1,5 +1,6 @@
 ﻿//Autor: Stefan Rautner
 using System.Windows;
+using System.Windows.Input;
 
 namespace Second_Client_WPF
 {
@@ -18,6 +19,34 @@ namespace Second_Client_WPF
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.Show();
                 this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //Enter Überprüfen, um zu Überprüfen ob in Passwortfeld Enter gedrückt wurde
+        async private void EnterUeberpruefen(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Enter)
+                {
+                    string? tmpUserID = await VerbindungZuServer.Instance.Register(registerName.Text, registerPassword.Password);
+                    registerName.Text = "";
+                    registerPassword.Password = "";
+                    if (tmpUserID != null && tmpUserID != "")
+                    {
+                        MainWindow mainWindow = new MainWindow(tmpUserID);
+                        mainWindow.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Anmeldung fehlgeschlagen");
+                    }
+                }
             }
             catch (Exception ex)
             {
