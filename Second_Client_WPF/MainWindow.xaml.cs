@@ -87,7 +87,7 @@ namespace Second_Client_WPF
         {
             try
             {
-                Chat_Model? chat = (Chat_Model?)ShowChats.SelectedItems[0];
+                Chat_Model? chat = (Chat_Model?)ShowChats.SelectedItem;
                 if (chat != null)
                 {
                     this.chatID = chat.chatID;

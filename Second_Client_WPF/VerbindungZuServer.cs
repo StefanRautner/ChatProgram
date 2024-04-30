@@ -39,7 +39,7 @@ namespace Second_Client_WPF
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
-                if (response.Content != null)
+                if (response.Content != null && response.Content != "")
                 {
                     return bool.Parse(response.Content);
                 }
@@ -64,7 +64,7 @@ namespace Second_Client_WPF
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
-                if (response.Content != null)
+                if (response.Content != null && response.Content != "")
                 {
                     return bool.Parse(response.Content);
                 }
@@ -89,10 +89,9 @@ namespace Second_Client_WPF
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
-                string? content = response.Content;
-                if (content != null)
+                if (response.Content != null && response.Content != "")
                 {
-                    return JsonSerializer.Deserialize<List<Chat_Model>>(content);
+                    return JsonSerializer.Deserialize<List<Chat_Model>>(response.Content);
                 }
             }
             catch (Exception ex)
@@ -115,10 +114,9 @@ namespace Second_Client_WPF
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
-                string? content = response.Content;
-                if (content != null)
+                if (response.Content != null && response.Content != "")
                 {
-                    return JsonSerializer.Deserialize<List<Message_Model>>(content);
+                    return JsonSerializer.Deserialize<List<Message_Model>>(response.Content);
                 }
             }
             catch (Exception ex)
@@ -143,7 +141,7 @@ namespace Second_Client_WPF
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
-                if (response.Content != null)
+                if (response.Content != null && response.Content != "")
                 {
                     return bool.Parse(response.Content);
                 }
@@ -169,7 +167,7 @@ namespace Second_Client_WPF
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
-                if (response.Content != null)
+                if (response.Content != null && response.Content != "")
                 {
                     return bool.Parse(response.Content);
                 }
@@ -193,7 +191,7 @@ namespace Second_Client_WPF
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
-                if (response.Content != null)
+                if (response.Content != null && response.Content != "")
                 {
                     return bool.Parse(response.Content);
                 }
@@ -306,7 +304,7 @@ namespace Second_Client_WPF
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
-                if (response.Content != null)
+                if (response.Content != null && response.Content != "")
                 {
                     return bool.Parse(response.Content);
                 }
@@ -331,7 +329,7 @@ namespace Second_Client_WPF
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
-                if (response.Content != null)
+                if (response.Content != null && response.Content != "")
                 {
                     return bool.Parse(response.Content);
                 }
@@ -356,7 +354,7 @@ namespace Second_Client_WPF
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
-                if (response.Content != null)
+                if (response.Content != null && response.Content != "")
                 {
                     return bool.Parse(response.Content);
                 }
