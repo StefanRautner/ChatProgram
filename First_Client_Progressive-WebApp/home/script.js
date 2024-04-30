@@ -41,7 +41,7 @@ document.onload = async function getChatNames(event) {
                 chatID = this.id;
                 chatUpdateIntervall = setInterval(function () {
                     getData(event);
-                }, 100);
+                }, 50);
             }
             list.appendChild(listElement);
         });
