@@ -37,7 +37,7 @@ body {
 
 /*Chat-Auswahl stylen*/
 #chat-names {
-    height: 400px;
+    height: 75vh;
     width: 35%;
     overflow-y: auto;
     background-color: lightgray;
@@ -45,17 +45,16 @@ body {
 
 /*Chatnachrichten stylen*/
 #chat-messages {
-    height: 400px;
     width: 90%;
-    background-color: white;
+    background-color: black;
     overflow-y: auto;
 }
 
 /*Download Button stylen*/
 #download-button {
+    height: 10%;
     color: white;
     background-color: #007bff;
-    padding: 10px;
     cursor: pointer;
     border: black solid 1px;
     border-radius: 5px;
@@ -71,7 +70,6 @@ body {
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
-    height: 90px;
 }
 
 /*Nachrichten-Feld stylen*/

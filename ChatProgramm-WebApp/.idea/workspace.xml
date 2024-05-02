@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="730826a7-0dc8-47fa-9103-02be2bc360c9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ChatProgramm-WebApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ChatProgramm-WebApp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/chat/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/home/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/home/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/login/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/message/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/login/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +25,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2frBP4XDcwfhDzbI33vhFTgbbTb" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,10 +36,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.home.html.executor": "Run",
     "JavaScript Debug.login.html.executor": "Run",
     "JavaScript Debug.test.html.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Master",
+    "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/stefa/OneDrive/Desktop/ChatProgram/ChatProgramm-WebApp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -74,6 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1714549288941</updated>
       <workItem from="1714549289968" duration="3988000" />
+      <workItem from="1714630009247" duration="1954000" />
     </task>
     <servers />
   </component>
