@@ -59,7 +59,7 @@ namespace Second_Client_WPF
                     }
                     else
                     {
-                        MessageBox.Show("Anmeldung fehlgeschlagen");
+                        MessageBox.Show("Passwort aktualisieren fehlgeschlagen");
                     }
                 }
             }
@@ -85,7 +85,7 @@ namespace Second_Client_WPF
                 }
                 else
                 {
-                    MessageBox.Show("Benutzer existiert nicht");
+                    MessageBox.Show("Passwort aktualisieren fehlgeschlagen");
                 }
             }
             catch (Exception ex)

@@ -47,7 +47,7 @@ body {
 #chat-messages {
     height: 400px;
     width: 90%;
-    background-color: black;
+    background-color: white;
     overflow-y: auto;
 }
 

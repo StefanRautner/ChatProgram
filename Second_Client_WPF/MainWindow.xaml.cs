@@ -181,9 +181,16 @@ namespace Second_Client_WPF
         {
             try
             {
-                ChatAddUpdateDelete chatUpdateAddDelete = new ChatAddUpdateDelete(userID, chatID);
-                chatUpdateAddDelete.Show();
-                this.Close();
+                if (chatID != null && chatID != "")
+                {
+                    ChatAddUpdateDelete chatAddUpdateDelete = new ChatAddUpdateDelete(userID, chatID);
+                    chatAddUpdateDelete.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Bitte wählen Sie eine Nachricht aus");
+                }
 
             }
             catch (Exception ex)

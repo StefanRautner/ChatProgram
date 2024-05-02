@@ -1,4 +1,4 @@
-﻿//Autor: Stefan Rautner
+﻿ //Autor: Stefan Rautner
 using System.Windows;
 
 namespace Second_Client_WPF
@@ -79,7 +79,7 @@ namespace Second_Client_WPF
                     else
                     {
                         GoToMainWindow(sender, e);
-                        MessageBox.Show("Chatname erfolgreich aktualisiert");
+                        MessageBox.Show("Chatname wurde erfolgreich aktualisiert");
                     }
                 }
                 else
@@ -137,7 +137,7 @@ namespace Second_Client_WPF
                     }
                     else
                     {
-                        MessageBox.Show("Benutzer konnte erfolgreich aus dem Chat entfernt werden");
+                        MessageBox.Show("Benutzer wurde erfolgreich aus dem Chat entfernt");
                     }
                 }
                 else

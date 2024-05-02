@@ -50,7 +50,7 @@ namespace Second_Client_WPF
                 } else
                 {
                     GoToMainWindow(sender, e);
-                    MessageBox.Show("Nachricht erfolgreich entfernt");
+                    MessageBox.Show("Nachricht wurde erfolgreich entfernt");
                 }
             }
             catch (Exception ex)

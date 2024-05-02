@@ -1,6 +1,4 @@
 //Autor: Stefan Rautner
-// URL zur MongoDB Datenbank definieren
-const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp';
 
 //Prompt des WebApp-Downloads
 let installPrompt = null;
@@ -16,10 +14,10 @@ let chatUpdateIntervall = null;
 document.onload = async function getChatNames(event) {
     try {
         event.preventDefault();
-        const response = await fetch(`${urlToSpringBoot}/getChatNames`, {
+        const response = await fetch(`${window.urlToSpringBoot}/getChatNames`, {
             methode: 'GET',
             body: JSON.stringify({
-                'userID': userID
+                'userID': window.userID
             })
         });
         const data = await response.json;
@@ -35,14 +33,17 @@ document.onload = async function getChatNames(event) {
         //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
         data.forEach(function (chatName) {
             const listElement = document.createElement("li");
-            listElement.Text = chatName.name;
+            listElement.Text = chatName.chatName;
             listElement.id = chatName.chatID;
             listElement.onclick = function () {
                 chatID = this.id;
                 chatUpdateIntervall = setInterval(function () {
                     getData(event);
                 }, 50);
-            }
+            };
+            listElement.ondblclick = function () {
+                addEditDeleteChat();
+            };
             list.appendChild(listElement);
         });
     } catch (error) {
@@ -54,10 +55,10 @@ document.onload = async function getChatNames(event) {
 async function getData(event) {
     try {
         event.preventDefault();
-        const response = await fetch(`${urlToSpringBoot}/getMessages`, {
+        const response = await fetch(`${window.urlToSpringBoot}/getMessages`, {
             methode: 'GET',
             body: JSON.stringify({
-                'userID': userID,
+                'userID': window.userID,
                 'chatID': chatID
             })
         });
@@ -69,10 +70,13 @@ async function getData(event) {
         //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
         data.forEach(function (element) {
             const listElement = document.createElement("li");
-            listElement.Text = element.messageText;
+            listElement.Text = element.message;
             listElement.id = element.messageID;
             listElement.onclick = function () {
                 messageID = this.id;
+            };
+            listElement.ondblclick = function () {
+                editDeleteMessage();
             };
             list.appendChild(listElement);
         });
@@ -85,41 +89,55 @@ async function getData(event) {
 async function sendData(event) {
     try {
         event.preventDefault();
-        await fetch(`${urlToSpringBoot}/newMessage`, {
+        const response = await fetch(`${window.urlToSpringBoot}/newMessage`, {
             method: 'POST',
             body: JSON.stringify({
-                'userID': userID,
+                'userID': window.userID,
                 'chatID': chatID,
                 'message': document.getElementById("user-input").value
             })
         });
+
+        document.getElementById("user-input").value = "";
+
+        if(!await response.text()) {
+            alert("Nachricht konnte nicht hinzugefügt werden");
+        }
     } catch (error) {
         console.error(error);
     }
 }
 
 function editDeleteMessage() {
-    window.location.href = '../message/message.html';
+    if(chatID !== null && chatID !== "" && messageID != null && messageID !== "") {
+        window.location.href = '../message/message.html';
+    } else {
+        alert("Bitte wählen Sie eine Nachricht aus");
+    }
 }
 
 function addEditDeleteChat() {
-    window.location.href = '../chat/chat.html';
+    if(chatID !== null && chatID !== "") {
+        window.location.href = '../chat/chat.html';
+    } else {
+        alert("Bitte wählen Sie einen Chat aus");
+    }
 }
 
-// Function um das Install-Prompt aufzurufen
+// Funktion um das Install-Prompt aufzurufen
 async function downloadWebApp() {
     if (installPrompt) {
-        // Show the install prompt
+        // Install-Prompt anzeigen
         installPrompt.prompt();
 
-        // Wait for the user to respond to the prompt
+        // Benutzereingabe auf das Install-Prompt abfragen
         installPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the installation prompt');
+                console.log("WebApp downloaded");
             } else {
-                console.log('User dismissed the installation prompt');
+                console.log("WebApp not downloaded");
             }
-            // Reset the deferredPrompt variable, as it can only be used once
+            // Install-Prompt variable resetten (kann nur einmal verwendet werden)
             installPrompt = null;
         });
     }
@@ -127,19 +145,15 @@ async function downloadWebApp() {
 
 // Eventlistener zum Abfangen des "beforeinstallprompt"s
 window.addEventListener('beforeinstallprompt', (event) => {
-    // Prevent the default browser install prompt
+    // Standard Install-Prompt abfangen & verhindern
     event.preventDefault();
 
-    // Store the event object for later use
+    // Install-Prompt auf die Variable zuweisen
     installPrompt = event;
 
-    // Show the install button
+    // Install-Button anzeigen
     document.getElementById('download-button').style.visibility = 'visible';
 });
-
-//Wartezeit für Download-Button
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
 
 //Variablen für andere Skripte verfügbar machen
 window.chatID = chatID;

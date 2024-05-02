@@ -44,7 +44,7 @@ namespace Second_Client_WPF
                     }
                     else
                     {
-                        MessageBox.Show("Anmeldung fehlgeschlagen");
+                        MessageBox.Show("Registrierung fehlgeschlagen");
                     }
                 }
             }
@@ -70,7 +70,7 @@ namespace Second_Client_WPF
                 }
                 else
                 {
-                    MessageBox.Show("Benutzer existíert bereits");
+                    MessageBox.Show("Registrierung fehlgeschlagen");
                 }
             }
             catch (Exception ex)

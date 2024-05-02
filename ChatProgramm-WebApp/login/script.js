@@ -40,7 +40,7 @@ function changeToDelete() {
 }
 
 // URL zur MongoDB Datenbank definieren
-const urlToMongoDBDatabase = 'http://localhost:8080/tinyWhatsApp';
+const urlToSpringBoot = 'http://localhost:8080/tinyWhatsApp';
 
 //Passwort hashen
 async function hash(password) {
@@ -55,7 +55,7 @@ async function hash(password) {
 async function checkUserExistence(event) {
     try {
         event.preventDefault();
-        const response = await fetch(`${urlToMongoDBDatabase}/checkUser`, {
+        const response = await fetch(`${urlToSpringBoot}/checkUser`, {
             method: 'POST',
             body: JSON.stringify({
                 'username': document.getElementById("usernameLogin").value,
@@ -68,12 +68,11 @@ async function checkUserExistence(event) {
         document.getElementById("passwordLogin").value = "";
 
         const data = await response.text();
-        if (data === null) {
-            document.getElementById("messageBoxText").value = "Anmeldung fehlgeschlagen";
-            document.getElementById("messageBox").style.display = "block";
-        } else {
+        if (data !== null && data !== "") {
             uID = data.userID;
             window.location.href = '../home/home.html';
+        } else {
+            alert("Anmeldung fehlgeschlagen");
         }
     } catch (error) {
         console.error(error);
@@ -85,7 +84,7 @@ async function checkUserExistence(event) {
 async function createNewUser(event) {
     try {
         event.preventDefault();
-        const response = await fetch(`${urlToMongoDBDatabase}/newUser`, {
+        const response = await fetch(`${urlToSpringBoot}/newUser`, {
             method: 'POST',
             body: JSON.stringify({
                 'username': document.getElementById("usernameRegister").value,
@@ -99,13 +98,11 @@ async function createNewUser(event) {
         changeToLogin();
 
         const data = await response.text();
-
-        if (data === null) {
-            document.getElementById("messageBoxText").value = "Dieser User existiert bereits";
-            document.getElementById("messageBox").style.display = "block";
-        } else {
+        if (data !== null && data !== "") {
             uID = data.userID;
             window.location.href = '../home/home.html';
+        } else {
+            alert("Registrierung fehlgeschlagen");
         }
     } catch (error) {
         console.error(error);
@@ -116,7 +113,7 @@ async function createNewUser(event) {
 async function updateUser(event) {
     try {
         event.preventDefault();
-        const response = await fetch(`${urlToMongoDBDatabase}/updateUser`, {
+        const response = await fetch(`${urlToSpringBoot}/updateUser`, {
             method: 'PUT',
             body: JSON.stringify({
                 'username': document.getElementById("usernamePasswordLost").value,
@@ -130,13 +127,11 @@ async function updateUser(event) {
         changeToLogin();
 
         const data = await response.text();
-
-        if (data === null) {
-            document.getElementById("messageBoxText").value = "Dieser User existiert nicht";
-            document.getElementById("messageBox").style.display = "block";
-        } else {
+        if (data !== null && data !== "") {
             uID = data.userID;
             window.location.href = '../home/home.html';
+        } else {
+            alert("Passwort aktualisieren fehlgeschlagen");
         }
     } catch (error) {
         console.error(error);
@@ -147,7 +142,7 @@ async function updateUser(event) {
 async function deleteUser(event) {
     try {
         event.preventDefault();
-        const response = await fetch(`${urlToMongoDBDatabase}/deleteUser`, {
+        const response = await fetch(`${urlToSpringBoot}/deleteUser`, {
             method: 'DELETE',
             body: JSON.stringify({
                 'username': document.getElementById("usernameDelete").value,
@@ -160,16 +155,12 @@ async function deleteUser(event) {
         document.getElementById("passwordDelete").value = "";
         changeToLogin();
 
-        document.getElementById("messageBoxText").value = await response.text();
-        document.getElementById("messageBox").style.display = "block";
+        alert(await response.text());
     } catch (error) {
         console.error(error);
     }
 }
 
-function hideMessageBox() {
-    document.getElementById("messageBox").style.display = "none";
-}
-
 //Variable für andere Scripte verfügbar machen
 window.userID = uID;
+window.urlToSpringBoot = urlToSpringBoot;
