@@ -33,6 +33,12 @@ body {
     .container {
         width: 90%;
     }
+    #chat-names {
+        height: 50vh;
+    }
+    #download-button {
+        height: 5%;
+    }
 }
 
 /*Chat-Auswahl stylen*/
@@ -47,7 +53,7 @@ body {
 #chat-messages {
     position: relative;
     width: 90%;
-    background-color: black;
+    background-color: white;
     overflow-y: auto;
 }
 

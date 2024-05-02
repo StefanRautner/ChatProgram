@@ -15,7 +15,7 @@ async function createChat(event) {
         if(!await response.text()) {
             alert("Chat konnte nicht hinzugefügt werden");
         } else {
-            window.location.href = '../home/home.html';
+            window.location.href = '../home/home.html' + window.urlParameter;
             alert("Chat erfolgreich hinzugefügt");
         }
     } catch (error) {
@@ -38,7 +38,7 @@ async function deleteChat(event) {
             if(!await response.text()) {
                 alert("Chat konnte nicht hinzugefügt werden");
             } else {
-                window.location.href = '../home/home.html';
+                window.location.href = '../home/home.html' + window.urlParameter;
                 alert("Chat erfolgreich gelöscht");
             }
         } else {
@@ -64,7 +64,7 @@ async function updateChatNames(event) {
             if(!await response.text()) {
                 alert("Chatname konnte nicht aktualisiert werden");
             } else {
-                window.location.href = '../home/home.html';
+                window.location.href = '../home/home.html' + window.urlParameter;
                 alert("Chatname wurde erfolgreich aktualisiert");
             }
         } else {
@@ -126,5 +126,5 @@ async function removeUserFromChat(event) {
 }
 
 function backToHome() {
-    window.location.href = '../home/home.html';
+    window.location.href = '../home/home.html' + window.urlParameter;
 }

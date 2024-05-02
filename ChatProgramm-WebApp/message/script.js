@@ -15,10 +15,10 @@ async function updateMessage(event) {
         });
 
         if(!await response.text()) {
-            window.location.href = '../home/home.html';
+            window.location.href = '../home/home.html' + window.urlParameter;
             alert("Nachricht existiert schon zu lange");
         } else {
-            window.location.href = '../home/home.html';
+            window.location.href = '../home/home.html' + window.urlParameter;
             alert("Nachricht wurde erfolgreich aktualisiert");
         }
     } catch (error) {
@@ -40,10 +40,10 @@ async function deleteMessage(event) {
         });
 
         if(!await response.text()) {
-            window.location.href = '../home/home.html';
+            window.location.href = '../home/home.html' + window.urlParameter;
             alert("Nachricht konnte nicht entfernt werden");
         } else {
-            window.location.href = '../home/home.html';
+            window.location.href = '../home/home.html' + window.urlParameter;
             alert("Nachricht wurde erfolgreich aktualisiert");
         }
     } catch (error) {

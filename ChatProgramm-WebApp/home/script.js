@@ -1,11 +1,10 @@
 //Autor: Stefan Rautner
-
 //Prompt des WebApp-Downloads
 let installPrompt = null;
 
 //Variable setzen
-let chatID;
-let messageID;
+let chatID = "";
+let messageID = "";
 
 //Interval zum Erhalten der Nachrichten
 let chatUpdateIntervall = null;
@@ -110,7 +109,7 @@ async function sendData(event) {
 
 function editDeleteMessage() {
     if(chatID !== null && chatID !== "" && messageID != null && messageID !== "") {
-        window.location.href = '../message/message.html';
+        window.location.href = '../message/message.html' + window.urlParameter;
     } else {
         alert("Bitte wählen Sie eine Nachricht aus");
     }
@@ -118,7 +117,7 @@ function editDeleteMessage() {
 
 function addEditDeleteChat() {
     if(chatID !== null && chatID !== "") {
-        window.location.href = '../chat/chat.html';
+        window.location.href = '../chat/chat.html' + window.urlParameter;
     } else {
         alert("Bitte wählen Sie einen Chat aus");
     }

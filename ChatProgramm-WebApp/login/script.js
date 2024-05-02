@@ -70,7 +70,7 @@ async function checkUserExistence(event) {
         const data = await response.text();
         if (data !== null && data !== "") {
             uID = data.userID;
-            window.location.href = '../home/home.html';
+            window.location.href = '../home/home.html' + window.urlParameter;
         } else {
             alert("Anmeldung fehlgeschlagen");
         }
@@ -100,7 +100,7 @@ async function createNewUser(event) {
         const data = await response.text();
         if (data !== null && data !== "") {
             uID = data.userID;
-            window.location.href = '../home/home.html';
+            window.location.href = '../home/home.html' + window.urlParameter;
         } else {
             alert("Registrierung fehlgeschlagen");
         }
@@ -129,7 +129,7 @@ async function updateUser(event) {
         const data = await response.text();
         if (data !== null && data !== "") {
             uID = data.userID;
-            window.location.href = '../home/home.html';
+            window.location.href = '../home/home.html' + window.urlParameter;
         } else {
             alert("Passwort aktualisieren fehlgeschlagen");
         }
@@ -164,3 +164,4 @@ async function deleteUser(event) {
 //Variable für andere Scripte verfügbar machen
 window.userID = uID;
 window.urlToSpringBoot = urlToSpringBoot;
+window.urlParameter = window.location.search;
