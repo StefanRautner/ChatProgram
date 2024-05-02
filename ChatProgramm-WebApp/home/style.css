@@ -45,6 +45,7 @@ body {
 
 /*Chatnachrichten stylen*/
 #chat-messages {
+    position: relative;
     width: 90%;
     background-color: black;
     overflow-y: auto;
@@ -52,7 +53,10 @@ body {
 
 /*Download Button stylen*/
 #download-button {
-    height: 10%;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 8%;
     color: white;
     background-color: #007bff;
     cursor: pointer;
