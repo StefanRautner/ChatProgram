@@ -99,7 +99,7 @@ async function sendData(event) {
 
         document.getElementById("user-input").value = "";
 
-        if(!await response.text()) {
+        if (!await response.text()) {
             alert("Nachricht konnte nicht hinzugefügt werden");
         }
     } catch (error) {
@@ -108,7 +108,7 @@ async function sendData(event) {
 }
 
 function editDeleteMessage() {
-    if(chatID !== null && chatID !== "" && messageID != null && messageID !== "") {
+    if (chatID !== null && chatID !== "" && messageID != null && messageID !== "") {
         window.location.href = '../message/message.html' + window.urlParameter;
     } else {
         alert("Bitte wählen Sie eine Nachricht aus");
@@ -116,11 +116,7 @@ function editDeleteMessage() {
 }
 
 function addEditDeleteChat() {
-    if(chatID !== null && chatID !== "") {
-        window.location.href = '../chat/chat.html' + window.urlParameter;
-    } else {
-        alert("Bitte wählen Sie einen Chat aus");
-    }
+    window.location.href = '../chat/chat.html' + window.urlParameter;
 }
 
 // Funktion um das Install-Prompt aufzurufen
