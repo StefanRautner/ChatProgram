@@ -3,20 +3,25 @@
 //Chat oder Gruppe hinzufügen
 async function createChat(event) {
     try {
+        const chatName = document.getElementById("new-chatname").value;
         event.preventDefault();
-        const response = await fetch(`${window.urlToSpringBoot}/newChat`, {
-            method: 'POST',
-            body: JSON.stringify({
-                'userID': window.userID,
-                'chatName': document.getElementById("new-chatname").value
-            })
-        });
+        if(chatName !== null && chatName !== "") {
+            const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/newChat`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    'userID': localStorage.getItem('userID'),
+                    'chatName': document.getElementById("new-chatname").value
+                })
+            });
 
-        if(!await response.text()) {
-            alert("Chat konnte nicht hinzugefügt werden");
+            if(!await response.text()) {
+                alert("Chat konnte nicht hinzugefügt werden");
+            } else {
+                window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
+                alert("Chat erfolgreich hinzugefügt");
+            }
         } else {
-            window.location.href = '../home/home.html' + window.urlParameter;
-            alert("Chat erfolgreich hinzugefügt");
+            alert("Bitte geben Sie einen Chatnamen ein");
         }
     } catch (error) {
         console.error(error);
@@ -27,18 +32,18 @@ async function createChat(event) {
 async function deleteChat(event) {
     try {
         event.preventDefault();
-        if(chatID !== null && chatID !== "") {
-            const response = await fetch(`${window.urlToSpringBoot}/deleteChat`, {
+        if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
+            const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/deleteChat`, {
                 method: 'DELETE',
                 body: JSON.stringify({
-                    'chatID': window.chatID
+                    'chatID': localStorage.getItem('chatID')
                 })
             });
 
             if(!await response.text()) {
                 alert("Chat konnte nicht hinzugefügt werden");
             } else {
-                window.location.href = '../home/home.html' + window.urlParameter;
+                window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
                 alert("Chat erfolgreich gelöscht");
             }
         } else {
@@ -51,24 +56,29 @@ async function deleteChat(event) {
 
 async function updateChatNames(event) {
     try {
+        const chatName = document.getElementById("new-chatname").value;
         event.preventDefault();
-        if(chatID !== null && chatID !== "") {
-            const response = await fetch(`${window.urlToSpringBoot}/updateChatName`, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    'chatID': window.chatID,
-                    'chatName': document.getElementById("new-chatname").value
-                })
-            });
+        if(chatName !== null && chatName !== "") {
+            if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
+                const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/updateChatName`, {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        'chatID': localStorage.getItem('chatID'),
+                        'chatName': chatName
+                    })
+                });
 
-            if(!await response.text()) {
-                alert("Chatname konnte nicht aktualisiert werden");
+                if(!await response.text()) {
+                    alert("Chatname konnte nicht aktualisiert werden");
+                } else {
+                    window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
+                    alert("Chatname wurde erfolgreich aktualisiert");
+                }
             } else {
-                window.location.href = '../home/home.html' + window.urlParameter;
-                alert("Chatname wurde erfolgreich aktualisiert");
+                alert("Bitte wählen Sie einen Chat aus");
             }
         } else {
-            alert("Bitte wählen Sie einen Chat aus");
+            alert("Bitte geben Sie einen Chatnamen ein");
         }
     } catch (error) {
         console.error(error);
@@ -78,22 +88,27 @@ async function updateChatNames(event) {
 async function addUserToChat(event) {
     try {
         event.preventDefault();
-        if(chatID !== null && chatID !== "") {
-            const response = await fetch(`${window.urlToSpringBoot}/addUserToChat`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    'username': document.getElementById("add-user").value,
-                    'chatID': window.chatID
-                })
-            });
+        const username = document.getElementById("add-user").value;
+        if(username !== null && username !== "") {
+            if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
+                const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/addUserToChat`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        'username': username,
+                        'chatID': localStorage.getItem('chatID')
+                    })
+                });
 
-            if(!await response.text()) {
-                alert("Benutzer konnte nicht zum Chat hinzugefügt werden");
+                if(!await response.text()) {
+                    alert("Benutzer konnte nicht zum Chat hinzugefügt werden");
+                } else {
+                    alert("Benutzer wurde erfolgreich in den Chat hinzugefügt");
+                }
             } else {
-                alert("Benutzer wurde erfolgreich in den Chat hinzugefügt");
+                alert("Bitte wählen Sie einen Chat aus");
             }
         } else {
-            alert("Bitte wählen Sie einen Chat aus");
+            alert("Bitte geben Sie einen Benutzernamen ein");
         }
     } catch (error) {
         console.error(error);
@@ -103,22 +118,27 @@ async function addUserToChat(event) {
 async function removeUserFromChat(event) {
     try {
         event.preventDefault();
-        if(chatID !== null && chatID !==  "") {
-            const response = await fetch(`${window.urlToSpringBoot}/removeUserFromChat`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    'username': document.getElementById("add-user").value,
-                    'chatID': window.chatID
-                })
-            });
+        const username = document.getElementById("add-user").value;
+        if(username !== null && username !== "") {
+            if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !==  "") {
+                const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/removeUserFromChat`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        'username': username,
+                        'chatID': localStorage.getItem('chatID')
+                    })
+                });
 
-            if(!await response.text()) {
-                alert("Benutzer konnte nicht aus dem Chat entfernt werden");
+                if(!await response.text()) {
+                    alert("Benutzer konnte nicht aus dem Chat entfernt werden");
+                } else {
+                    alert("Benutzer wurde erfolgreich aus dem Chat entfernt");
+                }
             } else {
-                alert("Benutzer wurde erfolgreich aus dem Chat entfernt");
+                alert("Bitte wählen Sie einen Chat aus");
             }
         } else {
-            alert("Bitte wählen Sie einen Chat aus");
+            alert("Bitte geben Sie einen Benutzernamen ein");
         }
     } catch (error) {
         console.error(error);
@@ -126,5 +146,5 @@ async function removeUserFromChat(event) {
 }
 
 function backToHome() {
-    window.location.href = '../home/home.html' + window.urlParameter;
+    window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
 }

@@ -4,22 +4,27 @@
 async function updateMessage(event) {
     try {
         event.preventDefault();
-        const response = await fetch(`${window.urlToSpringBoot}/updateMessage`, {
-            method: 'PUT',
-            body: JSON.stringify({
-                'userID': window.userID,
-                'chatID': window.chatID,
-                'messageID': window.messageID,
-                'message': document.getElementById("new-message").value
-            })
-        });
+        const messageText = document.getElementById('new-message').value;
+        if(messageText !== null && messageText !== "") {
+            const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/updateMessage`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    'userID': localStorage.getItem('userID'),
+                    'chatID': localStorage.getItem('chatID'),
+                    'messageID': localStorage.getItem('messageID'),
+                    'message': document.getElementById("new-message").value
+                })
+            });
 
-        if(!await response.text()) {
-            window.location.href = '../home/home.html' + window.urlParameter;
-            alert("Nachricht existiert schon zu lange");
+            if(!await response.text()) {
+                window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
+                alert("Nachricht existiert schon zu lange");
+            } else {
+                window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
+                alert("Nachricht wurde erfolgreich aktualisiert");
+            }
         } else {
-            window.location.href = '../home/home.html' + window.urlParameter;
-            alert("Nachricht wurde erfolgreich aktualisiert");
+            alert("Bitte geben Sie einen Nachrichten-Text ein");
         }
     } catch (error) {
         console.error(error);
@@ -30,20 +35,20 @@ async function updateMessage(event) {
 async function deleteMessage(event) {
     try {
         event.preventDefault();
-        const response = await fetch(`${window.urlToSpringBoot}/deleteMessage`, {
+        const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/deleteMessage`, {
             method: 'DELETE',
             body: JSON.stringify({
-                'userID': window.userID,
-                'chatID': window.chatID,
-                'messageID': window.messageID
+                'userID': localStorage.getItem('userID'),
+                'chatID': localStorage.getItem('chatID'),
+                'messageID': localStorage.getItem('messageID')
             })
         });
 
         if(!await response.text()) {
-            window.location.href = '../home/home.html' + window.urlParameter;
+            window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
             alert("Nachricht konnte nicht entfernt werden");
         } else {
-            window.location.href = '../home/home.html' + window.urlParameter;
+            window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
             alert("Nachricht wurde erfolgreich aktualisiert");
         }
     } catch (error) {

@@ -2,21 +2,20 @@
 //Prompt des WebApp-Downloads
 let installPrompt = null;
 
-//Variable setzen
-let chatID = "";
-let messageID = "";
-
 //Interval zum Erhalten der Nachrichten
 let chatUpdateIntervall = null;
 
+document.addEventListener('DOMContentLoaded', async (event) => {
+    await getChatNames(event);
+})
+
 //Chatnamen erhalten
-document.onload = async function getChatNames(event) {
+async function getChatNames(event) {
     try {
         event.preventDefault();
-        const response = await fetch(`${window.urlToSpringBoot}/getChatNames`, {
-            methode: 'GET',
-            body: JSON.stringify({
-                'userID': window.userID
+        const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/getChatNames`, {
+            methode: 'POST', body: JSON.stringify({
+                'userID': localStorage.getItem('userID')
             })
         });
         const data = await response.json;
@@ -35,9 +34,10 @@ document.onload = async function getChatNames(event) {
             listElement.Text = chatName.chatName;
             listElement.id = chatName.chatID;
             listElement.onclick = function () {
-                chatID = this.id;
-                chatUpdateIntervall = setInterval(function () {
-                    getData(event);
+                localStorage.setItem('chatID', this.id);
+                chatUpdateIntervall = setInterval(async function () {
+                    await getChatNames(event);
+                    await getData(event);
                 }, 50);
             };
             listElement.ondblclick = function () {
@@ -54,11 +54,10 @@ document.onload = async function getChatNames(event) {
 async function getData(event) {
     try {
         event.preventDefault();
-        const response = await fetch(`${window.urlToSpringBoot}/getMessages`, {
-            methode: 'GET',
-            body: JSON.stringify({
-                'userID': window.userID,
-                'chatID': chatID
+        const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/getMessages`, {
+            methode: 'POST', body: JSON.stringify({
+                'userID': localStorage.getItem('userID'),
+                'chatID': localStorage.getItem('chatID')
             })
         });
         const data = await response.json;
@@ -72,7 +71,7 @@ async function getData(event) {
             listElement.Text = element.message;
             listElement.id = element.messageID;
             listElement.onclick = function () {
-                messageID = this.id;
+                localStorage.setItem('messageID', this.id);
             };
             listElement.ondblclick = function () {
                 editDeleteMessage();
@@ -87,20 +86,24 @@ async function getData(event) {
 //Nachricht hinzufügen
 async function sendData(event) {
     try {
+        const messageText = document.getElementById("user-input").value;
         event.preventDefault();
-        const response = await fetch(`${window.urlToSpringBoot}/newMessage`, {
-            method: 'POST',
-            body: JSON.stringify({
-                'userID': window.userID,
-                'chatID': chatID,
-                'message': document.getElementById("user-input").value
-            })
-        });
+        if(messageText !== null && messageText !== "") {
+            const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/newMessage`, {
+                method: 'POST', body: JSON.stringify({
+                    'userID': localStorage.getItem('userID'),
+                    'chatID': localStorage.getItem('chatID'),
+                    'message': messageText
+                })
+            });
 
-        document.getElementById("user-input").value = "";
+            document.getElementById("user-input").value = "";
 
-        if (!await response.text()) {
-            alert("Nachricht konnte nicht hinzugefügt werden");
+            if (!await response.text()) {
+                alert("Nachricht konnte nicht hinzugefügt werden");
+            }
+        } else {
+            alert("Bitte geben Sie eine Nachricht ein");
         }
     } catch (error) {
         console.error(error);
@@ -108,15 +111,15 @@ async function sendData(event) {
 }
 
 function editDeleteMessage() {
-    if (chatID !== null && chatID !== "" && messageID != null && messageID !== "") {
-        window.location.href = '../message/message.html' + window.urlParameter;
+    if (localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "" && localStorage.getItem('messageID') != null && localStorage.getItem('messageID') !== "") {
+        window.location.href = '../message/message.html' + localStorage.getItem('urlParameter');
     } else {
         alert("Bitte wählen Sie eine Nachricht aus");
     }
 }
 
 function addEditDeleteChat() {
-    window.location.href = '../chat/chat.html' + window.urlParameter;
+    window.location.href = '../chat/chat.html' + localStorage.getItem('urlParameter');
 }
 
 // Funktion um das Install-Prompt aufzurufen
@@ -150,6 +153,10 @@ window.addEventListener('beforeinstallprompt', (event) => {
     document.getElementById('download-button').style.visibility = 'visible';
 });
 
-//Variablen für andere Skripte verfügbar machen
-window.chatID = chatID;
-window.messageID = messageID;
+//Variablen aus dem LocalStorage löschen
+window.addEventListener('beforeunload', (event) => {
+    localStorage.removeItem('userID');
+    localStorage.removeItem('chatID');
+    localStorage.removeItem('messageID');
+    localStorage.removeItem('urlParameter');
+});

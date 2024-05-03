@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|c:\\users\\stefa\\onedrive\\desktop\\chatprogram\\second_client_wpf\\chat.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|solutionrelative:chat.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|c:\\users\\stefa\\onedrive\\desktop\\chatprogram\\second_client_wpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|c:\\users\\stefa\\onedrive\\desktop\\chatprogram\\second_client_wpf\\verbindungzuserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,14 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Chat.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\Chat.xaml.cs",
-              "RelativeDocumentMoniker": "Chat.xaml.cs",
-              "ToolTip": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\Chat.xaml.cs",
-              "RelativeToolTip": "Chat.xaml.cs",
-              "ViewState": "AQIAAH8AAAAAAAAAAAAzwIsAAABZAAAA",
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAYwA4AAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T08:00:36.104Z",
+              "WhenOpened": "2024-05-03T19:57:59.182Z",
               "EditorCaption": ""
             },
             {
@@ -43,8 +43,7 @@
               "RelativeToolTip": "VerbindungZuServer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T08:00:33.342Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-01T08:00:33.342Z"
             }
           ]
         }
