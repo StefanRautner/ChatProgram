@@ -218,7 +218,7 @@ var content = new StringContent("{ 'message': 'Hallo Welt!' }", Encoding.UTF8, "
 var response = await client.PostAsync("https://example.com/messages", content);
 ```
 
-## Digramme
+## Diagramme
 
 ```mermaid
 graph TD;
