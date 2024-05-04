@@ -13,25 +13,199 @@ Das Chat-Programm (tinyWhatsApp) ermöglicht Benutzern miteinander in Echtzeit z
 Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den Clients, Nachrichten zu senden, zu empfangen und vieles mehr. (Kein GET-Endpoint, da diese im Web keinen Body haben dürfen & ich mein System einheitlich halten wollte)
 Die Endpunkte umfassen:
 
-- `/tinyWhatsApp`: Genreller Endpoint der API
-<br>
-- `/checkUser`[POST]: Zugangsdaten des Benutzers überprüfen
-- `/newUser`[POST]: Neuen Benutzer hinzufügen
-- `/updateUser`[PUT]: Passwort des Benutzers aktualisieren
-- `/deleteUser`[DELETE]: Benutzer löschen
-<br>
-- `/getChatNames`[POST]: Alle Chatnamen der Chats (in denen der Benutzer ist) erhalten
-- `/newChat`[POST]: Neuen Chat anlegen
-- `/updateChatName`[PUT]: Chatnamen aktualisieren
-- `/deleteChat`[DELETE]: Chat löschen
-<br>
-- `/addUserToChat`[POST]: Benutzer zum Chat hinzufügen
-- `/removeUserFromChat`[DELETE]: Benutzer aus dem Chat entfernen
-<br>
-- `/getMessages`[POST]: Alle Nachrichten eines Chats erhalten
-- `/newMessage`[POST]: Neue Nachricht hinzufügen
-- `/updateMessage`[PUT]: Nachrichtentext aktualisieren (nur in den ersten 5 Minuten nach erstellen der Nachricht möglich)
-- `/deleteMessage`[DELETE]: Nachricht löschen
+<!-- Genereller Endpoint -->
+<details>
+  <summary>/tinyWhatsApp []</summary>
+  
+  **Beschreibung:** Dieser Endpunkt ist der generelle Endpoint der API, welcher vor dem jeweiligen spezifischen Endpoint geschrieben werden muss.
+</details>
+<!-- Benutzer -->
+<details>
+  <summary>/checkUser [POST]</summary>
+  
+  **Beschreibung:** Dieser Endpunkt wird verwendet, um die Zugangsdaten eines Benutzers zu überprüfen.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "username": "Beispiel-Benutzername",
+    "password": "Beispiel-Passwort"
+  }
+  ```
+</details>
+<details>
+  <summary>/newUser [POST]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wird verwendet, um einen Neuen Benutzer anzulegen.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "username": "Beispiel-Benutzername",
+    "password": "Beispiel-Passwort"
+  }
+  ```
+</details>
+<details>
+  <summary>/updateUser [PUT]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wird verwedent, um das Passwort eines Benutzers zu ändern.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "username": "Beispiel-Benutzername",
+    "password": "Beispiel-Passwort"
+  }
+  ```
+</details>
+<details>
+  <summary>/deleteUser [DELETE]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wird verwendet, um einen Benutzer zu löschen.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "username": "Beispiel-Benutzername",
+    "password": "Beispiel-Passwort"
+  }
+  ```
+</details>
+<!-- Chat -->
+<details>
+  <summary>/getChatNames [POST]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wirde verwendet, um die Namen aller Chats eines Benutzers zu erhalten.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "userID": "Beispiel-userID"
+  }
+  ```
+</details>
+<details>
+  <summary>/newChat [POST]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wirde verwendet, um einen neuen Chat anzulegen.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "userID": "Beispiel-userID",
+    "chatName": "Beispiel-Chatnamen"
+  }
+  ```
+</details>
+<details>
+  <summary>/updateChatName [PUT]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wirde verwendet, um den Namen eines Chats zu aktualisieren.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "chatID": "Beispiel-chatID",
+    "chatName": "Beispiel-Chatnamen"
+  }
+  ```
+</details><details>
+  <summary>/deleteChat [DELETE]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wirde verwendet, um einen Chat zu löschen.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "chatID": "Beispiel-chatID"
+  }
+  ```
+</details>
+<!-- Benutzer & Chat -->
+<details>
+  <summary>/addUserToChat [POST]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wirde verwendet, um einen Benutzer zu einem Chat hinzuzufügen.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "username": "Beispiel-Benutzername",
+    "chatID": "Beispiel-chatID"
+  }
+  ```
+</details>
+<details>
+  <summary>/removeUserFromChat [DELETE]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wirde verwendet, um einen Benutzer aus einem Chat zu entfernen.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "username": "Beispiel-Benutzername",
+    "chatID": "Beispiel-chatID"
+  }
+  ```
+</details>
+<!-- Nachrichten -->
+<details>
+  <summary>/getMessages [POST]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wirde verwendet, um alle Nachrichten eines Chats zu erhalten.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "chatID": "Beispiel-chatID",
+    "userID": "Beispiel-userID"
+  }
+  ```
+</details>
+<details>
+  <summary>/newMessage [POST]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wirde verwendet, um eine neue Nachricht zum Chat hinzuzufügen.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "userID": "Beispiel-userID",
+    "chatID": "Beispiel-chatID",
+    "message": "Beispiel-Nachrichtentext"
+  }
+  ```
+</details>
+<details>
+  <summary>/updateMessage [PUT]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wirde verwendet, um den Inhalt einer Nachricht zu aktualisieren (geht nur in den ersten 5 Minuten nch erstellen der Nachricht).
+  
+  **JSON-Body:**
+  ```json
+  {
+    "userID": "Beispiel-userID",
+    "chatID": "Beispiel-chatID",
+    "messageID": "Beispiel-messageID",
+    "message": "Beispiel-Nachrichtentext"
+  }
+  ```
+</details>
+<details>
+  <summary>/deleteMessage [DELETE]</summary>
+  
+  **Beschreibung:** Dieser Endpoint wirde verwendet, um eine Nachricht aus einem Chat zu löschen.
+  
+  **JSON-Body:**
+  ```json
+  {
+    "userID": "Beispiel-userID",
+    "chatID": "Beispiel-chatID",
+    "messageID": "Beispiel-messageID"
+  }
+  ```
+</details>
 
 ## Verwendung der API
 
