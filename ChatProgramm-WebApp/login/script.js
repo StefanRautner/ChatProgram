@@ -50,11 +50,10 @@ async function hash(password) {
 }
 
 //Benutzer überprüfen
-async function checkUserExistence(event) {
+async function checkUserExistence() {
     try {
         const username = document.getElementById("usernameLogin").value;
         const password = document.getElementById("passwordLogin").value;
-        event.preventDefault();
         if(username !== null && username !== "" && password !== null && password !== "") {
             const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/checkUser`, {
                 method: 'POST',
@@ -70,7 +69,7 @@ async function checkUserExistence(event) {
 
             const data = await response.text();
             if (data !== null && data !== "") {
-                localStorage.setItem('userID', data.userID);
+                localStorage.setItem('userID', data);
                 window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
             } else {
                 alert("Anmeldung fehlgeschlagen");
@@ -85,11 +84,10 @@ async function checkUserExistence(event) {
 
 
 //Benutzer hinzufügen
-async function createNewUser(event) {
+async function createNewUser() {
     try {
         const username = document.getElementById("usernameRegister").value;
         const password = document.getElementById("passwordRegister").value;
-        event.preventDefault();
         if(username !== null && username !== "" && password !== null && password !== "") {
             const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/newUser`, {
                 method: 'POST',
@@ -106,7 +104,7 @@ async function createNewUser(event) {
 
             const data = await response.text();
             if (data !== null && data !== "") {
-                localStorage.setItem('userID', data.userID);
+                localStorage.setItem('userID', data);
                 window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
             } else {
                 alert("Registrierung fehlgeschlagen");
@@ -120,11 +118,10 @@ async function createNewUser(event) {
 }
 
 //Benutzer aktualisieren/updaten
-async function updateUser(event) {
+async function updateUser() {
     try {
         const username = document.getElementById("usernamePasswordLost").value;
         const password = document.getElementById("passwordPasswordLost").value;
-        event.preventDefault();
         if(username !== null && username !== "" && password !== null && password !== "") {
             const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/updateUser`, {
                 method: 'PUT',
@@ -141,7 +138,7 @@ async function updateUser(event) {
 
             const data = await response.text();
             if (data !== null && data !== "") {
-                localStorage.setItem('userID', data.userID);
+                localStorage.setItem('userID', data);
                 window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
             } else {
                 alert("Passwort aktualisieren fehlgeschlagen");
@@ -155,11 +152,10 @@ async function updateUser(event) {
 }
 
 //Benutzer aktualisieren/updaten
-async function deleteUser(event) {
+async function deleteUser() {
     try {
         const username = document.getElementById("usernameDelete").value;
         const password = document.getElementById("passwordDelete").value;
-        event.preventDefault();
         if(username !== null && username !== "" && password !== null && password !== "") {
             const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/deleteUser`, {
                 method: 'DELETE',

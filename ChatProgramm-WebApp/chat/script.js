@@ -1,10 +1,9 @@
 //Autor: Stefan Rautner
 
 //Chat oder Gruppe hinzufügen
-async function createChat(event) {
+async function createChat() {
     try {
         const chatName = document.getElementById("new-chatname").value;
-        event.preventDefault();
         if(chatName !== null && chatName !== "") {
             const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/newChat`, {
                 method: 'POST',
@@ -29,9 +28,8 @@ async function createChat(event) {
 }
 
 //Chat/Gruppe löschen
-async function deleteChat(event) {
+async function deleteChat() {
     try {
-        event.preventDefault();
         if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
             const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/deleteChat`, {
                 method: 'DELETE',
@@ -44,6 +42,7 @@ async function deleteChat(event) {
                 alert("Chat konnte nicht hinzugefügt werden");
             } else {
                 window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
+                localStorage.setItem('chatID', "");
                 alert("Chat erfolgreich gelöscht");
             }
         } else {
@@ -54,10 +53,9 @@ async function deleteChat(event) {
     }
 }
 
-async function updateChatNames(event) {
+async function updateChatNames() {
     try {
         const chatName = document.getElementById("new-chatname").value;
-        event.preventDefault();
         if(chatName !== null && chatName !== "") {
             if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
                 const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/updateChatName`, {
@@ -85,9 +83,8 @@ async function updateChatNames(event) {
     }
 }
 
-async function addUserToChat(event) {
+async function addUserToChat() {
     try {
-        event.preventDefault();
         const username = document.getElementById("add-user").value;
         if(username !== null && username !== "") {
             if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
@@ -115,9 +112,8 @@ async function addUserToChat(event) {
     }
 }
 
-async function removeUserFromChat(event) {
+async function removeUserFromChat() {
     try {
-        event.preventDefault();
         const username = document.getElementById("add-user").value;
         if(username !== null && username !== "") {
             if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !==  "") {

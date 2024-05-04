@@ -17,9 +17,52 @@ body {
     overflow: hidden;
 }
 
-/*Nachrichten stylen*/
-.chat {
+/*Nachrichten & Chatnamen stylen*/
+/* Listen der Chatnachrichten & Chatnamen stylen */
+#chat-messages, #chat-names {
+    position: relative;
+    width: 90%;
+    background-color: white;
+    overflow-y: auto;
+}
 
+/* Chatnachrichten stylen */
+#chat-messages li {
+    display: block;
+    max-width: 70%;
+    padding: 10px;
+    margin: 10px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 20px;
+    word-wrap: break-word;
+}
+
+/* Chatnamen stylen */
+#chat-names li {
+    display: block;
+    max-width: 70%;
+    padding: 10px;
+    margin: 10px;
+    background-color: grey;
+    color: white;
+    border-radius: 20px;
+    word-wrap: break-word;
+}
+
+/* Hintergrund des ausgewählten Chats ändern */
+.selected-chat {
+    background-color: deepskyblue;
+}
+
+/* Hintergrund der ausgewählten Nachricht ändern */
+.selected-message {
+    background-color: grey;
+}
+
+/* Margin der letzten Nachricht/Chatnamen löschen/auf 0 setzen */
+#chat-messages li:last-child, #chat-names li:last-child {
+    margin-bottom: 0;
 }
 
 /*Chatfeld stylen*/
@@ -35,9 +78,6 @@ body {
     }
     #chat-names {
         height: 50vh;
-    }
-    #download-button {
-        height: 5%;
     }
 }
 
@@ -62,7 +102,7 @@ body {
     position: absolute;
     top: 5px;
     right: 5px;
-    height: 8%;
+    height: 30px;
     color: white;
     background-color: #007bff;
     cursor: pointer;

@@ -159,7 +159,9 @@ public class ChatService {
     //Chat/Gruppe von User löschen
     public boolean deleteChat(String chatID) {
         try {
-            chatRepository.deleteByChatID(chatID);
+            Chat chat = chatRepository.findByChatID(chatID);
+            messageRepository.deleteAll(chat.getMessageList());
+            chatRepository.delete(chat);
             return true;
         } catch (Exception ex) {
             return false;
@@ -204,8 +206,9 @@ public class ChatService {
                 if (Objects.equals(userInChat.getUserID(), userID)) {
                     for (Message message : chat.getMessageList()) {
                         JSONObject jsonObject = new JSONObject();
+                        User creator = userRepository.findByUserID(message.getCreatorID());
                         jsonObject.put("messageID", message.getMessageID());
-                        jsonObject.put("message", message.getMessage());
+                        jsonObject.put("message", creator.getUsername() + ": " + message.getMessage());
                         jsonArray.put(jsonObject);
                     }
                     break;

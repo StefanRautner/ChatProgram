@@ -2,43 +2,49 @@
 //Prompt des WebApp-Downloads
 let installPrompt = null;
 
-//Interval zum Erhalten der Nachrichten
-let chatUpdateIntervall = null;
+//Ausgewählter Chat & Nachricht für Classlist
+let selectedChat = null;
+let selectedMessage = null;
 
-document.addEventListener('DOMContentLoaded', async (event) => {
-    await getChatNames(event);
+document.addEventListener('DOMContentLoaded', async () => {
+    //Interval zum Erhalten der Nachrichten
+    setInterval(async function () {
+        await getChatNames();
+        if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
+            await getData();
+            console.log(localStorage.getItem('chatID'));        //DEBUG
+            console.log(localStorage.getItem('messageID'));     //DEBUG
+        }
+    }, 50);
 })
 
 //Chatnamen erhalten
-async function getChatNames(event) {
+async function getChatNames() {
     try {
-        event.preventDefault();
         const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/getChatNames`, {
-            methode: 'POST', body: JSON.stringify({
+            method: 'POST',
+            body: JSON.stringify({
                 'userID': localStorage.getItem('userID')
             })
         });
-        const data = await response.json;
+        const data = await response.json();
 
         //Listenelement erhalten
         const list = document.getElementById("namesOfChats");
-
-        //Chat nicht mehr updaten, wenn anderer Chat ausgewählt wurde
-        list.onselectionchange = function () {
-            clearInterval(chatUpdateIntervall);
-        }
+        list.innerHTML = "";
 
         //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
         data.forEach(function (chatName) {
             const listElement = document.createElement("li");
-            listElement.Text = chatName.chatName;
+            listElement.textContent = chatName.chatName;
             listElement.id = chatName.chatID;
             listElement.onclick = function () {
+                if(selectedChat !== null) {
+                    selectedChat.classList.remove("selected-chat");
+                }
+                selectedChat = this;
+                selectedChat.classList.add("selected-chat");
                 localStorage.setItem('chatID', this.id);
-                chatUpdateIntervall = setInterval(async function () {
-                    await getChatNames(event);
-                    await getData(event);
-                }, 50);
             };
             listElement.ondblclick = function () {
                 addEditDeleteChat();
@@ -51,26 +57,31 @@ async function getChatNames(event) {
 }
 
 //Nachrichten erhalten
-async function getData(event) {
+async function getData() {
     try {
-        event.preventDefault();
         const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/getMessages`, {
-            methode: 'POST', body: JSON.stringify({
+            method: 'POST', body: JSON.stringify({
                 'userID': localStorage.getItem('userID'),
                 'chatID': localStorage.getItem('chatID')
             })
         });
-        const data = await response.json;
+        const data = await response.json();
 
         //Listenelement erhalten
         const list = document.getElementById("messagesOfChat");
+        list.innerHTML = "";
 
         //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
         data.forEach(function (element) {
             const listElement = document.createElement("li");
-            listElement.Text = element.message;
+            listElement.textContent = element.message;
             listElement.id = element.messageID;
             listElement.onclick = function () {
+                if(selectedMessage !== null) {
+                    selectedMessage.classList.remove("selected-message");
+                }
+                selectedMessage = this;
+                selectedMessage.classList.add("selected-message");
                 localStorage.setItem('messageID', this.id);
             };
             listElement.ondblclick = function () {
@@ -84,10 +95,9 @@ async function getData(event) {
 }
 
 //Nachricht hinzufügen
-async function sendData(event) {
+async function sendData() {
     try {
         const messageText = document.getElementById("user-input").value;
-        event.preventDefault();
         if(messageText !== null && messageText !== "") {
             const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/newMessage`, {
                 method: 'POST', body: JSON.stringify({
@@ -155,6 +165,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 
 //Variablen aus dem LocalStorage löschen
 window.addEventListener('beforeunload', (event) => {
+    e.returnValue = '';                         //Funktioniert ohne nicht (keine Ahnung warum)
     localStorage.removeItem('userID');
     localStorage.removeItem('chatID');
     localStorage.removeItem('messageID');

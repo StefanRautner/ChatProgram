@@ -34,7 +34,7 @@
     <h2>Registrieren</h2>
     <input id="usernameRegister" type="text" name="Benutzername" placeholder="Benutzername eingeben" required>
     <input id="passwordRegister" type="password" name="Passwort" placeholder="Passwort eingeben" required>
-    <input type="submit" value="Registrieren" onclick="createNewUser(event)">
+    <input type="submit" value="Registrieren" onclick="createNewUser()">
     <div id="loginLink">
         <p onclick="changeToLogin()">Einloggen</p>
         <p onclick="changeToPasswordLost()">Passwort vergessen?</p>
@@ -47,7 +47,7 @@
     <h2>Passwort vergessen</h2>
     <input id="usernamePasswordLost" type="text" name="Benutzername" placeholder="Benutzername eingeben" required>
     <input id="passwordPasswordLost" type="password" name="Passwort" placeholder="Neues Passwort eingeben" required>
-    <input type="submit" value="Passwort aktualisieren" onclick="updateUser(event)">
+    <input type="submit" value="Passwort aktualisieren" onclick="updateUser()">
     <div id="passwordLostLink">
         <p onclick="changeToLogin()">Einloggen</p>
         <p onclick="changeToRegister()">Registrieren</p>
@@ -60,7 +60,7 @@
     <h2>Passwort vergessen</h2>
     <input id="usernameDelete" type="text" name="Benutzername" placeholder="Benutzername eingeben" required>
     <input id="passwordDelete" type="password" name="Passwort" placeholder="Neues Passwort eingeben" required>
-    <input type="submit" value="Passwort aktualisieren" onclick="deleteUser(event)">
+    <input type="submit" value="Passwort aktualisieren" onclick="deleteUser()">
     <div id="deleteLink">
         <p onclick="changeToLogin()">Einloggen</p>
         <p onclick="changeToRegister()">Registrieren</p>

@@ -9,27 +9,27 @@ let checkedForUpdatesAtOpening = false;
 // Definition Versions-Dokumente
 const versionDocuments = [
     /*Icons*/
-    '../icon/icon.ico',
-    '../icon/replacement_icon.png',
+    './icon/icon.ico',
+    './icon/replacement_icon.png',
     /*Home*/
-    '../home/home.html',
-    '../home/style.css',
-    '../home/script.js',
+    './home/home.html',
+    './home/style.css',
+    './home/script.js',
     /*Login/Register/PasswordForgotten*/
-    '../login/login.html',
-    '../login/style.css',
-    '../login/script.js',
+    './login/login.html',
+    './login/style.css',
+    './login/script.js',
     /*Edit/Delete Message*/
-    '../message/message.html',
-    '../message/style.css',
-    '../message/script.js',
+    './message/message.html',
+    './message/style.css',
+    './message/script.js',
     /*Add/Edit/Delete Chat*/
-    '../chat/chat.html',
-    '../chat/style.css',
-    '../chat/script.js',
+    './chat/chat.html',
+    './chat/style.css',
+    './chat/script.js',
     /*WebApp*/
-    'manifest.json',
-    'service-worker.js'
+    './manifest.json',
+    './service-worker.js'
 ];
 
 // Hinzufügen der Ressourcen zum Cache in Chargen

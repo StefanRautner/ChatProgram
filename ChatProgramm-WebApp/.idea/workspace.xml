@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="730826a7-0dc8-47fa-9103-02be2bc360c9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../ChatProgramm-Server/src/main/java/org/example/server_springboot/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatProgramm-Server/src/main/java/org/example/server_springboot/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/chat/chat.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/chat/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/home/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/home/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/login/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message/message.html" beforeDir="false" afterPath="$PROJECT_DIR$/message/message.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/message/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/message/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.metadata.v7.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.metadata.v7.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.projects.v7.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.projects.v7.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/DocumentLayout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/service-worker.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +87,7 @@
       <workItem from="1714740851677" duration="218000" />
       <workItem from="1714759246184" duration="6645000" />
       <workItem from="1714766627679" duration="671000" />
+      <workItem from="1714810973487" duration="7993000" />
     </task>
     <servers />
   </component>
