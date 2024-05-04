@@ -50,8 +50,9 @@ async function hash(password) {
 }
 
 //Benutzer überprüfen
-async function checkUserExistence() {
+async function checkUserExistence(event) {
     try {
+        event.preventDefault();
         const username = document.getElementById("usernameLogin").value;
         const password = document.getElementById("passwordLogin").value;
         if(username !== null && username !== "" && password !== null && password !== "") {
@@ -84,8 +85,9 @@ async function checkUserExistence() {
 
 
 //Benutzer hinzufügen
-async function createNewUser() {
+async function createNewUser(event) {
     try {
+        event.preventDefault();
         const username = document.getElementById("usernameRegister").value;
         const password = document.getElementById("passwordRegister").value;
         if(username !== null && username !== "" && password !== null && password !== "") {
@@ -107,7 +109,7 @@ async function createNewUser() {
                 localStorage.setItem('userID', data);
                 window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
             } else {
-                alert("Registrierung fehlgeschlagen");
+                alert("Registrierung fehlgeschlagen (Bitte geben Sie einen anderen Benutzernamen ein)");
             }
         } else {
             alert("Bitte geben Sie einen Benutzernamen und Passwort ein");
@@ -118,8 +120,9 @@ async function createNewUser() {
 }
 
 //Benutzer aktualisieren/updaten
-async function updateUser() {
+async function updateUser(event) {
     try {
+        event.preventDefault();
         const username = document.getElementById("usernamePasswordLost").value;
         const password = document.getElementById("passwordPasswordLost").value;
         if(username !== null && username !== "" && password !== null && password !== "") {
@@ -152,8 +155,9 @@ async function updateUser() {
 }
 
 //Benutzer aktualisieren/updaten
-async function deleteUser() {
+async function deleteUser(event) {
     try {
+        event.preventDefault();
         const username = document.getElementById("usernameDelete").value;
         const password = document.getElementById("passwordDelete").value;
         if(username !== null && username !== "" && password !== null && password !== "") {

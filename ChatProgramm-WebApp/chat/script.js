@@ -1,8 +1,9 @@
 //Autor: Stefan Rautner
 
 //Chat oder Gruppe hinzufügen
-async function createChat() {
+async function createChat(event) {
     try {
+        event.preventDefault();
         const chatName = document.getElementById("new-chatname").value;
         if(chatName !== null && chatName !== "") {
             const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/newChat`, {
@@ -28,8 +29,9 @@ async function createChat() {
 }
 
 //Chat/Gruppe löschen
-async function deleteChat() {
+async function deleteChat(event) {
     try {
+        event.preventDefault();
         if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
             const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/deleteChat`, {
                 method: 'DELETE',
@@ -53,8 +55,9 @@ async function deleteChat() {
     }
 }
 
-async function updateChatNames() {
+async function updateChatNames(event) {
     try {
+        event.preventDefault();
         const chatName = document.getElementById("new-chatname").value;
         if(chatName !== null && chatName !== "") {
             if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
@@ -83,8 +86,9 @@ async function updateChatNames() {
     }
 }
 
-async function addUserToChat() {
+async function addUserToChat(event) {
     try {
+        event.preventDefault();
         const username = document.getElementById("add-user").value;
         if(username !== null && username !== "") {
             if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
@@ -112,8 +116,9 @@ async function addUserToChat() {
     }
 }
 
-async function removeUserFromChat() {
+async function removeUserFromChat(event) {
     try {
+        event.preventDefault();
         const username = document.getElementById("add-user").value;
         if(username !== null && username !== "") {
             if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !==  "") {

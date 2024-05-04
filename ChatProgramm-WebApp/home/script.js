@@ -6,21 +6,20 @@ let installPrompt = null;
 let selectedChat = null;
 let selectedMessage = null;
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async (event) => {
     //Interval zum Erhalten der Nachrichten
     setInterval(async function () {
-        await getChatNames();
+        await getChatNames(event);
         if(localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
-            await getData();
-            console.log(localStorage.getItem('chatID'));        //DEBUG
-            console.log(localStorage.getItem('messageID'));     //DEBUG
+            await getData(event);
         }
     }, 50);
 })
 
 //Chatnamen erhalten
-async function getChatNames() {
+async function getChatNames(event) {
     try {
+        event.preventDefault();
         const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/getChatNames`, {
             method: 'POST',
             body: JSON.stringify({
@@ -57,8 +56,9 @@ async function getChatNames() {
 }
 
 //Nachrichten erhalten
-async function getData() {
+async function getData(event) {
     try {
+        event.preventDefault();
         const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/getMessages`, {
             method: 'POST', body: JSON.stringify({
                 'userID': localStorage.getItem('userID'),
@@ -95,8 +95,9 @@ async function getData() {
 }
 
 //Nachricht hinzufügen
-async function sendData() {
+async function sendData(event) {
     try {
+        event.preventDefault();
         const messageText = document.getElementById("user-input").value;
         if(messageText !== null && messageText !== "") {
             const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/newMessage`, {

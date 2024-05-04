@@ -64,14 +64,19 @@ public class ChatService {
 
     //Benutzer löschen, falls er vorhanden ist
     public String deleteUser(String username, String password) {
-        User user = userRepository.findUserByUsernameAndPassword(username, this.encrypt(password));
+        try {
+            User user = userRepository.findUserByUsernameAndPassword(username, this.encrypt(password));
+            for(Chat chat : chatRepository.findAllByUserListContaining(user)) {
+                if(chat.getUserList().size() == 1) {
+                    deleteChat(chat.getChatID());
+                }
+            }
 
-        if (user != null) {
             userRepository.delete(user);
             return "Der User wurde gelöscht";
+        } catch (Exception ex) {
+            return "Der User existiert nicht";
         }
-
-        return "Der User existiert nicht";
     }
 
     //User zu Chat/Gruppe hinzufügen

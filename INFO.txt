@@ -1,6 +1,0 @@
-Server fertig
-WPF-Client fertig
-MongoDB fertig
-
-WebApp-Client ausständig (Testen & Debuggen, und Download-Button rechts stylen)
-Dokumentation ausständig

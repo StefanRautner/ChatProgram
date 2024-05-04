@@ -1,8 +1,9 @@
 //Autor: Stefan Rautner
 
 //Nachricht aktualisieren/updaten
-async function updateMessage() {
+async function updateMessage(event) {
     try {
+        event.preventDefault();
         const messageText = document.getElementById('new-message').value;
         if(messageText !== null && messageText !== "") {
             const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/updateMessage`, {
@@ -31,8 +32,9 @@ async function updateMessage() {
 }
 
 //Nachricht löschen
-async function deleteMessage() {
+async function deleteMessage(event) {
     try {
+        event.preventDefault();
         const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/deleteMessage`, {
             method: 'DELETE',
             body: JSON.stringify({
