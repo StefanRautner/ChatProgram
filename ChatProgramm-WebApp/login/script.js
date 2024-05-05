@@ -1,5 +1,8 @@
 //Autor: Stefan Rautner
 
+//WebApp auf inaktiv setzen
+localStorage.setItem('webAppStatus', "inactive");
+
 //Globale Variablen definieren (UrlZumSpringBootServer & urlParameter)
 localStorage.setItem('urlToSpringBootServer', 'http://localhost:8080/tinyWhatsApp');
 localStorage.setItem('urlParameter', window.location.search);
@@ -55,28 +58,31 @@ async function checkUserExistence(event) {
         event.preventDefault();
         const username = document.getElementById("usernameLogin").value;
         const password = document.getElementById("passwordLogin").value;
-        if(username !== null && username !== "" && password !== null && password !== "") {
-            const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/checkUser`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    'username': username,
-                    'password': await hash(password)
-                })
-            });
+        if (localStorage.getItem('urlToSpringBootServer') !== null && localStorage.getItem('urlToSpringBootServer') !== "") {
+            if (username !== null && username !== "" && password !== null && password !== "") {
+                const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/checkUser`, {
+                    method: 'POST', body: JSON.stringify({
+                        'username': username, 'password': await hash(password)
+                    })
+                });
 
-            //Form leeren
-            document.getElementById("usernameLogin").value = "";
-            document.getElementById("passwordLogin").value = "";
+                //Form leeren
+                document.getElementById("usernameLogin").value = "";
+                document.getElementById("passwordLogin").value = "";
 
-            const data = await response.text();
-            if (data !== null && data !== "") {
-                localStorage.setItem('userID', data);
-                window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
+                const data = await response.text();
+                if (data !== null && data !== "") {
+                    localStorage.setItem('userID', data);
+                    localStorage.setItem('webAppStatus', "active");
+                    window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
+                } else {
+                    alert("Anmeldung fehlgeschlagen");
+                }
             } else {
-                alert("Anmeldung fehlgeschlagen");
+                alert("Bitte geben Sie einen Benutzernamen und Passwort ein");
             }
         } else {
-            alert("Bitte geben Sie einen Benutzernamen und Passwort ein");
+            alert("Server konnte nicht erreicht werden");
         }
     } catch (error) {
         console.error(error);
@@ -90,29 +96,32 @@ async function createNewUser(event) {
         event.preventDefault();
         const username = document.getElementById("usernameRegister").value;
         const password = document.getElementById("passwordRegister").value;
-        if(username !== null && username !== "" && password !== null && password !== "") {
-            const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/newUser`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    'username': username,
-                    'password': await hash(password)
-                })
-            });
+        if (localStorage.getItem('urlToSpringBootServer') !== null && localStorage.getItem('urlToSpringBootServer') !== "") {
+            if (username !== null && username !== "" && password !== null && password !== "") {
+                const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/newUser`, {
+                    method: 'POST', body: JSON.stringify({
+                        'username': username, 'password': await hash(password)
+                    })
+                });
 
-            //Form leeren & zu Login wechseln
-            document.getElementById("usernameRegister").value = "";
-            document.getElementById("passwordRegister").value = "";
-            changeToLogin();
+                //Form leeren & zu Login wechseln
+                document.getElementById("usernameRegister").value = "";
+                document.getElementById("passwordRegister").value = "";
+                await changeToLogin();
 
-            const data = await response.text();
-            if (data !== null && data !== "") {
-                localStorage.setItem('userID', data);
-                window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
+                const data = await response.text();
+                if (data !== null && data !== "") {
+                    localStorage.setItem('userID', data);
+                    localStorage.setItem('webAppStatus', "active");
+                    window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
+                } else {
+                    alert("Registrierung fehlgeschlagen (Bitte geben Sie einen anderen Benutzernamen ein)");
+                }
             } else {
-                alert("Registrierung fehlgeschlagen (Bitte geben Sie einen anderen Benutzernamen ein)");
+                alert("Bitte geben Sie einen Benutzernamen und Passwort ein");
             }
         } else {
-            alert("Bitte geben Sie einen Benutzernamen und Passwort ein");
+            alert("Server konnte nicht erreicht werden");
         }
     } catch (error) {
         console.error(error);
@@ -125,29 +134,36 @@ async function updateUser(event) {
         event.preventDefault();
         const username = document.getElementById("usernamePasswordLost").value;
         const password = document.getElementById("passwordPasswordLost").value;
-        if(username !== null && username !== "" && password !== null && password !== "") {
-            const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/updateUser`, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    'username': username,
-                    'password': await hash(password)
-                })
-            });
+        if (localStorage.getItem('urlToSpringBootServer') !== null && localStorage.getItem('urlToSpringBootServer') !== "") {
+            if (username !== null && username !== "" && password !== null && password !== "") {
+                const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/updateUser`, {
+                    method: 'PUT', body: JSON.stringify({
+                        'username': username, 'password': await hash(password)
+                    })
+                });
 
-            //Form leeren & zu Login wechseln
-            document.getElementById("usernamePasswordLost").value = "";
-            document.getElementById("passwordPasswordLost").value = "";
-            changeToLogin();
+                //Form leeren & zu Login wechseln
+                document.getElementById("usernamePasswordLost").value = "";
+                document.getElementById("passwordPasswordLost").value = "";
+                await changeToLogin();
 
-            const data = await response.text();
-            if (data !== null && data !== "") {
-                localStorage.setItem('userID', data);
-                window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
+                const data = await response.text();
+                if (localStorage.getItem('urlParameter') !== null && localStorage.getItem('urlParameter') !== "") {
+                    if (data !== null && data !== "") {
+                        localStorage.setItem('userID', data);
+                        localStorage.setItem('webAppStatus', "active");
+                        window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
+                    } else {
+                        alert("Passwort aktualisieren fehlgeschlagen");
+                    }
+                } else {
+                    alert("Interner Fehler, bitte laden Sie die WebApp erneut (Url kann nicht erreicht werden)");
+                }
             } else {
-                alert("Passwort aktualisieren fehlgeschlagen");
+                alert("Bitte geben Sie einen Benutzernamen und Passwort ein");
             }
         } else {
-            alert("Bitte geben Sie einen Benutzernamen und Passwort ein");
+            alert("Server konnte nicht erreicht werden");
         }
     } catch (error) {
         console.error(error);
@@ -160,25 +176,39 @@ async function deleteUser(event) {
         event.preventDefault();
         const username = document.getElementById("usernameDelete").value;
         const password = document.getElementById("passwordDelete").value;
-        if(username !== null && username !== "" && password !== null && password !== "") {
-            const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/deleteUser`, {
-                method: 'DELETE',
-                body: JSON.stringify({
-                    'username': username,
-                    'password': await hash(password)
-                })
-            });
+        if (localStorage.getItem('urlToSpringBootServer') !== null && localStorage.getItem('urlToSpringBootServer') !== "") {
+            if (username !== null && username !== "" && password !== null && password !== "") {
+                const response = await fetch(`${localStorage.getItem('urlToSpringBootServer')}/deleteUser`, {
+                    method: 'DELETE', body: JSON.stringify({
+                        'username': username, 'password': await hash(password)
+                    })
+                });
 
-            //Form leeren & zu Login wechseln
-            document.getElementById("usernameDelete").value = "";
-            document.getElementById("passwordDelete").value = "";
-            changeToLogin();
+                //Form leeren & zu Login wechseln
+                document.getElementById("usernameDelete").value = "";
+                document.getElementById("passwordDelete").value = "";
+                await changeToLogin();
 
-            alert(await response.text());
+                alert(await response.text());
+            } else {
+                alert("Bitte geben Sie einen Benutzernamen und Passwort ein");
+            }
         } else {
-            alert("Bitte geben Sie einen Benutzernamen und Passwort ein");
+            alert("Server konnte nicht erreicht werden");
         }
     } catch (error) {
         console.error(error);
     }
 }
+
+//Unload Eventhandler
+window.addEventListener('beforeunload', async function () {
+    if (localStorage.getItem('webAppStatus') !== "active") {
+        localStorage.removeItem('userID');
+        localStorage.removeItem('chatID');
+        localStorage.removeItem('messageID');
+        localStorage.removeItem('urlParameter');
+        localStorage.removeItem('urlToSpringBootServer');
+        localStorage.removeItem('webAppStatus');
+    }
+});
