@@ -10,13 +10,9 @@ let installPrompt = null;
 let selectedChat = "";
 let selectedMessage = "";
 
-localStorage.removeItem('chatID');      //DEBUG
-localStorage.removeItem('messageID');   //DEBUG
-
 document.addEventListener('DOMContentLoaded', async (event) => {
     //Interval zum Erhalten der Nachrichten
     setInterval(async function () {
-        console.log(localStorage.getItem('chatID') + "\n" + localStorage.getItem('messageID'));                //DEBUG
         await getChatNames(event);
         if (localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
             await getData(event);
