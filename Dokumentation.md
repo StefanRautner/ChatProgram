@@ -220,6 +220,7 @@ var response = await client.PostAsync("https://example.com/messages", content);
 
 ## Diagramme
 
+### Konfiguration zwischen den Clients, dem Server & der Datenbank
 ```mermaid
 graph TD;
   A[WPF Client] <--> C[Spring Boot Server];
@@ -227,7 +228,28 @@ graph TD;
   C[Spring Boot Server] <--> D[MongoDB Datenbank];
 ```
 
-````mermaid
+### Klassendiagramm des WPF-Clients
+```mermaid
+classDiagram
+    Class01 --|> Class02
+    Class03 *-- Class04
+    Class05 o-- Class06
+    Class07 .. Class08
+    Class09 --> C10
+```
+
+### Klassendiagramm des WebApp-Clients
+```mermaid
+classDiagram
+    Class01 --|> Class02
+    Class03 *-- Class04
+    Class05 o-- Class06
+    Class07 .. Class08
+    Class09 --> C10
+```
+
+### Klassendiagramm des Spring-Boot Servers
+```mermaid
 classDiagram
     Class01 --|> Class02
     Class03 *-- Class04
