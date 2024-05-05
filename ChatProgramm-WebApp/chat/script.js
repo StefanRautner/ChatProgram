@@ -146,6 +146,6 @@ async function removeUserFromChat(event) {
     }
 }
 
-function backToHome() {
+async function backToHome() {
     window.location.href = '../home/home.html' + localStorage.getItem('urlParameter');
 }

@@ -5,7 +5,7 @@ localStorage.setItem('urlToSpringBootServer', 'http://localhost:8080/tinyWhatsAp
 localStorage.setItem('urlParameter', window.location.search);
 
 //Zu RegisterForm wechseln
-function changeToLogin() {
+async function changeToLogin() {
     document.title = "Einloggen";
     document.getElementById("loginForm").style.display = "block";
     document.getElementById("registerForm").style.display = "none";
@@ -14,7 +14,7 @@ function changeToLogin() {
 }
 
 //Zu LoginForm wechseln
-function changeToRegister() {
+async function changeToRegister() {
     document.title = "Registrieren";
     document.getElementById("loginForm").style.display = "none";
     document.getElementById("registerForm").style.display = "block";
@@ -23,7 +23,7 @@ function changeToRegister() {
 }
 
 //Zu PasswordLostForm wechseln
-function changeToPasswordLost() {
+async function changeToPasswordLost() {
     document.title = "Password Vergessen";
     document.getElementById("loginForm").style.display = "none";
     document.getElementById("registerForm").style.display = "none";
@@ -32,7 +32,7 @@ function changeToPasswordLost() {
 }
 
 //Zu DeleteForm wechseln
-function changeToDelete() {
+async function changeToDelete() {
     document.title = "Konto löschen";
     document.getElementById("loginForm").style.display = "none";
     document.getElementById("registerForm").style.display = "none";

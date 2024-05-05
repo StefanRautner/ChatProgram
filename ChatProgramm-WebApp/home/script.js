@@ -3,8 +3,11 @@
 let installPrompt = null;
 
 //Ausgewählter Chat & Nachricht für Classlist
-let selectedChat = null;
-let selectedMessage = null;
+let selectedChat = "";
+let selectedMessage = "";
+
+localStorage.removeItem('chatID');      //DEBUG
+localStorage.removeItem('messageID');   //DEBUG
 
 document.addEventListener('DOMContentLoaded', async (event) => {
     //Interval zum Erhalten der Nachrichten
@@ -33,23 +36,30 @@ async function getChatNames(event) {
         list.innerHTML = "";
 
         //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
-        data.forEach(function (chatName) {
+        for (const chatName of data) {
             const listElement = document.createElement("li");
             listElement.textContent = chatName.chatName;
             listElement.id = chatName.chatID;
-            listElement.onclick = function () {
-                if(selectedChat !== null) {
-                    selectedChat.classList.remove("selected-chat");
-                }
-                selectedChat = this;
-                selectedChat.classList.add("selected-chat");
-                localStorage.setItem('chatID', this.id);
+            listElement.onclick = async function () {
+                selectedChat = this.id;
+                listElement.classList.add("selected-chat");
+                listElement.classList.remove("unselected-chat");
+                localStorage.setItem('chatID', selectedChat);
+                localStorage.setItem('messageID', null);
+                selectedMessage = "";
             };
-            listElement.ondblclick = function () {
-                addEditDeleteChat();
+            listElement.ondblclick = async function () {
+                await addEditDeleteChat();
             };
+            if(listElement.id === selectedChat) {
+                listElement.classList.add("selected-chat");
+                listElement.classList.remove("unselected-chat");
+            } else {
+                listElement.classList.remove("selected-chat");
+                listElement.classList.add("unselected-chat");
+            }
             list.appendChild(listElement);
-        });
+        }
     } catch (error) {
         console.error(error);
     }
@@ -72,23 +82,28 @@ async function getData(event) {
         list.innerHTML = "";
 
         //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
-        data.forEach(function (element) {
+        for (const message of data) {
             const listElement = document.createElement("li");
-            listElement.textContent = element.message;
-            listElement.id = element.messageID;
-            listElement.onclick = function () {
-                if(selectedMessage !== null) {
-                    selectedMessage.classList.remove("selected-message");
-                }
-                selectedMessage = this;
-                selectedMessage.classList.add("selected-message");
-                localStorage.setItem('messageID', this.id);
+            listElement.textContent = message.message;
+            listElement.id = message.messageID;
+            listElement.onclick = async function () {
+                selectedMessage = this.id;
+                listElement.classList.add("selected-message");
+                listElement.classList.remove("unselected-message");
+                localStorage.setItem('messageID', selectedMessage);
             };
-            listElement.ondblclick = function () {
-                editDeleteMessage();
+            listElement.ondblclick = async function () {
+                await editDeleteMessage();
             };
+            if(listElement.id === selectedMessage) {
+                listElement.classList.add("selected-message");
+                listElement.classList.remove("unselected-message");
+            } else {
+                listElement.classList.remove("selected-message");
+                listElement.classList.add("unselected-message");
+            }
             list.appendChild(listElement);
-        });
+        }
     } catch (error) {
         console.error(error);
     }
@@ -121,7 +136,7 @@ async function sendData(event) {
     }
 }
 
-function editDeleteMessage() {
+async function editDeleteMessage() {
     if (localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "" && localStorage.getItem('messageID') != null && localStorage.getItem('messageID') !== "") {
         window.location.href = '../message/message.html' + localStorage.getItem('urlParameter');
     } else {
@@ -129,7 +144,7 @@ function editDeleteMessage() {
     }
 }
 
-function addEditDeleteChat() {
+async function addEditDeleteChat() {
     window.location.href = '../chat/chat.html' + localStorage.getItem('urlParameter');
 }
 
@@ -153,7 +168,7 @@ async function downloadWebApp() {
 }
 
 // Eventlistener zum Abfangen des "beforeinstallprompt"s
-window.addEventListener('beforeinstallprompt', (event) => {
+window.addEventListener('beforeinstallprompt', async function(event) {
     // Standard Install-Prompt abfangen & verhindern
     event.preventDefault();
 
@@ -165,10 +180,11 @@ window.addEventListener('beforeinstallprompt', (event) => {
 });
 
 //Variablen aus dem LocalStorage löschen
-window.addEventListener('beforeunload', (event) => {
-    e.returnValue = '';                         //Funktioniert ohne nicht (keine Ahnung warum)
+/*window.addEventListener('unload', async function () {
     localStorage.removeItem('userID');
     localStorage.removeItem('chatID');
     localStorage.removeItem('messageID');
     localStorage.removeItem('urlParameter');
+    localStorage.removeItem('urlToSpringBootServer');
 });
+*/

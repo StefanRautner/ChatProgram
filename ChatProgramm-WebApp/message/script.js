@@ -57,6 +57,6 @@ async function deleteMessage(event) {
 }
 
 //Zurück zu Home
-function backToHome() {
+async function backToHome() {
     window.location.href = '../home/home.html';
 }

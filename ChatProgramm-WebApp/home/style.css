@@ -32,7 +32,6 @@ body {
     max-width: 70%;
     padding: 10px;
     margin: 10px;
-    background-color: cornflowerblue;
     color: white;
     border-radius: 20px;
     word-wrap: break-word;
@@ -44,10 +43,19 @@ body {
     max-width: 70%;
     padding: 10px;
     margin: 10px;
-    background-color: grey;
     color: white;
     border-radius: 20px;
     word-wrap: break-word;
+}
+
+/* Hintergrundfarbe für die Chats setzen */
+.unselected-chat {
+    background-color: cornflowerblue;
+}
+
+/* Hintergrundfarbe für die Chats setzen */
+.unselected-message {
+    background-color: grey;
 }
 
 /* Hintergrund des ausgewählten Chats ändern */
@@ -57,7 +65,7 @@ body {
 
 /* Hintergrund der ausgewählten Nachricht ändern */
 .selected-message {
-    background-color: grey;
+    background-color: #a0a0a0;
 }
 
 /* Margin der letzten Nachricht/Chatnamen löschen/auf 0 setzen */
