@@ -331,12 +331,13 @@ Unterhalb sind Codeblöcke, die das Login meines ChatProgramms darstellen
 </details>
 
 ## Diskussion der Ergebnisse
-
+lorem ipsum
 ### Zusammenfassung
-
+lorem ipsum
 ### Hintergründe
-
+lorem ipsum
 ### Ausblicke
+lorem ipsum
 
 ## Diagramme
 
@@ -401,3 +402,22 @@ graph TD;
     User --> |USE| Add-User-To-Chat;
     User --> |USE| Remove-User-From-Chat;
 ```
+
+## Quellenverzeichnis
+
+### Spring-Boot Server
+#### [Spring-Boot]()
+#### [JSON](https://www.json.org/json-en.html)
+
+### WPF-Client
+#### [C#](https://learn.microsoft.com/de-de/dotnet/csharp/)
+#### [JSON](https://www.json.org/json-en.html)
+
+### WebApp-Client
+#### [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+#### [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+#### [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+#### [JSON](https://www.json.org/json-en.html)
+
+### MongoDB Datenbank
+#### [MongoDB](https://www.mongodb.com/docs/)
