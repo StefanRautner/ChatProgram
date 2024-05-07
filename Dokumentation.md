@@ -331,13 +331,16 @@ Unterhalb sind Codeblöcke, die das Login meines ChatProgramms darstellen
 </details>
 
 ## Diskussion der Ergebnisse
-lorem ipsum
+Nach ca. 2 Monaten Entwicklung stelle ist die Erste Version meine ChatProgramms (tinyWhatsApp) vor. Das Chatprogramm hat eine intuative Benutzeroberfläche und eine Echtzeitkommunikation. Durch die Entwicklung der Clients in verschidenen Technologien (WPF & WebApp) ist die Unterstützung für sämtliche Platformen gegeben. Die Daten werden sicher in einer MongoDB-Datenbank gespeichert. Das Passwort wird im jeweiligen Client gehashed und im Server nochmals mit AES verschlüsselt. Durch die Verschlüsselte Übertragung sind die Benutzerdaten von Fremdzugriffen gesichert.
+
 ### Zusammenfassung
-lorem ipsum
+tinyWhatsApp stellt eine intuitive Benutzeroberfläche für sämtliche Platformen zur Verfügung. Die REST-API des Spring-Boot Servers ermöglicht die Echtzeitkommunikation zwischen den Clients und der Datenbank.
+
 ### Hintergründe
-lorem ipsum
+Bei der Entwicklung der Chatprogramms wurde der Fokus auf Sicherheit der Benutzerdaten und Benutzerfreundlichkeit gelegt. Durch die Verwendung aktueller Technologien wie Spring-Boot, WPF, HTML, CSS, JSON & JavaScript wird die zukünftige Unterstützung gewährleistet. Die Nutzung einer MongoDB-Datenbank sorgt ebenfalls für die sichere Speicherung der Daten & effiziente Datenverwaltung.
+
 ### Ausblicke
-lorem ipsum
+In Zukunft soll das Chatprogramm auch Dateienübertragung (Foto, Video & Audio) unterstützen. Ebenfalls soll ein Benachrichtigungssystem implementiert werden. Durch Einbeziehen des Benutzerfeedbacks wird die Benutzerfreundlichkeit ebenfalls stark erhöht werden. TinyWhatsApp soll in Zukunft eine führende Plattform für sichere und benutzerfreundliche Echtzeitkommunikation werden.
 
 ## Diagramme
 
@@ -352,20 +355,20 @@ graph TD;
 ### Klassendiagramm des WPF-Clients
 ```mermaid
 classDiagram
-    Login *-- Home
-    Regsiter *-- Home
-    PasswordForgotten *-- Home
-    Delete *-- Home
-    Home *--o Chat
-    Home *--o Message
+    Login o-- Home
+    Regsiter o-- Home
+    PasswordForgotten o-- Home
+    Delete o-- Home
+    Home o--o Chat
+    Home o--o Message
 ```
 
 ### Klassendiagramm des WebApp-Clients
 ```mermaid
 classDiagram
-    Login-Register-PasswortForgotten-Delete *-- Home
-    Home *-- Chat
-    Home *-- Message
+    Login-Register-PasswortForgotten-Delete o-- Home
+    Home o--o Chat
+    Home o--o Message
 ```
 
 ### Klassendiagramm des Spring-Boot Servers
@@ -373,12 +376,15 @@ classDiagram
 classDiagram
     Application o-- ChatController
     ChatController o-- ChatService
-    ChatService o-- Chat
-    ChatService o-- ChatRepository
-    ChatService o-- Message
-    ChatService o-- MessageRepository
     ChatService o-- User
+    ChatService o-- Chat
+    ChatService o-- Message
     ChatService o-- UserRepository
+    ChatService o-- ChatRepository
+    ChatService o-- MessageRepository
+    MongoDBRepository <-- ChatRepository
+    MongoDBRepository <-- MessageRepository
+    MongoDBRepository <-- UserRepository
 ```
 
 ### Use-Cases Diagramm
