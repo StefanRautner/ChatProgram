@@ -1,5 +1,4 @@
 //Autor: Stefan Rautner
-
 //WebApp auf inaktiv setzen
 localStorage.setItem('webAppStatus', "inactive");
 
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         if (localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
             await getData(event);
         }
-    }, 50);
+    }, 400); //NICHT 50ms wie in WPF (geht nicht, weil li's sonst zu schnell laden, um angeklickt werden zu können)
 })
 
 //Chatnamen erhalten
@@ -31,17 +30,17 @@ async function getChatNames(event) {
                         'userID': localStorage.getItem('userID')
                     })
                 });
-                const data = await response.json();
+                const chats = await response.json();
 
                 //Listenelement erhalten
                 const list = document.getElementById("namesOfChats");
                 list.innerHTML = "";
 
                 //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
-                for (const chatName of data) {
+                for (const chat of chats) {
                     const listElement = document.createElement("li");
-                    listElement.textContent = chatName.chatName;
-                    listElement.id = chatName.chatID;
+                    listElement.textContent = chat.chatName;
+                    listElement.id = chat.chatID;
                     listElement.onclick = async function () {
                         selectedChat = this.id;
                         listElement.classList.add("selected-chat");
@@ -84,14 +83,14 @@ async function getData(event) {
                         'userID': localStorage.getItem('userID'), 'chatID': localStorage.getItem('chatID')
                     })
                 });
-                const data = await response.json();
+                const messages = await response.json();
 
                 //Listenelement erhalten
                 const list = document.getElementById("messagesOfChat");
                 list.innerHTML = "";
 
                 //Für jedes JSON Object ein li erstellen und in die Liste hinzufügen
-                for (const message of data) {
+                for (const message of messages) {
                     const listElement = document.createElement("li");
                     listElement.textContent = message.message;
                     listElement.id = message.messageID;

@@ -1,5 +1,4 @@
 //Autor: Stefan Rautner
-
 //WebApp auf inaktiv setzen
 localStorage.setItem('webAppStatus', "inactive");
 
