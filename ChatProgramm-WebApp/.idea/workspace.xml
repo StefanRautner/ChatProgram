@@ -5,22 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="730826a7-0dc8-47fa-9103-02be2bc360c9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../ChatProgramm-Server/src/main/java/org/example/server_springboot/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatProgramm-Server/src/main/java/org/example/server_springboot/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatProgramm-Server/src/main/java/org/example/server_springboot/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatProgramm-Server/src/main/java/org/example/server_springboot/ChatService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ChatProgramm-Server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatProgramm-Server/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/INFO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/chat/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/home/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/login/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/login/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/message/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dokumente/Dokumentation.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Dokumente/Dokumentation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.metadata.v7.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.metadata.v7.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.projects.v7.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.projects.v7.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/FileContentIndex/069d1604-ef1d-42b1-ba39-af54101bf563.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/FileContentIndex/4bdf09c1-cd7b-4f92-a761-3b0f67d55eb1.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/FileContentIndex/9cfa3879-aeec-40e2-b5c6-39305427edea.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/FileContentIndex/2b5b65f8-4276-4247-8e75-729682fdd07a.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/FileContentIndex/49a9c753-36b1-43c9-9dcb-bfba0a95caa7.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/FileContentIndex/e370a554-16dd-408e-b3b8-915318b57416.vsidx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.futdcache.v2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/DocumentLayout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/DeleteWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/DeleteWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/Message_Model.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/Message_Model.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/VerbindungZuServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/VerbindungZuServer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.pdb" afterDir="false" />
@@ -41,15 +44,16 @@
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/RegisterWindow.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/RegisterWindow.g.i.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.designer.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.designer.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.designer.runtimeconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.designer.runtimeconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF_MarkupCompile.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF_MarkupCompile.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF_MarkupCompile.i.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF_MarkupCompile.i.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF_MarkupCompile.i.lref" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF_MarkupCompile.lref" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF_MarkupCompile.lref" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/apphost.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/loginWindow.g.i.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/loginWindow.g.i.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/ref/Second_Client_WPF.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/ref/Second_Client_WPF.dll" afterDir="false" />
@@ -148,6 +152,10 @@
       <workItem from="1715157948668" duration="2000" />
       <workItem from="1715158005877" duration="1000" />
       <workItem from="1715531893787" duration="2055000" />
+      <workItem from="1715578552657" duration="1548000" />
+      <workItem from="1715584356184" duration="304000" />
+      <workItem from="1715584797982" duration="205000" />
+      <workItem from="1715585333201" duration="18000" />
     </task>
     <servers />
   </component>

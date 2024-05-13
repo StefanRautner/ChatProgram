@@ -188,7 +188,12 @@ async function deleteUser(event) {
                 document.getElementById("passwordDelete").value = "";
                 await changeToLogin();
 
-                alert(await response.text());
+                const data = await response.text();
+                if (data !== null && data !== "") {
+                    alert("Benutzer wurde gelöscht");
+                } else {
+                    alert("Benutzer existiert nicht");
+                }
             } else {
                 alert("Bitte geben Sie einen Benutzernamen und Passwort ein");
             }

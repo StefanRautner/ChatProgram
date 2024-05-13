@@ -1,4 +1,6 @@
-﻿namespace Second_Client_WPF
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Second_Client_WPF
 {
     internal class Message_Model
     {

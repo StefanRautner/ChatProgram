@@ -12,7 +12,6 @@
   - Daten verschlüsseln (verschlüsselt übermitteln)
   - Benutzer muss Konto haben (Registerieren & Login)
   - Zeitstempel
-  - Bilder, Video- & Audiodateien???
 
 - Spring-Boot soll CRUD (Create, Read, Update, Delete) enthalten
   - Create = Nachrichten schreiben (und in Datenbank speichern)

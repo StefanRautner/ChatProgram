@@ -4,13 +4,20 @@
 
 Das Chat-Programm wurde in einer Client-Client-Server-Architektur entwicklet, wobei der Client als WPF-Anwendung oder WebApp implementiert ist und diese beide mit dem Server (welcher auf Spring Boot basiert) kommunizieren. Die Daten werden in einer MongoDB-Datenbank gespeichert.
 
+```mermaid
+graph TD;
+  A[WPF Client] <--> C[Spring Boot Server];
+  B[Web-App Client] <--> C[Spring Boot Server];
+  C[Spring Boot Server] <--> D[MongoDB Datenbank];
+```
+
 ## Beschreibung der Software
 
 Das Chat-Programm (tinyWhatsApp) ermöglicht es Benutzern miteinander in Echtzeit zu chatten. Es bietet eine benutzerfreundliche Oberfläche sowohl als Desktopanwendung (WPF) als auch als Webanwendung. Die Software überträgt die Daten natürlich verschlüsselt, sodass keiner Zugang zu den Benutzerdaten erhalten kann
 
 ##  API-Beschreibung
 
-Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den Clients, Nachrichten zu senden, zu empfangen und vieles mehr. (Kein GET-Endpoint, da diese im Web keinen Body haben dürfen & ich mein System einheitlich halten wollte)
+Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den Clients, Nachrichten zu senden, zu empfangen und vieles mehr. (Keine GET-Endpoints, da ich für die Datenübertragung von den Clients an den Server immer den Body verwende & dieses im Web aufgrund von Sicherheitsstandards gesperrt ist)
 ### Die Endpunkte umfassen:
 
 <!-- Genereller Endpoint -->
@@ -32,6 +39,13 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
     "password": "Beispiel-Passwort"
   }
   ```
+
+  **Return-Wert:**
+  ```json
+  {
+    "userID": "Beispiel-UserID"
+  }
+  ```
 </details>
 <details>
   <summary>/newUser [POST]</summary>
@@ -43,6 +57,13 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
   {
     "username": "Beispiel-Benutzername",
     "password": "Beispiel-Passwort"
+  }
+  ```
+
+  **Return-Wert:**
+  ```json
+  {
+    "userID": "Beispiel-UserID"
   }
   ```
 </details>
@@ -58,6 +79,13 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
     "password": "Beispiel-Passwort"
   }
   ```
+
+  **Return-Wert:**
+  ```json
+  {
+    "userID": "Beispiel-UserID"
+  }
+  ```
 </details>
 <details>
   <summary>/deleteUser [DELETE]</summary>
@@ -71,12 +99,26 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
     "password": "Beispiel-Passwort"
   }
   ```
+
+  **Return-Wert:**
+  ###### Entweder:
+  ```json
+  {
+    "true"
+  }
+  ```
+  ##### Oder:
+  ```json
+  {
+    "false"
+  }
+  ```
 </details>
 <!-- Chat -->
 <details>
   <summary>/getChatNames [POST]</summary>
   
-  **Beschreibung:** Dieser Endpoint wirde verwendet, um die Namen aller Chats eines Benutzers zu erhalten.
+  **Beschreibung:** Dieser Endpoint wurde verwendet, um die Namen aller Chats eines Benutzers zu erhalten.
   
   **JSON-Body:**
   ```json
@@ -84,11 +126,19 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
     "userID": "Beispiel-userID"
   }
   ```
+
+  **Return-Wert:**
+  ```json
+  {
+    "chatID": "Beispiel-ChatID",
+    "chatName ": "Beispiel-ChatName"
+  }
+  ```
 </details>
 <details>
   <summary>/newChat [POST]</summary>
   
-  **Beschreibung:** Dieser Endpoint wirde verwendet, um einen neuen Chat anzulegen.
+  **Beschreibung:** Dieser Endpoint wurde verwendet, um einen neuen Chat anzulegen.
   
   **JSON-Body:**
   ```json
@@ -97,11 +147,25 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
     "chatName": "Beispiel-Chatnamen"
   }
   ```
+
+  **Return-Wert:**
+  ###### Entweder:
+  ```json
+  {
+    "true"
+  }
+  ```
+  ##### Oder:
+  ```json
+  {
+    "false"
+  }
+  ```
 </details>
 <details>
   <summary>/updateChatName [PUT]</summary>
   
-  **Beschreibung:** Dieser Endpoint wirde verwendet, um den Namen eines Chats zu aktualisieren.
+  **Beschreibung:** Dieser Endpoint wurde verwendet, um den Namen eines Chats zu aktualisieren.
   
   **JSON-Body:**
   ```json
@@ -110,15 +174,43 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
     "chatName": "Beispiel-Chatnamen"
   }
   ```
+
+  **Return-Wert:**
+  ###### Entweder:
+  ```json
+  {
+    "true"
+  }
+  ```
+  ##### Oder:
+  ```json
+  {
+    "false"
+  }
+  ```
 </details><details>
   <summary>/deleteChat [DELETE]</summary>
   
-  **Beschreibung:** Dieser Endpoint wirde verwendet, um einen Chat zu löschen.
+  **Beschreibung:** Dieser Endpoint wurde verwendet, um einen Chat zu löschen.
   
   **JSON-Body:**
   ```json
   {
     "chatID": "Beispiel-chatID"
+  }
+  ```
+
+  **Return-Wert:**
+  ###### Entweder:
+  ```json
+  {
+    "true"
+  }
+  ```
+  ##### Oder:
+  ```json
+  {
+    "false"
   }
   ```
 </details>
@@ -126,7 +218,7 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
 <details>
   <summary>/addUserToChat [POST]</summary>
   
-  **Beschreibung:** Dieser Endpoint wirde verwendet, um einen Benutzer zu einem Chat hinzuzufügen.
+  **Beschreibung:** Dieser Endpoint wurde verwendet, um einen Benutzer zu einem Chat hinzuzufügen.
   
   **JSON-Body:**
   ```json
@@ -135,17 +227,45 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
     "chatID": "Beispiel-chatID"
   }
   ```
+
+  **Return-Wert:**
+  ###### Entweder:
+  ```json
+  {
+    "true"
+  }
+  ```
+  ##### Oder:
+  ```json
+  {
+    "false"
+  }
+  ```
 </details>
 <details>
   <summary>/removeUserFromChat [DELETE]</summary>
   
-  **Beschreibung:** Dieser Endpoint wirde verwendet, um einen Benutzer aus einem Chat zu entfernen.
+  **Beschreibung:** Dieser Endpoint wurde verwendet, um einen Benutzer aus einem Chat zu entfernen.
   
   **JSON-Body:**
   ```json
   {
     "username": "Beispiel-Benutzername",
     "chatID": "Beispiel-chatID"
+  }
+  ```
+
+  **Return-Wert:**
+  ###### Entweder:
+  ```json
+  {
+    "true"
+  }
+  ```
+  ##### Oder:
+  ```json
+  {
+    "false"
   }
   ```
 </details>
@@ -153,7 +273,7 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
 <details>
   <summary>/getMessages [POST]</summary>
   
-  **Beschreibung:** Dieser Endpoint wirde verwendet, um alle Nachrichten eines Chats zu erhalten.
+  **Beschreibung:** Dieser Endpoint wurde verwendet, um alle Nachrichten eines Chats zu erhalten.
   
   **JSON-Body:**
   ```json
@@ -162,11 +282,20 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
     "userID": "Beispiel-userID"
   }
   ```
+
+  **Return-Wert:**
+  ###### Entweder:
+  ```json
+  {
+    "messageID" : "Beispiel-MessageID",
+    "message": "User (10:50): MessageText"
+  }
+  ```
 </details>
 <details>
   <summary>/newMessage [POST]</summary>
   
-  **Beschreibung:** Dieser Endpoint wirde verwendet, um eine neue Nachricht zum Chat hinzuzufügen.
+  **Beschreibung:** Dieser Endpoint wurde verwendet, um eine neue Nachricht zum Chat hinzuzufügen.
   
   **JSON-Body:**
   ```json
@@ -176,11 +305,25 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
     "message": "Beispiel-Nachrichtentext"
   }
   ```
+
+  **Return-Wert:**
+  ###### Entweder:
+  ```json
+  {
+    "true"
+  }
+  ```
+  ##### Oder:
+  ```json
+  {
+    "false"
+  }
+  ```
 </details>
 <details>
   <summary>/updateMessage [PUT]</summary>
   
-  **Beschreibung:** Dieser Endpoint wirde verwendet, um den Inhalt einer Nachricht zu aktualisieren (geht nur in den ersten 5 Minuten nch erstellen der Nachricht).
+  **Beschreibung:** Dieser Endpoint wurde verwendet, um den Inhalt einer Nachricht zu aktualisieren (geht nur in den ersten 5 Minuten nch erstellen der Nachricht).
   
   **JSON-Body:**
   ```json
@@ -191,11 +334,25 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
     "message": "Beispiel-Nachrichtentext"
   }
   ```
+
+  **Return-Wert:**
+  ###### Entweder:
+  ```json
+  {
+    "true"
+  }
+  ```
+  ##### Oder:
+  ```json
+  {
+    "false"
+  }
+  ```
 </details>
 <details>
   <summary>/deleteMessage [DELETE]</summary>
   
-  **Beschreibung:** Dieser Endpoint wirde verwendet, um eine Nachricht aus einem Chat zu löschen.
+  **Beschreibung:** Dieser Endpoint wurde verwendet, um eine Nachricht aus einem Chat zu löschen.
   
   **JSON-Body:**
   ```json
@@ -205,11 +362,55 @@ Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den C
     "messageID": "Beispiel-messageID"
   }
   ```
+
+  **Return-Wert:**
+  ###### Entweder:
+  ```json
+  {
+    "true"
+  }
+  ```
+  ##### Oder:
+  ```json
+  {
+    "false"
+  }
+  ```
 </details>
 
 ## Verwendung der API
 
-Unterhalb sind Codeblöcke, die das Login meines ChatProgramms darstellen
+Unterhalb ist die Topologie, MongoDB-Konfiguration & Code-Blöcke, welche das Login des ChatProgramms darstellen
+
+### Topologie für Login im ChatProgramm
+```mermaid
+classDiagram
+  MongoDB-Datenbank o-- Spring-Boot-Server
+  Spring-Boot-Server o-- WPF-Client
+  Spring-Boot-Server o-- WebApp-Client
+  WPF-Client o-- Login_WPF
+  WebApp-Client o-- Login_WebApp
+```
+
+<br>
+
+<details>
+  <Summary>MongoDB-Datenbank</summary>
+
+  **Beschreibung:** Wie die Daten eines Users in der ongoDB-Datenbank gespeichert werden
+
+  **Java-Endpoint:**
+  ```json
+    {
+      "_id": {
+        "$oid": "6641a7948e718f7024ff96b0"
+      },
+      "username": "test",
+      "password": "G0ErqvuApy3nJmRBlxGYuxagJxPzUdwhCIcpb64v2+KZxAODXBX9LUynj1as/qDAnG2XZBUQqLCSD1romJX6agKlrDn1WhIyRe7tQc/mYq8=",
+      "_class": "org.example.server_springboot.User"
+    }
+  ```
+</details>
 
 <details>
   <Summary>Spring-Boot Server</summary>
@@ -343,14 +544,6 @@ Bei der Entwicklung der Chatprogramms wurde der Fokus auf Sicherheit der Benutze
 In Zukunft soll das Chatprogramm auch Dateienübertragung (Foto, Video & Audio) unterstützen. Ebenfalls soll ein Benachrichtigungssystem implementiert werden. Durch Einbeziehen des Benutzerfeedbacks wird die Benutzerfreundlichkeit ebenfalls stark erhöht werden. TinyWhatsApp soll in Zukunft eine führende Plattform für sichere und benutzerfreundliche Echtzeitkommunikation werden.
 
 ## Diagramme
-
-### Konfiguration zwischen den Clients, dem Server & der Datenbank
-```mermaid
-graph TD;
-  A[WPF Client] <--> C[Spring Boot Server];
-  B[Web-App Client] <--> C[Spring Boot Server];
-  C[Spring Boot Server] <--> D[MongoDB Datenbank];
-```
 
 ### Klassendiagramm des WPF-Clients
 ```mermaid

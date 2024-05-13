@@ -66,10 +66,15 @@ namespace Second_Client_WPF
             {
                 if (e.Key == Key.Enter)
                 {
-                    string? message = await VerbindungZuServer.Instance.DeleteUser(deleteName.Text, deletePassword.Password);
+                    if(await VerbindungZuServer.Instance.DeleteUser(deleteName.Text, deletePassword.Password))
+                    {
+                        MessageBox.Show("Benutzer wurde gelöscht");
+                    } else
+                    {
+                        MessageBox.Show("Benutzer existiert nicht");
+                    }
                     deleteName.Text = "";
                     deletePassword.Password = "";
-                    MessageBox.Show(message);
                 }
             }
             catch (Exception ex)
@@ -83,10 +88,16 @@ namespace Second_Client_WPF
         {
             try
             {
-                string? message = await VerbindungZuServer.Instance.DeleteUser(deleteName.Text, deletePassword.Password);
+                if (await VerbindungZuServer.Instance.DeleteUser(deleteName.Text, deletePassword.Password))
+                {
+                    MessageBox.Show("Benutzer wurde gelöscht");
+                }
+                else
+                {
+                    MessageBox.Show("Benutzer existiert nicht");
+                }
                 deleteName.Text = "";
                 deletePassword.Password = "";
-                MessageBox.Show(message);
             }
             catch (Exception ex)
             {

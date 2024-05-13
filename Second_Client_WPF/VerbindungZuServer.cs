@@ -116,7 +116,6 @@ namespace Second_Client_WPF
                 if (response.Content != null && response.Content != "")
                 {
                     List<Message_Model>? messageList = JsonSerializer.Deserialize<List<Message_Model>>(response.Content);
-                    //return JsonSerializer.Deserialize<List<Message_Model>>(response.Content);
                     return messageList;
                 }
             }
@@ -271,7 +270,7 @@ namespace Second_Client_WPF
         }
 
         //User löchen
-        async public Task<string?> DeleteUser(string name, string passwort)
+        async public Task<bool> DeleteUser(string name, string passwort)
         {
             try
             {
@@ -283,13 +282,16 @@ namespace Second_Client_WPF
                 };
                 request.AddJsonBody(body);
                 RestResponse? response = await client.ExecuteAsync(request);
-                return response.Content;
+                if (response.Content != null && response.Content != "")
+                {
+                    return bool.Parse(response.Content);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            return null;
+            return false;
         }
 
         //Beutzer zu Chat hinzufügen

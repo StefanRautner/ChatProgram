@@ -4,6 +4,7 @@ package org.example.server_springboot;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.Cipher;
@@ -12,6 +13,9 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
@@ -63,7 +67,7 @@ public class ChatService {
     }
 
     //Benutzer löschen, falls er vorhanden ist
-    public String deleteUser(String username, String password) {
+    public boolean deleteUser(String username, String password) {
         try {
             User user = userRepository.findUserByUsernameAndPassword(username, this.encrypt(password));
             for(Chat chat : chatRepository.findAllByUserListContaining(user)) {
@@ -73,9 +77,9 @@ public class ChatService {
             }
 
             userRepository.delete(user);
-            return "Der User wurde gelöscht";
+            return true;
         } catch (Exception ex) {
-            return "Der User existiert nicht";
+            return false;
         }
     }
 
@@ -213,7 +217,12 @@ public class ChatService {
                         JSONObject jsonObject = new JSONObject();
                         User creator = userRepository.findByUserID(message.getCreatorID());
                         jsonObject.put("messageID", message.getMessageID());
-                        jsonObject.put("message", creator.getUsername() + ": " + message.getMessage());
+                        //Zeit der Erstellung (Stunde:Minute) auf Instant extrahieren
+                        Instant zeitstempel = message.getZeitstempel();
+                        LocalDateTime zeitDerErstellung = LocalDateTime.ofInstant(message.getZeitstempel(), ZoneId.systemDefault());
+                        DateTimeFormatter zeitFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
+                        jsonObject.put("message", creator.getUsername() + " (" + zeitDerErstellung.format(zeitFormatter) + "): " + message.getMessage());
                         jsonArray.put(jsonObject);
                     }
                     break;
@@ -274,8 +283,8 @@ public class ChatService {
     private static final String ALGORITHM = "AES";
     private static final String MODE = "CBC";
     private static final String PADDING = "PKCS5Padding";
-    private static final String KEY = "g9F@3H#kdE7q8nT$S!zG5*bW+mY2p^Vh"; // 128-bit key
-    private static final String IV = "LDN6mQ/CqnFFOxUP"; // 16-byte initialization vector
+    private static final String KEY = "g9F@3H#kdE7q8nT$S!zG5*bW+mY2p^Vh"; // 128-bit Schlüssel
+    private static final String IV = "LDN6mQ/CqnFFOxUP"; // 16-byte Initialisierungs Vektor
 
     public String encrypt(String plaintext) {
         try {

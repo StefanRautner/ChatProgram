@@ -34,7 +34,7 @@ public class ChatController {
     }
 
     @DeleteMapping("/deleteUser")
-    public String deleteUser(@RequestBody String body) {
+    public boolean deleteUser(@RequestBody String body) {
         JSONObject jsonBody = new JSONObject(body);
         return chatService.deleteUser(jsonBody.getString("username"), jsonBody.getString("password"));
     }
