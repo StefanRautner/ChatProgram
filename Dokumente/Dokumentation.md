@@ -397,7 +397,7 @@ classDiagram
 <details>
   <Summary>MongoDB-Datenbank</summary>
 
-  **Beschreibung:** Wie die Daten eines Users in der ongoDB-Datenbank gespeichert werden
+  **Beschreibung:** Wie die Daten eines Users in der  MongoDB-Datenbank gespeichert werden
 
   **Java-Endpoint:**
   ```json
