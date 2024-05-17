@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\",
+  "WorkspaceRootPath": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|c:\\users\\stefa\\onedrive\\desktop\\chatprogram\\second_client_wpf\\verbindungzuserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|c:\\users\\stefa\\onedrive\\desktop\\4ahinf\\pos\\chatprogram\\second_client_wpf\\verbindungzuserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B4605EAE-8AA5-496B-AA9C-6D633EB2B279}|Second_Client_WPF.csproj|solutionrelative:verbindungzuserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,9 +20,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "VerbindungZuServer.cs",
-              "DocumentMoniker": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\VerbindungZuServer.cs",
+              "DocumentMoniker": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\VerbindungZuServer.cs",
               "RelativeDocumentMoniker": "VerbindungZuServer.cs",
-              "ToolTip": "C:\\Users\\stefa\\OneDrive\\Desktop\\ChatProgram\\Second_Client_WPF\\VerbindungZuServer.cs",
+              "ToolTip": "C:\\Users\\stefa\\OneDrive\\Desktop\\4AHINF\\POS\\ChatProgram\\Second_Client_WPF\\VerbindungZuServer.cs",
               "RelativeToolTip": "VerbindungZuServer.cs",
               "ViewState": "AQIAAA0BAAAAAAAAAAAuwBgBAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="730826a7-0dc8-47fa-9103-02be2bc360c9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.metadata.v7.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.metadata.v7.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.projects.v7.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.projects.v7.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/DocumentLayout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.assets.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +48,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/stefa/OneDrive/Desktop/ChatProgram/ChatProgramm-WebApp",
+    "last_opened_file_path": "C:/Users/stefa/OneDrive/Desktop/4AHINF/POS/ChatProgram/ChatProgramm-WebApp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -105,6 +112,7 @@
       <workItem from="1715782267584" duration="6000" />
       <workItem from="1715839323223" duration="7000" />
       <workItem from="1715839511509" duration="14000" />
+      <workItem from="1715931560528" duration="4000" />
     </task>
     <servers />
   </component>
