@@ -15,9 +15,158 @@ graph TD;
 
 Das Chat-Programm (tinyWhatsApp) ermöglicht es Benutzern miteinander in Echtzeit zu chatten. Es bietet eine benutzerfreundliche Oberfläche sowohl als Desktopanwendung (WPF) als auch als Webanwendung. Die Software überträgt die Daten natürlich verschlüsselt, sodass keiner Zugang zu den Benutzerdaten erhalten kann
 
+## Funktionen der WebApp
+
+### Login
+![Frontend Login auf der WebApp](./Dokumente/Bilder-fuer-Doku/image-5.png)
+In dem Eingabefeld mit dem Placeholder-Text **"Benutzername eingeben"** gibt man den Benutzernamemn des zu verwendeten Benutzers ein
+In dem Eingabefeld mit dem Placeholder-Text **"Passwort eingeben"** gibt man das Passwort des zu verwendeten Benutzers ein
+Wenn man auf den **Registrieren** Knopf drückt, dann wird man zum Registrieren-Fenster weitergeleitet
+Wenn man auf den **Passwort vergessen?** Knopf drückt, dann wird man zum PasswortForgotten-Fenster weitergeleitet
+Wenn man auf den **Konto löschen** Knopf drückt, dann wird man zum BenutzerLöschen-Fenster weitergeleitet
+Wenn man in dem Passwort-Feld auf **'Enter'** drükt, dann wird überprüft, ob der Benutzerexistiert
+
+### Registrieren
+![Frontend Registieren auf der WebApp](./Dokumente/Bilder-fuer-Doku/image-6.png)
+In dem Eingabefeld mit dem Placeholder-Text **"Benutzername eingeben"** gibt man den Benutzernamemn des zu erstellenden Benutzers ein
+In dem Eingabefeld mit dem Placeholder-Text **"Passwort eingeben"** gibt man das Passwort des zu erstellenden Benutzers ein
+Wenn man auf den **Einloggen** Knopf drückt, dann wird man zum Einloggen-Fenster weitergeleitet
+Wenn man auf den **Passwort vergessen?** Knopf drückt, dann wird man zum PasswortForgotten-Fenster weitergeleitet
+Wenn man auf den **Konto löschen** Knopf drückt, dann wird man zum BenutzerLöschen-Fenster weitergeleitet
+Wenn man in dem Passwort-Feld auf **'Enter'** drückt, dann wird überprüft, ob noch kein Benutzer mit diesem Namen existiert
+
+### Passwort vergessen
+![Frontend Passwort vergessen auf der WebApp](./Dokumente/Bilder-fuer-Doku/image-7.png)
+In dem Eingabefeld mit dem Placeholder-Text **"Benutzername eingeben"** gibt man den Benutzernamemn des zu aktualisierenden Benutzers ein
+In dem Eingabefeld mit dem Placeholder-Text **"Passwort eingeben"** gibt man das Passwort des zu aktualisierenden Benutzers ein
+Wenn man auf den **Einloggen** Knopf drückt, dann wird man zum Login-Fenster weitergeleitet
+Wenn man auf den **Registrieren** Knopf drückt, dann wird man zum Registrieren-Fenster weitergeleitet
+Wenn man auf den **Konto löschen** Knopf drückt, dann wird man zum BenutzerLöschen-Fenster weitergeleitet
+Wenn man in dem Passwort-Feld auf **'Enter'** drückt, dann wird überprüft, ob ein Benutzer mit diesem Namen existiert
+
+### Konto löschen
+![Frontend Konto löschen auf der WebApp](./Dokumente/Bilder-fuer-Doku/image-12.png)
+In dem Eingabefeld mit dem Placeholder-Text **"Benutzername eingeben"** gibt man den Benutzernamemn des zu löschenden Benutzers ein
+In dem Eingabefeld mit dem Placeholder-Text **"Passwort eingeben"** gibt man das Passwort des zu löschenden Benutzers ein
+Wenn man auf den **Einloggen** Knopf drückt, dann wird man zum Login-Fenster weitergeleitet
+Wenn man auf den **Registrieren** Knopf drückt, dann wird man zum Registrieren-Fenster weitergeleitet
+Wenn man auf den **Passwort vergessen?** Knopf drückt, dann wird man zum PasswortForgotten-Fenster weitergeleitet
+Wenn man in dem Passwort-Feld auf **'Enter'** drückt, dann wird überprüft, ob der Benutzer existiert
+
+### Hauptfenster
+![Frontend Haupt-Bildschirm auf der WebApp](./Dokumente/Bilder-fuer-Doku/image-9.png)
+#### Chatnamen-Frontend
+In dem Grauen Balken (links) werden alle Chatnamen angezeigt
+Wenn auf einen Chatnamen doppelt gedrückt wird, dann wird das Chat-Feld geöffnet
+Ebenfalls kann man zum Öffnen des Chat-Feldes den **Edit Chat** Knopf rechts unten drücken
+#### Nachrichten-Frontend
+In dem Weißen Balken (rechts) werden alle Nachrichten des aktuellen Chats angezeigt
+Wenn auf eine Nachricht doppelt gedrückt wird, dann wird das Message-Feld geöffnet
+Ebenfalls kann man zum Öffnen des **Edit Message** Knopf rechts unten drücken
+#### Senden-Frontend
+In dem Eingabefeld unten mit dem Placeholder-Text **"Nachricht eingeben"** gibt man den Text für neue Nachrichten ein
+Wenn man in diesem Feld auf **'Enter'** drückt, dann wird die Nachricht gesendet
+Ebenfalls kann man zum Absenden des Text den **Send** Knopf links unten drücken
+#### Download-Knopf
+Wenn der **Download** Knopf rechts oben gedrückt wird, dann wird die WebApp als Lokales Programm instaliert
+#### Laden eines neuen Chats
+Wenn man einmal auf einen Chatnamen drückt, dann wird der Inhalt des Chats rechts in das Nachrichten-Feld eingefügt
+
+### Chatfeld
+![Frontend Chat-Bildschirm auf der WebApp](./Dokumente/Bilder-fuer-Doku/image-10.png)
+#### Chat
+In dem Eingabefeld mit dem Placeholder-Text **"Neuen Chatnamen eingeben"** gibt man den Chatnamen ein
+Wenn man auf den **Chat hinzufügen** Knopf drückt, dann wird ein neuer Chat erstellt
+Wenn man auf den **Chatnamen aktualisieren** Knopf drückt, dann wird der Namen des aktuellen Chats geändert
+Wenn man auf den **Chat löschen** Knopf drückt, dann wird der aktuelle Chat gelöscht
+#### Benutzer
+In dem Eingabefeld mit dem Placeholder-Text **"Hier Benutzernamen eingeben"** gibt man einen Benutzernamen eines anderen Benutzers ein
+Wenn man auf den **Benutzer hinzufügen** Knopf drückt, dann kann man einen anderen Benutzer zum aktuellen Chat hinzufügen
+Wenn man auf den **Benutzer entfernen** Knopf drückt, dann kann man einen anderen Benutzer des aktuellen Chats entfernen
+
+### Messagefeld
+![Frontend Message-Bildschirm auf der WebApp](./Dokumente/Bilder-fuer-Doku/image-11.png)
+In dem Eingabefeld mit dem Placeholder-text **"Hier neue Nachricht eingeben"** gibt man den neuen Inhalt der Nachricht ein
+Wenn man auf den **Nachricht aktualisieren** Knopf drückt, dann wird der Inhalt der Nachricht aktualisiert (ist nur in den ersten 5 Minuten nach Erstellen der Nachricht möglich)
+Wenn man auf den **Nachricht löschen** Knopf drückt, dann wird die aktuelle Nachricht gelöscht
+
+## Funktionen der WPF
+
+### Login
+![Frontend Login in WPF](./Dokumente/Bilder-fuer-Doku/image-13.png)
+In dem Eingabefeld unter dem Label **"Benutzername eingeben"** gibt man den Benutzernamemn des zu verwendeten Benutzers ein
+In dem Eingabefeld unter dem Label **"Passwort eingeben"** gibt man das Passwort des zu verwendeten Benutzers ein
+Wenn man auf den **Registrieren** Knopf drückt, dann wird man zum Registrieren-Fenster weitergeleitet
+Wenn man auf den **Passwort vergessen** Knopf drückt, dann wird man zum PasswortForgotten-Fenster weitergeleitet
+Wenn man auf den **Konto löschen** Knopf drückt, dann wird man zum BenutzerLöschen-Fenster weitergeleitet
+Wenn man in dem Passwort-Feld auf **'Enter'** drückt, dann wird überprüft, ob der Benutzer existiert
+
+### Registrieren
+![Frontend Registrieren in WPF](./Dokumente/Bilder-fuer-Doku/image-14.png)
+In dem Eingabefeld unter dem Label **"Benutzername eingeben"** gibt man den Benutzernamemn des zu erstellenden Benutzers ein
+In dem Eingabefeld unter dem Label **"Passwort eingeben"** gibt man das Passwort des zu erstellenden Benutzers ein
+Wenn man auf den **Einloggen** Knopf drückt, dann wird man zum Einloggen-Fenster weitergeleitet
+Wenn man auf den **Passwort vergessen** Knopf drückt, dann wird man zum PasswortForgotten-Fenster weitergeleitet
+Wenn man auf den **Konto löschen** Knopf drückt, dann wird man zum BenutzerLöschvben-Fenster weitergeleitet
+Wenn man in dem Passwort-Feld auf **'Enter'** drückt, dann wird überprüft, ob noch kein Benutzer mit dem Namen existiert
+
+### Passwort vergessen
+![Frontend Passwort vergessen in WPF](./Dokumente/Bilder-fuer-Doku/image-15.png)
+In dem Eingabefeld unter dem Label **"Benutzername eingeben"** gibt man den Benutzernamemn des zu aktualisierenden Benutzers ein
+In dem Eingabefeld unter dem Label **"Passwort eingeben"** gibt man das Passwort des zu aktualisierenden Benutzers ein
+Wenn man auf den **Einloggen** Knopf drückt, dann wird man zum Login-Fenster weitergeleitet
+Wenn man auf den **Registrieren** Knopf drückt, dann wird man zum Registrieren-Fenster weitergeleitet
+Wenn man auf den **Konto löschen** Knopf drückt, dann wird man zum BenutzerLöschen-Fenster weitergeleitet
+Wenn man in dem Passwort-Feld auf **'Enter'** drückt, dann wird überprüft, ob ein Benutzer mit diesem Namen exisitert
+
+### Konto löschen
+![Frontend Konto löschen in WPF](./Dokumente/Bilder-fuer-Doku/image-16.png)
+In dem Eingabefeld unter dem Label **"Benutzername eingeben"** gibt man den Benutzernamemn des zu löschenden Benutzers ein
+In dem Eingabefeld unter dem Label **"Passwort eingeben"** gibt man das Passwort des zu löschenden Benutzers ein
+Wenn man auf den **Einloggen** Knopf drückt, dann wird man zum Login-Fenster weitergeleitet
+Wenn man auf den **Registrieren** Knopf drückt, dann wird man zum Registrieren-Fenster weitergeleitet
+Wenn man auf den **Passwort vergessen** Knopf drückt, dann wird man zum PasswortForgotten-Fenster weitergeleitet
+Wenn man in dem Passwort-Feld auf **'Enter'** drückt, dann wird überprüft, ob der Benutzer existiert
+
+### Hauptfenster
+![Frontend Haupt-Bildschirm in WPF](./Dokumente/Bilder-fuer-Doku/image-17.png)
+#### Chatnamen-Frontend
+In dem linken Balken werden alle Chatnamen angezeigt
+Wenn auf einen Chatnamen doppelt gedrückt wird, dann wird das Chat-Feld geöffnet
+Ebenfalls kann man zum Öffnen des Chat-Feldes den **Chat aktualisieren** Knopf links unten drücken
+#### Nachrichten-Frontend
+In dem rechten Balken werden alle Nachrichten des aktuellen Chats angezeigt
+Wenn auf eine Nachricht doppelt gedrückt wird, dann wird das Message-Feld geöffnet
+Ebenfalls kann man zum Öffnen des **Nachrichten updaten** Knopf rechts obem drücken
+#### Senden-Frontend
+In dem Eingabefeld unten mitte, gibt man den Text für neue Nachrichten ein
+Wenn man in diesem Feld auf **'Enter'** drückt, dann wird die Nachricht gesendet
+Ebenfalls kann man zum Absenden des Text den **Senden** Knopf rechts unten drücken
+#### Laden eines neuen Chats
+Wenn man einmal auf einen Chatnamen drückt, dann wird der Inhalt des Chats rechts in das Nachrichten-Feld eingefügt
+
+### Chatfeld
+![Frontend Chat-Bildschirm in WPF](./Dokumente/Bilder-fuer-Doku/image-18.png)
+#### Chat
+In dem Eingabefeld unter dem Label **"Bitte geben Sie den neuen Namen des Chats ein"** gibt man den Chatnamen ein
+Wenn man auf den linken **Hinzufügen** Knopf drückt, dann wird ein neuer Chat erstellt
+Wenn man auf den **Aktualisieren** Knopf drückt, dann wird der Namen des aktuellen Chats geändert
+Wenn man auf den linken **Entfernen** Knopf drückt, dann wird der aktuelle Chat gelöscht
+#### Benutzer
+In dem Eingabefeld unter dem Label **"Bitte Benutzernamen eingeben"** gibt man einen Benutzernamen eines anderen Benutzers ein
+Wenn man auf den rechten **Hinzufügen** Knopf drückt, dann kann man einen anderen Benutzer zum aktuellen Chat hinzufügen
+Wenn man auf den rechten **BEntfernen** Knopf drückt, dann kann man einen anderen Benutzer des aktuellen Chats entfernen
+
+### Messagefeld
+![Frontend Message-Bildschirm in WPF](./Dokumente/Bilder-fuer-Doku/image-19.png)
+In dem Eingabefeld unter dem Label **"Neuen Nachrichteninhalt eingeben"** gibt man den neuen Inhalt der Nachricht ein
+Wenn man auf den **Aktualisieren** Knopf drückt, dann wird der Inhalt der Nachricht aktualisiert (ist nur in den ersten 5 Minuten nach Erstellen der Nachricht möglich)
+Wenn man auf den **Löschen** Knopf drückt, dann wird die aktuelle Nachricht gelöscht
+
 ##  API-Beschreibung
 
 Der Spring-Boot Server basiert auf dem REST-Pinzip, dadurch ermöglicht er den Clients, Nachrichten zu senden, zu empfangen und vieles mehr. (Keine GET-Endpoints, da ich für die Datenübertragung von den Clients an den Server immer den Body verwende & dieses im Web aufgrund von Sicherheitsstandards gesperrt ist)
+
 ### Die Endpunkte umfassen:
 
 <!-- Genereller Endpoint -->
