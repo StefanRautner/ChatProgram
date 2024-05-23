@@ -18,13 +18,13 @@ Das Chat-Programm (tinyWhatsApp) ermöglicht es Benutzern miteinander in Echtzei
 ## Funktionen der WebApp
 
 ### Login
-![Frontend Login auf der WebApp](./Dokumente/Bilder-fuer-Doku/Login-WebApp.png)
-In dem Eingabefeld mit dem Placeholder-Text **"Benutzername eingeben"** gibt man den Benutzernamemn des zu verwendeten Benutzers ein
-In dem Eingabefeld mit dem Placeholder-Text **"Passwort eingeben"** gibt man das Passwort des zu verwendeten Benutzers ein
-Wenn man auf den **Registrieren** Knopf drückt, dann wird man zum Registrieren-Fenster weitergeleitet
-Wenn man auf den **Passwort vergessen?** Knopf drückt, dann wird man zum PasswortForgotten-Fenster weitergeleitet
-Wenn man auf den **Konto löschen** Knopf drückt, dann wird man zum BenutzerLöschen-Fenster weitergeleitet
-Wenn man in dem Passwort-Feld auf **'Enter'** drükt, dann wird überprüft, ob der Benutzerexistiert
+![Frontend Login auf der WebApp](./Dokumente/Bilder-fuer-Doku/Login-WebApp.png)<br>
+In dem Eingabefeld mit dem Placeholder-Text **"Benutzername eingeben"** gibt man den Benutzernamemn des zu verwendeten Benutzers ein<br>
+In dem Eingabefeld mit dem Placeholder-Text **"Passwort eingeben"** gibt man das Passwort des zu verwendeten Benutzers ein<br>
+Wenn man auf den **Registrieren** Knopf drückt, dann wird man zum Registrieren-Fenster weitergeleitet<br>
+Wenn man auf den **Passwort vergessen?** Knopf drückt, dann wird man zum PasswortForgotten-Fenster weitergeleitet<br>
+Wenn man auf den **Konto löschen** Knopf drückt, dann wird man zum BenutzerLöschen-Fenster weitergeleitet<br>
+Wenn man in dem Passwort-Feld auf **'Enter'** drükt, dann wird überprüft, ob der Benutzerexistiert<br>
 
 ### Registrieren
 ![Frontend Registieren auf der WebApp](./Dokumente/Bilder-fuer-Doku/Register-WebApp.png)
