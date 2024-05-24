@@ -4,7 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="730826a7-0dc8-47fa-9103-02be2bc360c9" name="Changes" comment="" />
+    <list default="true" id="730826a7-0dc8-47fa-9103-02be2bc360c9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/home/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.metadata.v7.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.metadata.v7.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.projects.v7.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/ProjectEvaluation/second_client_wpf.projects.v7.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.futdcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/.vs/Second_Client_WPF/v17/DocumentLayout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/bin/Debug/net8.0-windows/Second_Client_WPF.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF_MarkupCompile.i.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF_MarkupCompile.i.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/Second_Client_WPF_MarkupCompile.i.lref" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/ref/Second_Client_WPF.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/ref/Second_Client_WPF.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/refint/Second_Client_WPF.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Debug/net8.0-windows/refint/Second_Client_WPF.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Second_Client_WPF.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Second_Client_WPF.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/Second_Client_WPF.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/Second_Client_WPF.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Second_Client_WPF/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Second_Client_WPF/obj/project.nuget.cache" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,6 +139,8 @@
       <workItem from="1716371880795" duration="51000" />
       <workItem from="1716371942646" duration="1000" />
       <workItem from="1716378762848" duration="12000" />
+      <workItem from="1716537092614" duration="263000" />
+      <workItem from="1716537376414" duration="5000" />
     </task>
     <servers />
   </component>

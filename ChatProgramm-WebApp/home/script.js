@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         if (localStorage.getItem('chatID') !== null && localStorage.getItem('chatID') !== "") {
             await getData(event);
         }
-    }, 400); //NICHT 50ms wie in WPF (geht nicht, weil li's sonst zu schnell laden, um angeklickt werden zu können)
+    }, 500); //NICHT 50ms wie in WPF (geht nicht, weil li's sonst zu schnell laden, um angeklickt werden zu können)
 })
 
 //Chatnamen erhalten
