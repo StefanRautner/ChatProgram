@@ -6,7 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:local="clr-namespace:Second_Client_WPF"
       mc:Ignorable="d" 
-      Title="Login" Height="245" Width="320px" Icon="/icon.png">
+      Title="Login" Height="245" Width="320px" Icon="/icon.png" ResizeMode="NoResize">
 
     <Grid Margin="0,0,0,0">
         <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="Bitte Daten eingeben" VerticalAlignment="Top" Margin="76,18,76,0" FontSize="16px"/>

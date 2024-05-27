@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Second_Client_WPF"
         mc:Ignorable="d"
-        Title="ChatProgram" Height="437px" Width="514px" Icon="/icon.png">
+        Title="ChatProgram" Height="437px" Width="514px" Icon="/icon.png" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100px"/>
