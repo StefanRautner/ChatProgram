@@ -1,0 +1,11 @@
+ChatProgramm-Server/.idea
+ChatProgramm-Server/.mvn
+CHatProgramm-Server/mvnw
+CHatProgramm-Server/mvnw.cmd
+
+CHatProgramm-WebApp/.idea
+
+Second_Client-WPF/.vs
+Second_Client-WPF/bin
+Second_Client-WPF/obj
+Second_Client-WPF/*.csproj.user
