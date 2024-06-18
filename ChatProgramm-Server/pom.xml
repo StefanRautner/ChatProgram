@@ -5,16 +5,16 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.3</version>
+        <version>3.3.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.example</groupId>
     <artifactId>ChatProgramm-Server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Server_Spring-Boot</name>
-    <description>Server_Spring-Boot</description>
+    <name>ChatProgramm-Server</name>
+    <description>ChatProgramm-Server</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>22</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -48,4 +48,14 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
