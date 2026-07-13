@@ -2,7 +2,7 @@
 
 ## Softwaredesign (Architektur)
 
-Das Chat-Programm wurde in einer Client-Client-Server-Architektur entwicklet, wobei der Client als WPF-Anwendung oder WebApp implementiert ist und diese beide mit dem Server (welcher auf Spring Boot basiert) kommunizieren. Die Daten werden in einer MongoDB-Datenbank gespeichert.
+Das Chat-Programm wurde in einer Client-Client-Server-Architektur entwickelt, wobei der Client als WPF-Anwendung oder WebApp implementiert ist und diese beide mit dem Server (welcher auf Spring Boot basiert) kommunizieren. Die Daten werden in einer MongoDB-Datenbank gespeichert.
 
 ```mermaid
 graph TD;
